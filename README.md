@@ -5,6 +5,7 @@
 ## Integrantes del equipo
 
 [Nombres, apellidos, y usuario GitHub de los integrantes del equipo.]
+
 Matias Gabriel Polo Reyes 
 ## Objetivos del trabajo
 
