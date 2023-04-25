@@ -7,7 +7,7 @@
 
 [Nombres, apellidos, y usuario GitHub de los integrantes del equipo.]
 
-Matias Gabriel Polo Reyes 
+Matias Gabriel Polo Reyes/n
 Luis Peñaranda del Mazo
 ## Objetivos del trabajo
 
