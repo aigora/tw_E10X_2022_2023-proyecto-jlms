@@ -34,12 +34,12 @@ int main()
   long int fsize;
   mes data[10];
   char accion[10],aux[100];
-  char car, uno[] = "abrir",length[] = "contar",end[] = "finalizar";
+  char car, open[] = "abrir",length[] = "contar",end[] = "finalizar",all[] = "todos",elegir[] = "elegir";
   pf = fopen("generacion.txt", "r");
   printf("bienvenido al programa\n");
   printf("a continuacion, eliga la acccion que quiere realizar, diga: 'abrir'\n");
   scanf("%9[^\n]",accion);  scanf("%c");
-  if(strcmp(accion,uno) == 0)
+  if(strcmp(accion,open) == 0)
   {
       printf("has seleccionado abrir el fichero\n");
     if (pf == NULL) // Si el resultado es NULL mensaje de error
@@ -283,56 +283,72 @@ int main()
         fsize = ftell(pf);
         printf("El fichero tiene %li bytes.\n", fsize);
         system ("cls");
-//        printf("de momento, te voy a enseñar los datos de un solo mes\n");
-//        printf("dime el numero del mes!(es de 1 a 10)\n");
-//        scanf("%d",&num);
-//        system ("cls");
-//        for(i=num-1;i<num;i++)
-//        {
-//         printf("%d/%d: \n",data[i].date.month,data[i].date.year);
-//         printf("hidraulica: %f\n",data[i].hidraulica);
-//         printf("turbbombeo: %f\n",data[i].turbbombeo);
-//         printf("nuclear: %f\n",data[i].nuclear);
-//         printf("carbon: %f\n",data[i].carbon);
-//         printf("fuelgas: %f\n",data[i].fuelgas);
-//         printf("motdiesel: %f\n",data[i].motdiesel);
-//         printf("turbinagas: %f\n",data[i].turbinagas);
-//         printf("turbvapor: %f\n",data[i].turbvapor);
-//         printf("ccombinado: %f\n",data[i].ccombinado);
-//         printf("hidroeolica: %f\n",data[i].hidroeolica);
-//         printf("eolica: %f\n",data[i].eolica);
-//         printf("solarfoto: %f\n",data[i].solarfoto);
-//         printf("solarterm: %f\n",data[i].solarterm);
-//         printf("otrasreno: %f\n",data[i].otrasreno);
-//         printf("cogenerac: %f\n",data[i].cogenerac);
-//         printf("norenov: %f\n",data[i].norenov);
-//         printf("residrenov: %f\n",data[i].residrenov);
-//         printf("genertotal: %f\n",data[i].genertotal);
-//        }
-//        system ("cls");
-        printf("supongamos ahora que queremos mostrar todos los datos, en ese caso seria:\n");
-        for(i=0;i<10;i++)
+        printf("ahora puedes elegir lo que quieres hacer\n");
+        printf("puedes mostrar o 'todos' los datos o 'elegir' un mes\n");
+        scanf("%9[^\n]",accion);
+        scanf("%c");
+        if(strcmp(accion,all) == 1 || strcmp(accion,elegir) == 1)
         {
-         printf("%d/%d:\n",data[i].date.month,data[i].date.year);
-         printf("hidraulica: %f\n",data[i].hidraulica);
-         printf("turbbombeo: %f\n",data[i].turbbombeo);
-         printf("nuclear: %f\n",data[i].nuclear);
-         printf("carbon: %f\n",data[i].carbon);
-         printf("fuelgas: %f\n",data[i].fuelgas);
-         printf("motdiesel: %f\n",data[i].motdiesel);
-         printf("turbinagas: %f\n",data[i].turbinagas);
-         printf("turbvapor: %f\n",data[i].turbvapor);
-         printf("ccombinado: %f\n",data[i].ccombinado);
-         printf("hidroeolica: %f\n",data[i].hidroeolica);
-         printf("eolica: %f\n",data[i].eolica);
-         printf("solarfoto: %f\n",data[i].solarfoto);
-         printf("solarterm: %f\n",data[i].solarterm);
-         printf("otrasreno: %f\n",data[i].otrasreno);
-         printf("cogenerac: %f\n",data[i].cogenerac);
-         printf("norenov: %f\n",data[i].norenov);
-         printf("residrenov: %f\n",data[i].residrenov);
-         printf("genertotal: %f\n",data[i].genertotal);
-         printf("\n");
+            printf("error,vuelve a introducir otra instruccion, como 'todos' o 'elegir'\n");
+            scanf("%9[^\n]",accion);
+            scanf("%c");
+        }
+//        system ("cls");
+        if(strcmp(accion,all) == 0)
+        {
+            printf("has seleccionado mostrar todos los datos, en ese caso seria:\n");
+            for(i=0;i<10;i++)
+            {
+            printf("%d/%d:\n",data[i].date.month,data[i].date.year);
+            printf("hidraulica: %f\n",data[i].hidraulica);
+            printf("turbbombeo: %f\n",data[i].turbbombeo);
+            printf("nuclear: %f\n",data[i].nuclear);
+            printf("carbon: %f\n",data[i].carbon);
+            printf("fuelgas: %f\n",data[i].fuelgas);
+            printf("motdiesel: %f\n",data[i].motdiesel);
+            printf("turbinagas: %f\n",data[i].turbinagas);
+            printf("turbvapor: %f\n",data[i].turbvapor);
+            printf("ccombinado: %f\n",data[i].ccombinado);
+            printf("hidroeolica: %f\n",data[i].hidroeolica);
+            printf("eolica: %f\n",data[i].eolica);
+            printf("solarfoto: %f\n",data[i].solarfoto);
+            printf("solarterm: %f\n",data[i].solarterm);
+            printf("otrasreno: %f\n",data[i].otrasreno);
+            printf("cogenerac: %f\n",data[i].cogenerac);
+            printf("norenov: %f\n",data[i].norenov);
+            printf("residrenov: %f\n",data[i].residrenov);
+            printf("genertotal: %f\n",data[i].genertotal);
+            printf("\n");
+            }
+        }
+        if(strcmp(accion,elegir) == 0)
+        {
+            printf("de acuerdo, te voy a mostrar los datos de un solo mes\n");
+            printf("dime el numero del mes!(es de 1 a 10)\n");
+            scanf("%d",&num);
+            system ("cls");
+            for(i=num-1;i<num;i++)
+                {
+                printf("%d/%d: \n",data[i].date.month,data[i].date.year);
+                printf("hidraulica: %f\n",data[i].hidraulica);
+                printf("turbbombeo: %f\n",data[i].turbbombeo);
+                printf("nuclear: %f\n",data[i].nuclear);
+                printf("carbon: %f\n",data[i].carbon);
+                printf("fuelgas: %f\n",data[i].fuelgas);
+                printf("motdiesel: %f\n",data[i].motdiesel);
+                printf("turbinagas: %f\n",data[i].turbinagas);
+                printf("turbvapor: %f\n",data[i].turbvapor);
+                printf("ccombinado: %f\n",data[i].ccombinado);
+                printf("hidroeolica: %f\n",data[i].hidroeolica);
+                printf("eolica: %f\n",data[i].eolica);
+                printf("solarfoto: %f\n",data[i].solarfoto);
+                printf("solarterm: %f\n",data[i].solarterm);
+                printf("otrasreno: %f\n",data[i].otrasreno);
+                printf("cogenerac: %f\n",data[i].cogenerac);
+                printf("norenov: %f\n",data[i].norenov);
+                printf("residrenov: %f\n",data[i].residrenov);
+                printf("genertotal: %f\n",data[i].genertotal);
+                }
         }
         return 0;
         }
