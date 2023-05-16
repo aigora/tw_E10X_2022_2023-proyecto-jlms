@@ -6,6 +6,7 @@ typedef struct
     int year;
 }fecha;
 typedef struct
+
 {
     fecha date;
     float hidraulica;
@@ -27,18 +28,24 @@ typedef struct
     float residrenov;
     float genertotal;
 }mes;
+
+void grafico(mes fecha[10]);
+
 int main()
 {
   FILE *pf;
   int nLineas=0,i,num;
   long int fsize;
+  //data es el vector donde guardamos los meses
   mes data[10];
   char accion[10],aux[100];
   char car, open[] = "abrir",length[] = "contar",end[] = "finalizar",all[] = "todos",elegir[] = "elegir";
+
   pf = fopen("generacion.txt", "r");
-  printf("bienvenido al programa\n");
+  printf("Bienvenido al programa\n");
   printf("a continuacion, eliga la acccion que quiere realizar, diga: 'abrir'\n");
-  scanf("%9[^\n]",accion);  scanf("%c");
+  scanf("%9[^\n]",accion);
+  scanf("%c");
   if(strcmp(accion,open) == 0)
   {
       printf("has seleccionado abrir el fichero\n");
@@ -61,6 +68,8 @@ int main()
             }
             if(strcmp(accion,length) == 0)
             {
+                //Recorremos todo el fichero y almacenamos los datos
+                //en el vector de estructuas
                while (fscanf(pf, "%c", &car) != EOF)
                 {
                 if (car == '\n')
@@ -356,4 +365,31 @@ int main()
   else
     printf("error, se finaliza el programa\n");
 return 0;
+}
+
+//Función para generar graficos de barras
+void grafico(mes fecha[10])
+{
+    //Preguntar que datos se desean ver
+    printf("Deseas comparar los GW/h de los distintos tipos de generación (escribir:'tipos'o'1')\n"
+           "o la evolución de un tipo de generacion concreto (escribir tipo que deseas comparar:)\n"
+            "hidraulica\n"
+            "turbbombeo\n"
+            "nuclear\n"
+            "carbon\n"
+            "fuelgas\n"
+            "motdiesel\n"
+            "turbinagas\n"
+            "turbvapor\n"
+            "ccombinado\n"
+            "hidroeolica\n"
+            "eolica\n"
+            "solarfoto\n"
+            "solarterm\n"
+            "otrasreno\n"
+            "cogenerac\n"
+            "norenov \n"
+            "residrenov \n"
+            "genertotal \n");
+
 }
