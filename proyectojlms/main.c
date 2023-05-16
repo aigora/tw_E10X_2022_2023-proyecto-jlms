@@ -368,28 +368,32 @@ return 0;
 }
 
 //Función para generar graficos de barras
+
 void grafico(mes fecha[10])
 {
-    //Preguntar que datos se desean ver
-    printf("Deseas comparar los GW/h de los distintos tipos de generación (escribir:'tipos'o'1')\n"
-           "o la evolución de un tipo de generacion concreto (escribir tipo que deseas comparar:)\n"
-            "hidraulica\n"
-            "turbbombeo\n"
-            "nuclear\n"
-            "carbon\n"
-            "fuelgas\n"
-            "motdiesel\n"
-            "turbinagas\n"
-            "turbvapor\n"
-            "ccombinado\n"
-            "hidroeolica\n"
-            "eolica\n"
-            "solarfoto\n"
-            "solarterm\n"
-            "otrasreno\n"
-            "cogenerac\n"
-            "norenov \n"
-            "residrenov \n"
-            "genertotal \n");
-
+    char respuesta[15];
+    //Preguntar que se desea hacer, que la respuesta se autocomplete
+    do
+    // El bucle se repite mientras las cadenas no coincidan
+    {
+        printf("--Comparar los GW/h de los distintos tipos de generación (escribir'tipos')\n"
+                "--Evolución de un tipo de generacion concreto (escribir tipo que deseas comparar:)\n"
+                "hidraulica\n"
+                "turbbombeo\n"
+                "nuclear\n"
+                "carbon\n"
+                "fuelgas\n"
+                "motdiesel\n"
+                "turbinagas\n"
+                "turbvapor\n"
+                "ccombinado\n"
+                "hidroeolica\n"
+                "eolica\n"
+                "solarfoto\n"
+                "solarterm\n"
+                "otrasreno\n"
+                "cogenerac\n"
+                "norenov \n"
+                "residrenov \n"
+                "genertotal \n");
 }
