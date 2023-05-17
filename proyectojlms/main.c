@@ -5,8 +5,8 @@ typedef struct
     int month;
     int year;
 }fecha;
-typedef struct
 
+typedef struct
 {
     fecha date;
     float hidraulica;
@@ -30,6 +30,8 @@ typedef struct
 }mes;
 
 void grafico(mes fecha[10]);
+int tamano_cadena(char palabra);
+int comparar(char palabra[15]);
 
 int main()
 {
@@ -368,32 +370,70 @@ return 0;
 }
 
 //Función para generar graficos de barras
-
-void grafico(mes fecha[10])
+void grafico(mes fecha[10],int inicio,int fin)
 {
-    char respuesta[15];
-    //Preguntar que se desea hacer, que la respuesta se autocomplete
-    do
-    // El bucle se repite mientras las cadenas no coincidan
-    {
-        printf("--Comparar los GW/h de los distintos tipos de generación (escribir'tipos')\n"
-                "--Evolución de un tipo de generacion concreto (escribir tipo que deseas comparar:)\n"
-                "hidraulica\n"
-                "turbbombeo\n"
-                "nuclear\n"
-                "carbon\n"
-                "fuelgas\n"
-                "motdiesel\n"
-                "turbinagas\n"
-                "turbvapor\n"
-                "ccombinado\n"
-                "hidroeolica\n"
-                "eolica\n"
-                "solarfoto\n"
-                "solarterm\n"
-                "otrasreno\n"
-                "cogenerac\n"
-                "norenov \n"
-                "residrenov \n"
-                "genertotal \n");
+    char decision[15];
+    //Primero tienes que elegir que generaciones quieres comparar
+    //luego automaticamente escoje una escala de tal manera que
+    //siempre tenga el mismo tamaño la grafica pero distinta escala
+     printf("--GW/h de todos los tipos de generación (escribir'tipos')\n"
+            "--GW/h total generados a nivel nacional (escribir'total')\n"
+            "--GW/h de algunos tipos de generacion concretos (escribir tipo que deseas comparar:)\n"
+                "1 hidraulica\n"
+                "2 turbbombeo\n"
+                "3 nuclear\n"
+                "4 carbon\n"
+                "5 fuelgas\n"
+                "6 motdiesel\n"
+                "7 turbinagas\n"
+                "8 turbvapor\n"
+                "9 ccombinado\n"
+                "10 hidroeolica\n"
+                "11 eolica\n"
+                "12 solarfoto\n"
+                "13 solarterm\n"
+                "14 otrasreno\n"
+                "15 cogenerac\n"
+                "16 norenov \n"
+                "17 residrenov\n\n");
+    scanf("%15[^\n]",decision);
+
 }
+
+
+
+int comparar(char palabra[15])
+{
+    FILE *pfpalabras;
+    char palabra_fichero[15];
+    int i=0;
+    pfpalabras=fopen("palabras_para_comparar.txt","r");
+    if(pfpalabras==NULL)
+    {
+        printf("Error abrir fichero");
+    }
+    while(fscanf(pfpalabras,"%[^\n]\n",posiblep)!=EOF)
+    {
+        i=0;
+        while(palabra[i]==posiblep[i]&&palabra[i]!='\0')
+        {
+            i++;
+        }
+        if(i==tamano_cadena(palabra))
+        {
+
+        }
+    }
+}
+
+int tamano_cadena(char palabra[15])
+{
+    int tamano=0;
+    while(palabra[tamano]!='\0')
+    {
+        tamano++;
+    }
+    return tamano;
+}
+
+
