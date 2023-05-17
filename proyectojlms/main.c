@@ -29,9 +29,7 @@ typedef struct
     float genertotal;
 }mes;
 
-void grafico(mes fecha[10]);
-int tamano_cadena(char palabra);
-int comparar(char palabra[15]);
+void grafico(mes fecha[10],int inicio,int fin);
 
 int main()
 {
@@ -372,11 +370,14 @@ return 0;
 //Función para generar graficos de barras
 void grafico(mes fecha[10],int inicio,int fin)
 {
+    int i,j;
     char decision[15];
+    float variable[10];
     //Primero tienes que elegir que generaciones quieres comparar
     //luego automaticamente escoje una escala de tal manera que
     //siempre tenga el mismo tamaño la grafica pero distinta escala
-     printf("--GW/h de todos los tipos de generación (escribir'tipos')\n"
+     printf("--Ir atras (escribir'atras')\n"
+            "--GW/h de todos los tipos de generación (escribir'tipos')\n"
             "--GW/h total generados a nivel nacional (escribir'total')\n"
             "--GW/h de algunos tipos de generacion concretos (escribir tipo que deseas comparar:)\n"
                 "1 hidraulica\n"
@@ -394,46 +395,90 @@ void grafico(mes fecha[10],int inicio,int fin)
                 "13 solarterm\n"
                 "14 otrasreno\n"
                 "15 cogenerac\n"
-                "16 norenov \n"
+                "16 norenov\n"
                 "17 residrenov\n\n");
     scanf("%15[^\n]",decision);
-
-}
-
-
-
-int comparar(char palabra[15])
-{
-    FILE *pfpalabras;
-    char palabra_fichero[15];
-    int i=0;
-    pfpalabras=fopen("palabras_para_comparar.txt","r");
-    if(pfpalabras==NULL)
+    for(i=0,j=inicio-1;i<=fin-inicio;i++,j++)
     {
-        printf("Error abrir fichero");
-    }
-    while(fscanf(pfpalabras,"%[^\n]\n",posiblep)!=EOF)
-    {
-        i=0;
-        while(palabra[i]==posiblep[i]&&palabra[i]!='\0')
+        if(decision=="hidraulica")
         {
-            i++;
+            variable[i]=fecha[j].hidraulica;
         }
-        if(i==tamano_cadena(palabra))
+        if(decision=="turbbombeo")
+        {
+            variable[i]=fecha[j].turbbombeo;
+        }
+        if(decision=="nuclear")
+        {
+            variable[i]=fecha[j].nuclear;
+        }
+        if(decision=="carbon")
+        {
+            variable[i]=fecha[j].carbon;
+        }
+        if(decision=="fuelgas")
+        {
+            variable[i]=fecha[j].fuelgas;
+        }
+        if(decision=="motdiesel")
+        {
+            variable[i]=fecha[j].motdiesel;
+        }
+        if(decision=="turbinagas")
+        {
+            variable[i]=fecha[j].turbinagas;
+        }
+        if(decision=="turbvapor")
+        {
+            variable[i]=fecha[j].turbvapor;
+        }
+        if(decision=="ccombinado")
+        {
+            variable[i]=fecha[j].ccombinado;
+        }
+        if(decision=="hidroeolica")
+        {
+            variable[i]=fecha[j].hidroeolica;
+        }
+        if(decision=="eolica")
+        {
+            variable[i]=fecha[j].eolica;
+        }
+        if(decision=="solarfoto")
+        {
+            variable[i]=fecha[j].solarfoto;
+        }
+        if(decision=="solarterm")
+        {
+            variable[i]=fecha[j].solarterm;
+        }
+        if(decision=="otrasreno")
+        {
+            variable[i]=fecha[j].otrasreno;
+        }
+        if(decision=="cogenerac")
+        {
+            variable[i]=fecha[j].cogenerac;
+        }
+         if(decision=="norenov")
+        {
+            variable[i]=fecha[j].norenov;
+        }
+         if(decision=="residrenov")
+        {
+            variable[i]=fecha[j].residrenov;
+        }
+         if(decision=="tipos")
+        {
+
+        }
+         if(decision=="total")
+        {
+
+        }
+        if(decision=="atras")
         {
 
         }
     }
 }
-
-int tamano_cadena(char palabra[15])
-{
-    int tamano=0;
-    while(palabra[tamano]!='\0')
-    {
-        tamano++;
-    }
-    return tamano;
-}
-
-
