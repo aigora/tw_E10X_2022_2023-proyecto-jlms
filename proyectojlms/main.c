@@ -34,6 +34,7 @@ void grafica(mes fecha[10],int inicio,int fin);
 void limpiar_vector(float *pvector);
 int comparar_cadenas(char primera[],char segunda[]);
 void guardian(char command[10], int n);
+void guardian_2(char command[10], int fila);
 
 
 int main()
@@ -60,7 +61,7 @@ int main()
         }
     else
         {
-            system("cls");//se limpia la consola
+            system ("cls");//se limpia la consola
             printf("el fichero ha sido abierto correctamente\n");
             printf("ahora que accion quieres realizar? Puedes 'finalizar' el programa o 'contar' las lineas\n");
             scanf("%9[^\n]",accion);
@@ -305,6 +306,7 @@ int main()
         printf("Numero de lineas: %d\n",nLineas);
         printf("Ahora puedes elegir lo que quieres hacer\n");//segunda instruccion del usuario
         printf("Puedes mostrar o 'todos' los datos o 'elegir' los meses que deseas estudiar\n");
+        printf("Ver graficas (escribe 'graficas')\n");
         scanf("%9[^\n]",accion);//se lee su instruccion hasta detectar salto de linea
         guardian(accion,verif = 3);//revision de instruccion, perro guardian
         if(strcmp(accion,all) == 0)//orden de mostrar todos los datos
@@ -365,6 +367,9 @@ int main()
                 printf("genertotal: %f\n",data[i].genertotal);
                 }//cierre de mostrar el mes
         }//cierre de caso elegir un mes
+
+        //if(strcmp(accion,grafics) == 0)
+
         return 0;
         }//cierre del caso en el que el fichero se ha abierto correctamente
   }//cierre del caso donde el usuario ha tecleado 'abrir'
@@ -589,5 +594,51 @@ void limpiar_vector(float *pvector)
     for(i=0;i<17;i++)
     {
         *(pvector+i)=0;
+    }
+}
+
+void guardian_2(char command[15], int fila)
+{
+    //le dices compare las palabras de una fila con command
+    FILE *pfposibles_palabras;
+    pfposibles_palabras = fopen("Posibles_palabras.txt", "r");
+    if (pfposibles_palabras == NULL)
+    {
+        printf("Error al abrir el fichero.\n");
+    }
+    else
+    {
+        char posible_palabra[15];
+        char caracter='\0',basura;
+        int i,iguales=0;
+        for(i=0;i<fila;i++)//Posiciona en la fila con las palabras a comparar
+        {
+            while(fscanf(pfposibles_palabras,"%c", &caracter) != '\n')
+            {
+                void;
+            }
+        }
+        i=0;
+        while(fscanf(pfposibles_palabras,"%c", &caracter) != '\n'||iguales==1)
+        {
+            if(caracter=='\t')
+            {
+                iguales=comparar_cadenas(posible_palabra,command);
+                i=0;
+            }
+            else
+            {
+                posible_palabra[i]=caracter;
+                i++;
+            }
+        }
+        if(iguales==0)
+        {
+            printf("error,intentalo de nuevo\n");
+            scanf("%9s",command);
+            scanf("%c",&basura);
+            guardian_2(command,fila);
+        }
+        fclose(pfposibles_palabras);
     }
 }
