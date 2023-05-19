@@ -30,8 +30,9 @@ typedef struct
     float genertotal;
 }mes;//cada mes tiene una fecha y sus respectivos datos
 
-void grafico(mes fecha[10],int inicio,int fin);
-void guardian(char command[10],int n);
+void grafica(mes fecha[10],int inicio,int fin);
+void limpiar_vector(float *pvector);
+int comparar_cadenas(char primera[],char segunda[]);
 
 int main()
 {
@@ -403,17 +404,21 @@ void guardian(char command[10], int n)
     }
 }
 
-//Funci�n para generar graficos de barras
-/*void grafico(mes fecha[10],int inicio,int fin)
+//Funcion para generar graficos de barras
+void grafica(mes fecha[10],int inicio,int fin)
 {
-    int i,j;
+    int i,j,k,condicion=0;
+    float todos[17];
+    float*p;
+    p=todos;
+    limpiar_vector(p);
     char decision[15];
     float variable[10];
     //Primero tienes que elegir que generaciones quieres comparar
     //luego automaticamente escoje una escala de tal manera que
-    //siempre tenga el mismo tama�o la grafica pero distinta escala
+    //siempre tenga el mismo tamano la grafica pero distinta escala
      printf("--Ir atras (escribir'atras')\n"
-            "--GW/h de todos los tipos de generaci�n (escribir'tipos')\n"
+            "--GW/h de todos los tipos de generacion(si son varios meses se compara la suma de estos)(escribir'todos')\n"
             "--GW/h total generados a nivel nacional (escribir'total')\n"
             "--GW/h de algunos tipos de generacion concretos (escribir tipo que deseas comparar:)\n"
                 "1 hidraulica\n"
@@ -436,85 +441,143 @@ void guardian(char command[10], int n)
     scanf("%15[^\n]",decision);
     for(i=0,j=inicio-1;i<=fin-inicio;i++,j++)
     {
-        if(decision=="hidraulica")
+        k=0;
+        if(comparar_cadenas(decision,"todos")==1)
+        {
+            condicion=1;
+        }
+        else if(comparar_cadenas(decision,"hidraulica")==1||condicion==1)
         {
             variable[i]=fecha[j].hidraulica;
+            todos[k]=todos[k]+fecha[j].hidraulica;
+            k++;
         }
-        if(decision=="turbbombeo")
+        else if(comparar_cadenas(decision,"turbbombeo")==1||condicion==1)
         {
             variable[i]=fecha[j].turbbombeo;
+            todos[k]=todos[k]+fecha[j].hidraulica;
+            k++;
         }
-        if(decision=="nuclear")
+        else if(comparar_cadenas(decision,"nuclear")==1||condicion==1)
         {
             variable[i]=fecha[j].nuclear;
+            todos[k]=todos[k]+fecha[j].hidraulica;
+            k++;
         }
-        if(decision=="carbon")
+        else if(comparar_cadenas(decision,"carbon")==1||condicion==1)
         {
             variable[i]=fecha[j].carbon;
+            todos[k]=todos[k]+fecha[j].hidraulica;
+            k++;
         }
-        if(decision=="fuelgas")
+        else if(comparar_cadenas(decision,"fuelgas")==1||condicion==1)
         {
             variable[i]=fecha[j].fuelgas;
+            todos[k]=todos[k]+fecha[j].hidraulica;
+            k++;
         }
-        if(decision=="motdiesel")
+        else if(comparar_cadenas(decision,"motdiesel")==1||condicion==1)
         {
             variable[i]=fecha[j].motdiesel;
+            todos[k]=todos[k]+fecha[j].hidraulica;
+            k++;
         }
-        if(decision=="turbinagas")
+        else if(comparar_cadenas(decision,"turbinagas")==1||condicion==1)
         {
             variable[i]=fecha[j].turbinagas;
+            todos[k]=todos[k]+fecha[j].hidraulica;
+            k++;
         }
-        if(decision=="turbvapor")
+        else if(comparar_cadenas(decision,"turbvapor")==1||condicion==1)
         {
             variable[i]=fecha[j].turbvapor;
+            todos[k]=todos[k]+fecha[j].hidraulica;
+            k++;
         }
-        if(decision=="ccombinado")
+        else if(comparar_cadenas(decision,"ccombinado")==1||condicion==1)
         {
             variable[i]=fecha[j].ccombinado;
+            todos[k]=todos[k]+fecha[j].hidraulica;
+            k++;
         }
-        if(decision=="hidroeolica")
+        else if(comparar_cadenas(decision,"hidroeolica")==1||condicion==1)
         {
             variable[i]=fecha[j].hidroeolica;
+            todos[k]=todos[k]+fecha[j].hidraulica;
+            k++;
         }
-        if(decision=="eolica")
+        else if(comparar_cadenas(decision,"eolica")==1||condicion==1)
         {
             variable[i]=fecha[j].eolica;
+            todos[k]=todos[k]+fecha[j].hidraulica;
+            k++;
         }
-        if(decision=="solarfoto")
+        else if(comparar_cadenas(decision,"solarfoto")==1||condicion==1)
         {
             variable[i]=fecha[j].solarfoto;
+            todos[k]=todos[k]+fecha[j].hidraulica;
+            k++;
         }
-        if(decision=="solarterm")
+        else if(comparar_cadenas(decision,"solarterm")==1||condicion==1)
         {
             variable[i]=fecha[j].solarterm;
+            todos[k]=todos[k]+fecha[j].hidraulica;
+            k++;
         }
-        if(decision=="otrasreno")
+        else if(comparar_cadenas(decision,"otrasreno")==1||condicion==1)
         {
             variable[i]=fecha[j].otrasreno;
+            todos[k]=todos[k]+fecha[j].hidraulica;
+            k++;
         }
-        if(decision=="cogenerac")
+        else if(comparar_cadenas(decision,"cogenerac")==1||condicion==1)
         {
             variable[i]=fecha[j].cogenerac;
+            todos[k]=todos[k]+fecha[j].hidraulica;
+            k++;
         }
-         if(decision=="norenov")
+        else if(comparar_cadenas(decision,"norenov")==1||condicion==1)
         {
             variable[i]=fecha[j].norenov;
+            todos[k]=todos[k]+fecha[j].hidraulica;
+            k++;
         }
-         if(decision=="residrenov")
+        else if(comparar_cadenas(decision,"residrenov")==1||condicion==1)
         {
             variable[i]=fecha[j].residrenov;
+            todos[k]=todos[k]+fecha[j].hidraulica;
+            k++;
         }
-         if(decision=="tipos")
+        else if(comparar_cadenas(decision,"total")==1)
         {
-
+            variable[i]=fecha[j].genertotal;
         }
-         if(decision=="total")
-        {
-
-        }
-        if(decision=="atras")
+        else if(comparar_cadenas(decision,"atras")==1)
         {
 
         }
     }
-}*/
+}
+
+int comparar_cadenas(char primera[],char segunda[])
+{
+    int i=0;
+    while(primera[i]!='\0')
+    {
+        if(primera[i]!=segunda[i])
+        {
+            return 0;
+        }
+        i++;
+    }
+    return 1;
+}
+
+void limpiar_vector(float *pvector)
+{
+    int i;
+    for(i=0;i<17;i++)
+    {
+        *(pvector+i)=0;
+    }
+}
