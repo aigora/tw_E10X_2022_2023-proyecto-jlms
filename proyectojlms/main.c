@@ -33,6 +33,8 @@ typedef struct
 void grafica(mes fecha[10],int inicio,int fin);
 void limpiar_vector(float *pvector);
 int comparar_cadenas(char primera[],char segunda[]);
+void guardian(char command[10], int n);
+
 
 int main()
 {
@@ -42,12 +44,12 @@ int main()
   mes data[10]; //tenemos 10 meses de datos, luego se define vector de estructuras
   char accion[10],aux[100]; //variables auxiliares que recogeran las acciones del usuario y recorreran el archivo
   //car es una variable auxiliar y el resto son las instrucciones que guiaran el programa
-  char car, open[] = "abrir",length[] = "contar",end[] = "finalizar",all[] = "todos",elegir[] = "elegir";
+  char car,basura, open[] = "abrir",length[] = "contar",end[] = "finalizar",all[] = "todos",elegir[] = "elegir";
   pf = fopen("generacion.txt", "r"); //puntero dirigido abrir el fichero en modo lectura
   printf("Bienvenido al programa\n");
   printf("a continuacion, eliga la acccion que quiere realizar, diga: 'abrir'\n");//primera instruccion
   scanf("%9[^\n]",accion);
-  scanf("%c");
+  scanf("%c",&basura);
   guardian(accion,verif = 1);//revision de instruccion, perro guardian
   if(strcmp(accion,open) == 0)//el usuario ha tecleado 'abrir' correctamente
   {
@@ -58,11 +60,11 @@ int main()
         }
     else
         {
-            system ("cls");//se limpia la consola
+            system("cls");//se limpia la consola
             printf("el fichero ha sido abierto correctamente\n");
             printf("ahora que accion quieres realizar? Puedes 'finalizar' el programa o 'contar' las lineas\n");
             scanf("%9[^\n]",accion);
-            scanf("%c");
+            scanf("%c",&basura);
             guardian(accion,verif = 2);//revision de instruccion, perro guardian
             if(strcmp(accion,end) == 0)//se finaliza el programa
             {
@@ -83,9 +85,9 @@ int main()
                         for(i=0;i<1;i++)//avanzamos una sola posicion
                         {
                         //se registra la primera y la segunda columna de la tercera linea, que es el tipo de energia y la primera fecha
-                        fscanf(pf,"%99[^ ]%d/%d",&aux,&data[i].date.month,&data[i].date.year);
+                        fscanf(pf,"%99[^ ]%d/%d",aux,&data[i].date.month,&data[i].date.year);
                         }
-                        for(i=1;i<10;i++)//leemos el resto de las 9 columnas, que contienen el resto de las fechas en formato mes/a�o
+                        for(i=1;i<10;i++)//leemos el resto de las 9 columnas, que contienen el resto de las fechas en formato mes/ano
                         {
                         fscanf(pf,"%d/%d",&data[i].date.month,&data[i].date.year);//se almacenan las fechas en su respectiva posicion del vector 'data'
                         }
@@ -95,7 +97,7 @@ int main()
                         for(i=0;i<1;i++)
                         {//avanzamos solo una posicion para leer la primera columna del tipo de energia
                          //ademas que leemos el primer dato tipo float en la segunda columna
-                        fscanf(pf,"%99[^ ]%f",&aux,&data[i].hidraulica);//el float se asigna en este caso, a los datos de hidraulica de enero
+                        fscanf(pf,"%99[^ ]%f",aux,&data[i].hidraulica);//el float se asigna en este caso, a los datos de hidraulica de enero
                         }
                         for(i=1;i<10;i++)
                         {//se leen el resto de columnas,conteniendo los datos de hidraulica para cada mes
@@ -110,7 +112,7 @@ int main()
                     {
                         for(i=0;i<1;i++)
                         {
-                        fscanf(pf,"%99[^ ]%f",&aux,&data[i].turbbombeo);
+                        fscanf(pf,"%99[^ ]%f",aux,&data[i].turbbombeo);
                         }
                         for(i=1;i<10;i++)
                         {
@@ -121,7 +123,7 @@ int main()
                     {
                         for(i=0;i<1;i++)
                         {
-                        fscanf(pf,"%99[^ ]%f",&aux,&data[i].nuclear);
+                        fscanf(pf,"%99[^ ]%f",aux,&data[i].nuclear);
                         }
                         for(i=1;i<10;i++)
                         {
@@ -132,7 +134,7 @@ int main()
                     {
                         for(i=0;i<1;i++)
                         {
-                        fscanf(pf,"%99[^ ]%f",&aux,&data[i].carbon);
+                        fscanf(pf,"%99[^ ]%f",aux,&data[i].carbon);
                         }
                         for(i=1;i<10;i++)
                         {
@@ -143,7 +145,7 @@ int main()
                     {
                         for(i=0;i<1;i++)
                         {
-                        fscanf(pf,"%99[^ ]%f",&aux,&data[i].fuelgas);
+                        fscanf(pf,"%99[^ ]%f",aux,&data[i].fuelgas);
                         }
                         for(i=1;i<10;i++)
                         {
@@ -154,7 +156,7 @@ int main()
                     {
                         for(i=0;i<1;i++)
                         {
-                        fscanf(pf,"%99[^ ]%f",&aux,&data[i].motdiesel);
+                        fscanf(pf,"%99[^ ]%f",aux,&data[i].motdiesel);
                         }
                         for(i=1;i<10;i++)
                         {
@@ -165,7 +167,7 @@ int main()
                     {
                         for(i=0;i<1;i++)
                         {
-                        fscanf(pf,"%99[^ ]%f",&aux,&data[i].turbinagas);
+                        fscanf(pf,"%99[^ ]%f",aux,&data[i].turbinagas);
                         }
                         for(i=1;i<10;i++)
                         {
@@ -176,7 +178,7 @@ int main()
                     {
                         for(i=0;i<1;i++)
                         {
-                        fscanf(pf,"%99[^ ]%f",&aux,&data[i].turbvapor);
+                        fscanf(pf,"%99[^ ]%f",aux,&data[i].turbvapor);
                         }
                         for(i=1;i<10;i++)
                         {
@@ -187,7 +189,7 @@ int main()
                     {
                         for(i=0;i<1;i++)
                         {
-                        fscanf(pf,"%99[^ ]%f",&aux,&data[i].ccombinado);
+                        fscanf(pf,"%99[^ ]%f",aux,&data[i].ccombinado);
                         }
                         for(i=1;i<10;i++)
                         {
@@ -198,7 +200,7 @@ int main()
                     {
                         for(i=0;i<1;i++)
                         {
-                        fscanf(pf,"%99[^ ]%f",&aux,&data[i].hidroeolica);
+                        fscanf(pf,"%99[^ ]%f",aux,&data[i].hidroeolica);
                         }
                         for(i=1;i<10;i++)
                         {
@@ -209,7 +211,7 @@ int main()
                     {
                         for(i=0;i<1;i++)
                         {
-                        fscanf(pf,"%99[^ ]%f",&aux,&data[i].eolica);
+                        fscanf(pf,"%99[^ ]%f",aux,&data[i].eolica);
                         }
                         for(i=1;i<10;i++)
                         {
@@ -220,7 +222,7 @@ int main()
                     {
                         for(i=0;i<1;i++)
                         {
-                        fscanf(pf,"%99[^ ]%f",&aux,&data[i].solarfoto);
+                        fscanf(pf,"%99[^ ]%f",aux,&data[i].solarfoto);
                         }
                         for(i=1;i<10;i++)
                         {
@@ -231,7 +233,7 @@ int main()
                     {
                         for(i=0;i<1;i++)
                         {
-                        fscanf(pf,"%99[^ ]%f",&aux,&data[i].solarterm);
+                        fscanf(pf,"%99[^ ]%f",aux,&data[i].solarterm);
                         }
                         for(i=1;i<10;i++)
                         {
@@ -242,7 +244,7 @@ int main()
                     {
                         for(i=0;i<1;i++)
                         {
-                        fscanf(pf,"%99[^ ]%f",&aux,&data[i].otrasreno);
+                        fscanf(pf,"%99[^ ]%f",aux,&data[i].otrasreno);
                         }
                         for(i=1;i<10;i++)
                         {
@@ -253,7 +255,7 @@ int main()
                     {
                         for(i=0;i<1;i++)
                         {
-                        fscanf(pf,"%99[^ ]%f",&aux,&data[i].cogenerac);
+                        fscanf(pf,"%99[^ ]%f",aux,&data[i].cogenerac);
                         }
                         for(i=1;i<10;i++)
                         {
@@ -264,7 +266,7 @@ int main()
                     {
                         for(i=0;i<1;i++)
                         {
-                        fscanf(pf,"%99[^ ]%f",&aux,&data[i].norenov);
+                        fscanf(pf,"%99[^ ]%f",aux,&data[i].norenov);
                         }
                         for(i=1;i<10;i++)
                         {
@@ -275,7 +277,7 @@ int main()
                     {
                         for(i=0;i<1;i++)
                         {
-                        fscanf(pf,"%99[^ ]%f",&aux,&data[i].residrenov);
+                        fscanf(pf,"%99[^ ]%f",aux,&data[i].residrenov);
                         }
                         for(i=1;i<10;i++)
                         {
@@ -286,7 +288,7 @@ int main()
                     {
                         for(i=0;i<1;i++)
                         {
-                        fscanf(pf,"%99[^ ]%f",&aux,&data[i].genertotal);
+                        fscanf(pf,"%99[^ ]%f",aux,&data[i].genertotal);
                         }
                         for(i=1;i<10;i++)
                         {
@@ -302,7 +304,7 @@ int main()
         printf("Numero de bytes: %li\n",fsize);
         printf("Numero de lineas: %d\n",nLineas);
         printf("Ahora puedes elegir lo que quieres hacer\n");//segunda instruccion del usuario
-        printf("Puedes mostrar o 'todos' los datos o 'elegir' un mes\n");
+        printf("Puedes mostrar o 'todos' los datos o 'elegir' los meses que deseas estudiar\n");
         scanf("%9[^\n]",accion);//se lee su instruccion hasta detectar salto de linea
         guardian(accion,verif = 3);//revision de instruccion, perro guardian
         if(strcmp(accion,all) == 0)//orden de mostrar todos los datos
@@ -375,6 +377,7 @@ return 0;
 void guardian(char command[10], int n)
 {
     char open[] = "abrir",length[] = "contar",end[] = "finalizar",all[] = "todos",elegir[] = "elegir";
+    char basura;
     switch(n)
     {
     case 1:
@@ -382,7 +385,7 @@ void guardian(char command[10], int n)
         {//si el commando no era 'abrir', entoncs se vuelve a pedir al usuario una instruccion valida
         printf("error,intentalo de nuevo\n");
         scanf("%9s",command);
-        scanf("%c");
+        scanf("%c",&basura);
         }
         break;
     case 2:
@@ -390,7 +393,7 @@ void guardian(char command[10], int n)
         {//si el command no es 'finalizar' o 'contar' entonces se vuelve a pedir al usuario una instruccion valida
         printf("error,intentalo de nuevo\n");
         scanf("%9s",command);
-        scanf("%c");
+        scanf("%c",&basura);
         }
         break;
     case 3:
@@ -398,9 +401,16 @@ void guardian(char command[10], int n)
         {//si el command no es 'todos' o 'elegir' entonces se vuelve a pedir al usuario una instruccion
         printf("error intentalo de nuevo\n");
         scanf("%9s",command);
-        scanf("%c");
+        scanf("%c",&basura);
         }
         break;
+    case 4:
+        while(strcmp(command,all) != 0 && strcmp(command,elegir) != 0)
+        {//si el command no es 'todos' o 'elegir' entonces se vuelve a pedir al usuario una instruccion
+        printf("error intentalo de nuevo\n");
+        scanf("%9s",command);
+        scanf("%c",&basura);
+        }
     }
 }
 
