@@ -31,11 +31,12 @@ typedef struct
 }mes;//cada mes tiene una fecha y sus respectivos datos
 
 void grafico(mes fecha[10],int inicio,int fin);
+void guardian(char command[10],int n);
 
 int main()
 {
   FILE *pf; //puntero dirijido a archivo
-  int nLineas=0,i,num; //variables auxiliares
+  int nLineas=0,i,num,verif; //variables auxiliares
   long int fsize; //variable que almacena el numero de bytes
   mes data[10]; //tenemos 10 meses de datos, luego se define vector de estructuras
   char accion[10],aux[100]; //variables auxiliares que recogeran las acciones del usuario y recorreran el archivo
@@ -46,12 +47,7 @@ int main()
   printf("a continuacion, eliga la acccion que quiere realizar, diga: 'abrir'\n");//primera instruccion
   scanf("%9[^\n]",accion);
   scanf("%c");
-  while(strcmp(accion,open)!= 0)//funcion de perro guardian para revisar las instrucciones
-  {
-    printf("error,intentalo de nuevo\n");
-    scanf("%9s",accion);
-    scanf("%c");
-  }
+  guardian(accion,verif = 1);//revision de instruccion, perro guardian
   if(strcmp(accion,open) == 0)//el usuario ha tecleado 'abrir' correctamente
   {
     if (pf == NULL) // Si el resultado es NULL mensaje de error
@@ -66,12 +62,7 @@ int main()
             printf("ahora que accion quieres realizar? Puedes 'finalizar' el programa o 'contar' las lineas\n");
             scanf("%9[^\n]",accion);
             scanf("%c");
-            while(strcmp(accion,end)!= 0 && strcmp(accion,length) != 0)//revision de instruccion, perro guardian
-            {//si la accion no es 'finalizar' o 'contar' entonces se vuelve a pedir al usuario una instruccion valida
-              printf("error,intentalo de nuevo\n");
-              scanf("%9s",accion);
-              scanf("%c");
-            }
+            guardian(accion,verif = 2);//revision de instruccion, perro guardian
             if(strcmp(accion,end) == 0)//se finaliza el programa
             {
                 printf("fin\n");
@@ -312,11 +303,7 @@ int main()
         printf("Ahora puedes elegir lo que quieres hacer\n");//segunda instruccion del usuario
         printf("Puedes mostrar o 'todos' los datos o 'elegir' un mes\n");
         scanf("%9[^\n]",accion);//se lee su instruccion hasta detectar salto de linea
-        while(strcmp(accion,all) != 0 && strcmp(accion,elegir) != 0)//si escribe algo distinto a 'todos' o 'elegir'
-        {
-            printf("error intentalo de nuevo\n");//se escribe mensaje de error
-            scanf("%9s",accion);//se le vuelve a pedir una instruccion
-        }
+        guardian(accion,verif = 3);//revision de instruccion, perro guardian
         if(strcmp(accion,all) == 0)//orden de mostrar todos los datos
         {
             system ("cls");//limpiar consola
@@ -381,6 +368,39 @@ int main()
   else
     printf("error, se finaliza el programa\n");
 return 0;
+}
+
+//funcion de perro guardian
+void guardian(char command[10], int n)
+{
+    char open[] = "abrir",length[] = "contar",end[] = "finalizar",all[] = "todos",elegir[] = "elegir";
+    switch(n)
+    {
+    case 1:
+        while(strcmp(command,open) != 0)
+        {//si el commando no era 'abrir', entoncs se vuelve a pedir al usuario una instruccion valida
+        printf("error,intentalo de nuevo\n");
+        scanf("%9s",command);
+        scanf("%c");
+        }
+        break;
+    case 2:
+        while(strcmp(command,end)!= 0 && strcmp(command,length) != 0)
+        {//si el command no es 'finalizar' o 'contar' entonces se vuelve a pedir al usuario una instruccion valida
+        printf("error,intentalo de nuevo\n");
+        scanf("%9s",command);
+        scanf("%c");
+        }
+        break;
+    case 3:
+        while(strcmp(command,all) != 0 && strcmp(command,elegir) != 0)
+        {//si el command no es 'todos' o 'elegir' entonces se vuelve a pedir al usuario una instruccion
+        printf("error intentalo de nuevo\n");
+        scanf("%9s",command);
+        scanf("%c");
+        }
+        break;
+    }
 }
 
 //Funci�n para generar graficos de barras
