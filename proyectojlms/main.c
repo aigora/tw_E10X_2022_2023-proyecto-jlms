@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include<string.h>
+//declaramos inicialmente las estructuras de los datos
 typedef struct
 {
     int month;
@@ -27,28 +28,32 @@ typedef struct
     float norenov;
     float residrenov;
     float genertotal;
-}mes;
+}mes;//cada mes tiene una fecha y sus respectivos datos
 
 void grafico(mes fecha[10],int inicio,int fin);
 
 int main()
 {
-  FILE *pf;
-  int nLineas=0,i,num;
-  long int fsize;
-  //data es el vector donde guardamos los meses
-  mes data[10];
-  char accion[10],aux[100];
+  FILE *pf; //puntero dirijido a archivo
+  int nLineas=0,i,num; //variables auxiliares
+  long int fsize; //variable que almacena el numero de bytes
+  mes data[10]; //tenemos 10 meses de datos
+  char accion[10],aux[100]; //variables auxiliares que recogeran las acciones del usuario y recorreran el archivo
+  //car es una variable auxiliar y el resto son las instrucciones que guiaran el programa
   char car, open[] = "abrir",length[] = "contar",end[] = "finalizar",all[] = "todos",elegir[] = "elegir";
-
-  pf = fopen("generacion.txt", "r");
+  pf = fopen("generacion.txt", "r"); //puntero dirigido abrir el fichero en modo lectura
   printf("Bienvenido al programa\n");
-  printf("a continuacion, eliga la acccion que quiere realizar, diga: 'abrir'\n");
+  printf("a continuacion, eliga la acccion que quiere realizar, diga: 'abrir'\n");//primera instruccion
   scanf("%9[^\n]",accion);
   scanf("%c");
-  if(strcmp(accion,open) == 0)
+  while(strcmp(accion,open)!= 0)//funcion de perro guardian para revisar las instrucciones
   {
-      printf("has seleccionado abrir el fichero\n");
+    printf("error,intentalo de nuevo\n");
+    scanf("%9s",accion);
+    scanf("%c");
+  }
+  if(strcmp(accion,open) == 0)//el usuario ha tecleado 'abrir' correctamente
+  {
     if (pf == NULL) // Si el resultado es NULL mensaje de error
         {
             printf("Error al abrir el fichero.\n");
@@ -56,40 +61,47 @@ int main()
         }
     else
         {
-            printf("abierto correctamente\n");
+            system ("cls");
+            printf("el fichero ha sido abierto correctamente\n");
             printf("ahora que accion quieres realizar? Puedes 'finalizar' el programa o 'contar' las lineas\n");
             scanf("%9[^\n]",accion);
             scanf("%c");
-            if(strcmp(accion,end) == 0)
+            while(strcmp(accion,end)!= 0 && strcmp(accion,length) != 0)//revision de instruccion, perro guardian
+            {//si la accion no es 'finalizar' o 'contar' entonces se vuelve a pedir al usuario una instruccion valida
+              printf("error,intentalo de nuevo\n");
+              scanf("%9s",accion);
+              scanf("%c");
+            }
+            if(strcmp(accion,end) == 0)//se finaliza el programa
             {
                 printf("fin\n");
                 fclose(pf);
                 return 0;
             }
-            if(strcmp(accion,length) == 0)
+            if(strcmp(accion,length) == 0)//se elige contar el numero de lineas
             {
-                //Recorremos todo el fichero y almacenamos los datos
-                //en el vector de estructuas
-               while (fscanf(pf, "%c", &car) != EOF)
+               system ("cls");
+               while (fscanf(pf, "%c", &car) != EOF)//recorrido de cada caracter del fichero
                 {
-                if (car == '\n')
+                if (car == '\n')//si se detecta un salto de linea
                 {
-                    ++nLineas;
-                    if(nLineas == 2)
+                    ++nLineas;//se aumenta el valor del contador de lineas
+                    if(nLineas == 2)//tras superar la segunda linea
                     {
-                        for(i=0;i<1;i++)
+                        for(i=0;i<1;i++)//avanzamos una sola posicion
                         {
+                        //se registra la primera y la segunda columna de la tercera linea, que es el tipo de energia y la primera fecha
                         fscanf(pf,"%99[^ ]%d/%d",&aux,&data[i].date.month,&data[i].date.year);
                         }
-                        for(i=1;i<10;i++)
+                        for(i=1;i<10;i++)//leemos el resto de las 9 columnas, que contienen el resto de las fechas en formato mes/aï¿½o
                         {
-                        fscanf(pf,"%d/%d",&data[i].date.month,&data[i].date.year);
+                        fscanf(pf,"%d/%d",&data[i].date.month,&data[i].date.year);//se almacenan las fechas en su respectiva posicion del vector 'data'
                         }
                     }
-                    if(nLineas == 3)
+                    if(nLineas == 3)//tras superar la tercera linea
                     {
                         for(i=0;i<1;i++)
-                        {
+                        {//avanzamos solo una posicion
                         fscanf(pf,"%99[^ ]%f",&aux,&data[i].hidraulica);
                         }
                         for(i=1;i<10;i++)
@@ -286,25 +298,23 @@ int main()
                     }
                 }
                 }
-            printf("hay %d lineas\n",nLineas);
             }
         fseek(pf, 0, SEEK_END);
         fsize = ftell(pf);
-        printf("El fichero tiene %li bytes.\n", fsize);
-        system ("cls");
-        printf("ahora puedes elegir lo que quieres hacer\n");
-        printf("puedes mostrar o 'todos' los datos o 'elegir' un mes\n");
+        printf("Informacion sobre el fichero:\n");
+        printf("Numero de bytes: %li\n",fsize);
+        printf("Numero de lineas: %d\n",nLineas);
+        printf("Ahora puedes elegir lo que quieres hacer\n");
+        printf("Puedes mostrar o 'todos' los datos o 'elegir' un mes\n");
         scanf("%9[^\n]",accion);
-        scanf("%c");
-        if(strcmp(accion,all) == 1 || strcmp(accion,elegir) == 1)
+        while(strcmp(accion,all) != 0 && strcmp(accion,elegir) != 0)
         {
-            printf("error,vuelve a introducir otra instruccion, como 'todos' o 'elegir'\n");
-            scanf("%9[^\n]",accion);
-            scanf("%c");
+            printf("error intentalo de nuevo\n");
+            scanf("%9s",accion);
         }
-//        system ("cls");
         if(strcmp(accion,all) == 0)
         {
+            system ("cls");
             printf("has seleccionado mostrar todos los datos, en ese caso seria:\n");
             for(i=0;i<10;i++)
             {
@@ -332,6 +342,7 @@ int main()
         }
         if(strcmp(accion,elegir) == 0)
         {
+            system ("cls");
             printf("de acuerdo, te voy a mostrar los datos de un solo mes\n");
             printf("dime el numero del mes!(es de 1 a 10)\n");
             scanf("%d",&num);
@@ -367,17 +378,17 @@ int main()
 return 0;
 }
 
-//Función para generar graficos de barras
-void grafico(mes fecha[10],int inicio,int fin)
+//Funciï¿½n para generar graficos de barras
+/*void grafico(mes fecha[10],int inicio,int fin)
 {
     int i,j;
     char decision[15];
     float variable[10];
     //Primero tienes que elegir que generaciones quieres comparar
     //luego automaticamente escoje una escala de tal manera que
-    //siempre tenga el mismo tamaño la grafica pero distinta escala
+    //siempre tenga el mismo tamaï¿½o la grafica pero distinta escala
      printf("--Ir atras (escribir'atras')\n"
-            "--GW/h de todos los tipos de generación (escribir'tipos')\n"
+            "--GW/h de todos los tipos de generaciï¿½n (escribir'tipos')\n"
             "--GW/h total generados a nivel nacional (escribir'total')\n"
             "--GW/h de algunos tipos de generacion concretos (escribir tipo que deseas comparar:)\n"
                 "1 hidraulica\n"
@@ -481,4 +492,4 @@ void grafico(mes fecha[10],int inicio,int fin)
 
         }
     }
-}
+}*/
