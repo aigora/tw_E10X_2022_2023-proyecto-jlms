@@ -37,7 +37,7 @@ int main()
   FILE *pf; //puntero dirijido a archivo
   int nLineas=0,i,num; //variables auxiliares
   long int fsize; //variable que almacena el numero de bytes
-  mes data[10]; //tenemos 10 meses de datos
+  mes data[10]; //tenemos 10 meses de datos, luego se define vector de estructuras
   char accion[10],aux[100]; //variables auxiliares que recogeran las acciones del usuario y recorreran el archivo
   //car es una variable auxiliar y el resto son las instrucciones que guiaran el programa
   char car, open[] = "abrir",length[] = "contar",end[] = "finalizar",all[] = "todos",elegir[] = "elegir";
@@ -61,7 +61,7 @@ int main()
         }
     else
         {
-            system ("cls");
+            system ("cls");//se limpia la consola
             printf("el fichero ha sido abierto correctamente\n");
             printf("ahora que accion quieres realizar? Puedes 'finalizar' el programa o 'contar' las lineas\n");
             scanf("%9[^\n]",accion);
@@ -85,7 +85,7 @@ int main()
                 {
                 if (car == '\n')//si se detecta un salto de linea
                 {
-                    ++nLineas;//se aumenta el valor del contador de lineas
+                    ++nLineas;//por cada salto de linea, nLineas almacena una linea
                     if(nLineas == 2)//tras superar la segunda linea
                     {
                         for(i=0;i<1;i++)//avanzamos una sola posicion
@@ -101,14 +101,19 @@ int main()
                     if(nLineas == 3)//tras superar la tercera linea
                     {
                         for(i=0;i<1;i++)
-                        {//avanzamos solo una posicion
-                        fscanf(pf,"%99[^ ]%f",&aux,&data[i].hidraulica);
+                        {//avanzamos solo una posicion para leer la primera columna del tipo de energia
+                         //ademas que leemos el primer dato tipo float en la segunda columna
+                        fscanf(pf,"%99[^ ]%f",&aux,&data[i].hidraulica);//el float se asigna en este caso, a los datos de hidraulica de enero
                         }
                         for(i=1;i<10;i++)
-                        {
+                        {//se leen el resto de columnas,conteniendo los datos de hidraulica para cada mes
                         fscanf(pf,"%f",&data[i].hidraulica);
                         }
                     }
+                    //para el resto de datos del fichero, el proceso es el mismo:
+                    // la primera columna de cada fila es el tipo de energía
+                    //la segunda columna de cada fila , contiene el primer dato numerico correspondiente a enero
+                    //el resto de columnas de cada fila contiene el resto de datos numericos para su mes correspondiente
                     if(nLineas == 4)
                     {
                         for(i=0;i<1;i++)
@@ -285,7 +290,7 @@ int main()
                         fscanf(pf,"%f",&data[i].residrenov);
                         }
                     }
-                    if(nLineas == 20)
+                    if(nLineas == 20)//se lee la ultima fila de datos
                     {
                         for(i=0;i<1;i++)
                         {
@@ -295,28 +300,28 @@ int main()
                         {
                         fscanf(pf,"%f",&data[i].genertotal);
                         }
-                    }
-                }
-                }
-            }
-        fseek(pf, 0, SEEK_END);
-        fsize = ftell(pf);
+                    }//fin de lectura de ultima fila
+                }//cierre de bluce que detecta el salto de linea
+                }//cierre de bucle que lee cada caracter hasta EOF
+            }//fin de la orden de contar las filas
+        fseek(pf, 0, SEEK_END);//se situa el puntero en el inicio y recorre el fichero hasta el final
+        fsize = ftell(pf);//valor del numero de bytes
         printf("Informacion sobre el fichero:\n");
         printf("Numero de bytes: %li\n",fsize);
         printf("Numero de lineas: %d\n",nLineas);
-        printf("Ahora puedes elegir lo que quieres hacer\n");
+        printf("Ahora puedes elegir lo que quieres hacer\n");//segunda instruccion del usuario
         printf("Puedes mostrar o 'todos' los datos o 'elegir' un mes\n");
-        scanf("%9[^\n]",accion);
-        while(strcmp(accion,all) != 0 && strcmp(accion,elegir) != 0)
+        scanf("%9[^\n]",accion);//se lee su instruccion hasta detectar salto de linea
+        while(strcmp(accion,all) != 0 && strcmp(accion,elegir) != 0)//si escribe algo distinto a 'todos' o 'elegir'
         {
-            printf("error intentalo de nuevo\n");
-            scanf("%9s",accion);
+            printf("error intentalo de nuevo\n");//se escribe mensaje de error
+            scanf("%9s",accion);//se le vuelve a pedir una instruccion
         }
-        if(strcmp(accion,all) == 0)
+        if(strcmp(accion,all) == 0)//orden de mostrar todos los datos
         {
-            system ("cls");
+            system ("cls");//limpiar consola
             printf("has seleccionado mostrar todos los datos, en ese caso seria:\n");
-            for(i=0;i<10;i++)
+            for(i=0;i<10;i++)//el bucle for recorre los datos de los 10 meses
             {
             printf("%d/%d:\n",data[i].date.month,data[i].date.year);
             printf("hidraulica: %f\n",data[i].hidraulica);
@@ -339,15 +344,15 @@ int main()
             printf("genertotal: %f\n",data[i].genertotal);
             printf("\n");
             }
-        }
-        if(strcmp(accion,elegir) == 0)
+        }//cierre del caso para mostrar todos los datos
+        if(strcmp(accion,elegir) == 0)//el usario quiere solo mostrar un mes
         {
-            system ("cls");
+            system ("cls");//limpiar consola
             printf("de acuerdo, te voy a mostrar los datos de un solo mes\n");
             printf("dime el numero del mes!(es de 1 a 10)\n");
             scanf("%d",&num);
-            system ("cls");
-            for(i=num-1;i<num;i++)
+            system ("cls");//limpiar consola
+            for(i=num-1;i<num;i++)//sea cual sea el valor del numero, solo se avanza una posicion
                 {
                 printf("%d/%d: \n",data[i].date.month,data[i].date.year);
                 printf("hidraulica: %f\n",data[i].hidraulica);
@@ -368,11 +373,11 @@ int main()
                 printf("norenov: %f\n",data[i].norenov);
                 printf("residrenov: %f\n",data[i].residrenov);
                 printf("genertotal: %f\n",data[i].genertotal);
-                }
-        }
+                }//cierre de mostrar el mes
+        }//cierre de caso elegir un mes
         return 0;
-        }
-  }
+        }//cierre del caso en el que el fichero se ha abierto correctamente
+  }//cierre del caso donde el usuario ha tecleado 'abrir'
   else
     printf("error, se finaliza el programa\n");
 return 0;
