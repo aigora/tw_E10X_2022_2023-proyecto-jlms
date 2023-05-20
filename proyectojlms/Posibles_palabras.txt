@@ -1,0 +1,3 @@
+abrir
+finalizar contar
+todos elegir graficas

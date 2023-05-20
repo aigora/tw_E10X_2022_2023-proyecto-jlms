@@ -40,7 +40,7 @@ void guardian_2(char command[10], int fila);
 int main()
 {
   FILE *pf; //puntero dirijido a archivo
-  int nLineas=0,i,num,verif; //variables auxiliares
+  int nLineas=0,i,num; //variables auxiliares
   long int fsize; //variable que almacena el numero de bytes
   mes data[10]; //tenemos 10 meses de datos, luego se define vector de estructuras
   char accion[10],aux[100]; //variables auxiliares que recogeran las acciones del usuario y recorreran el archivo
@@ -51,7 +51,7 @@ int main()
   printf("a continuacion, eliga la acccion que quiere realizar, diga: 'abrir'\n");//primera instruccion
   scanf("%9[^\n]",accion);
   scanf("%c",&basura);
-  guardian(accion,verif = 1);//revision de instruccion, perro guardian
+  guardian_2(accion,1);//revision de instruccion, perro guardian
   if(strcmp(accion,open) == 0)//el usuario ha tecleado 'abrir' correctamente
   {
     if (pf == NULL) // Si el resultado es NULL mensaje de error
@@ -66,7 +66,7 @@ int main()
             printf("ahora que accion quieres realizar? Puedes 'finalizar' el programa o 'contar' las lineas\n");
             scanf("%9[^\n]",accion);
             scanf("%c",&basura);
-            guardian(accion,verif = 2);//revision de instruccion, perro guardian
+            guardian_2(accion,2);//revision de instruccion, perro guardian
             if(strcmp(accion,end) == 0)//se finaliza el programa
             {
                 printf("fin\n");
@@ -308,7 +308,7 @@ int main()
         printf("Puedes mostrar o 'todos' los datos o 'elegir' los meses que deseas estudiar\n");
         printf("Ver graficas (escribe 'graficas')\n");
         scanf("%9[^\n]",accion);//se lee su instruccion hasta detectar salto de linea
-        guardian(accion,verif = 3);//revision de instruccion, perro guardian
+        guardian_2(accion,3);//revision de instruccion, perro guardian
         if(strcmp(accion,all) == 0)//orden de mostrar todos los datos
         {
             system ("cls");//limpiar consola
@@ -378,46 +378,6 @@ int main()
 return 0;
 }
 
-//funcion de perro guardian
-void guardian(char command[10], int n)
-{
-    char open[] = "abrir",length[] = "contar",end[] = "finalizar",all[] = "todos",elegir[] = "elegir";
-    char basura;
-    switch(n)
-    {
-    case 1:
-        while(strcmp(command,open) != 0)
-        {//si el commando no era 'abrir', entoncs se vuelve a pedir al usuario una instruccion valida
-        printf("error,intentalo de nuevo\n");
-        scanf("%9s",command);
-        scanf("%c",&basura);
-        }
-        break;
-    case 2:
-        while(strcmp(command,end)!= 0 && strcmp(command,length) != 0)
-        {//si el command no es 'finalizar' o 'contar' entonces se vuelve a pedir al usuario una instruccion valida
-        printf("error,intentalo de nuevo\n");
-        scanf("%9s",command);
-        scanf("%c",&basura);
-        }
-        break;
-    case 3:
-        while(strcmp(command,all) != 0 && strcmp(command,elegir) != 0)
-        {//si el command no es 'todos' o 'elegir' entonces se vuelve a pedir al usuario una instruccion
-        printf("error intentalo de nuevo\n");
-        scanf("%9s",command);
-        scanf("%c",&basura);
-        }
-        break;
-    case 4:
-        while(strcmp(command,all) != 0 && strcmp(command,elegir) != 0)
-        {//si el command no es 'todos' o 'elegir' entonces se vuelve a pedir al usuario una instruccion
-        printf("error intentalo de nuevo\n");
-        scanf("%9s",command);
-        scanf("%c",&basura);
-        }
-    }
-}
 
 //Funcion para generar graficos de barras
 void grafica(mes fecha[10],int inicio,int fin)
@@ -574,20 +534,51 @@ void grafica(mes fecha[10],int inicio,int fin)
     }
 }
 
+//Compara si dos cadenas son iguales
 int comparar_cadenas(char primera[],char segunda[])
 {
     int i=0;
+    int tamano_1=0,tamano_2=0;
+    //primero vemos cual es mayor
     while(primera[i]!='\0')
     {
-        if(primera[i]!=segunda[i])
-        {
-            return 0;
-        }
+        tamano_1++;
         i++;
     }
-    return 1;
+    i=0;
+    while(segunda[i]!='\0')
+    {
+        tamano_2++;
+        i++;
+    }
+    i=0;
+    if(tamano_1>tamano_2)
+    {
+        while(primera[i]!='\0')
+        {
+            if(primera[i]!=segunda[i])
+            {
+                return 0;
+            }
+            i++;
+        }
+        return 1;
+    }
+    else
+    {
+        while(segunda[i]!='\0')
+        {
+            if(primera[i]!=segunda[i])
+            {
+                return 0;
+            }
+            i++;
+        }
+        return 1;
+    }
 }
 
+//Convierte todas las celdas de un vector en '0';
 void limpiar_vector(float *pvector)
 {
     int i;
@@ -599,39 +590,39 @@ void limpiar_vector(float *pvector)
 
 void guardian_2(char command[15], int fila)
 {
-    //le dices compare las palabras de una fila con command
+    //Funcionamiento de funcion guardian_2
+    //command es la palabra que has escrito y quieres saber si esta dentro de las posibles palabras admitidas
+    //y fila es la fila en donde estan escritas las palabras admitidas en el fichero 'Posibles_palabras.txt'.
+    //Para añadir una nueva palabra/palabras para comparar las escribes en una nueva fila separadas por espacios
+    //y cuando cambies de linea un enter.
     FILE *pfposibles_palabras;
     pfposibles_palabras = fopen("Posibles_palabras.txt", "r");
     if (pfposibles_palabras == NULL)
     {
-        printf("Error al abrir el fichero.\n");
+        printf("Error al abrir el fichero Posibles_palabras.txt.\n");
     }
     else
     {
         char posible_palabra[15];
         char caracter='\0',basura;
         int i,iguales=0;
-        for(i=0;i<fila;i++)//Posiciona en la fila con las palabras a comparar
+        for(i=1;i<fila;i++)//Posiciona en la fila con las palabras a comparar
         {
-            while(fscanf(pfposibles_palabras,"%c", &caracter) != '\n')
+            fscanf(pfposibles_palabras,"%c", &caracter);//Para avanzar al siguientecaracter cuan este sea \n
+            while(caracter!='\n')
             {
-                void;
+                fscanf(pfposibles_palabras,"%c", &caracter);
+                //Para saber cuando hay un cambio de linea
             }
         }
         i=0;
-        while(fscanf(pfposibles_palabras,"%c", &caracter) != '\n'||iguales==1)
-        {
-            if(caracter=='\t')
-            {
-                iguales=comparar_cadenas(posible_palabra,command);
-                i=0;
-            }
-            else
-            {
-                posible_palabra[i]=caracter;
-                i++;
-            }
-        }
+        do//do porque inicialmente caracter es \n
+        {//Compara las palabras admitidas con la palabra escrita, en caso erroneopide que la escribas de nuevo y repite la funcion
+            fscanf(pfposibles_palabras,"%s", posible_palabra);
+            iguales=comparar_cadenas(posible_palabra,command);
+            fscanf(pfposibles_palabras,"%c", &caracter);
+        }while(caracter!='\n'&&iguales==0);
+
         if(iguales==0)
         {
             printf("error,intentalo de nuevo\n");
