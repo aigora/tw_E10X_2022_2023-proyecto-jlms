@@ -1,3 +1,4 @@
 abrir
 finalizar contar
 todos elegir graficas
+enero febrero marzo abril mayo junio julio agosto septiembre octubre

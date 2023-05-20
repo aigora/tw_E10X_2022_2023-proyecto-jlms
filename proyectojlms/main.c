@@ -30,22 +30,23 @@ typedef struct
     float genertotal;
 }mes;//cada mes tiene una fecha y sus respectivos datos
 
-void grafica(mes fecha[10],int inicio,int fin);
+void grafica(mes fecha[],int inicio,int fin);
 void limpiar_vector(float *pvector);
 int comparar_cadenas(char primera[],char segunda[]);
-void guardian(char command[10], int n);
-void guardian_2(char command[10], int fila);
+void guardian_2(char command[], int fila);
+int enumerar_meses(char month[]);
 
 
 int main()
 {
   FILE *pf; //puntero dirijido a archivo
   int nLineas=0,i,num; //variables auxiliares
+  int mes_1,mes_2;//limites de meses estudiados
   long int fsize; //variable que almacena el numero de bytes
   mes data[10]; //tenemos 10 meses de datos, luego se define vector de estructuras
-  char accion[10],aux[100]; //variables auxiliares que recogeran las acciones del usuario y recorreran el archivo
+  char accion[20],accion_2[20],aux[100]; //variables auxiliares que recogeran las acciones del usuario y recorreran el archivo
   //car es una variable auxiliar y el resto son las instrucciones que guiaran el programa
-  char car,basura, open[] = "abrir",length[] = "contar",end[] = "finalizar",all[] = "todos",elegir[] = "elegir";
+  char car,basura, open[] = "abrir",length[] = "contar",end[] = "finalizar",all[] = "todos",elegir[] = "elegir",grafics[]="graficas";
   pf = fopen("generacion.txt", "r"); //puntero dirigido abrir el fichero en modo lectura
   printf("Bienvenido al programa\n");
   printf("a continuacion, eliga la acccion que quiere realizar, diga: 'abrir'\n");//primera instruccion
@@ -309,6 +310,8 @@ int main()
         printf("Ver graficas (escribe 'graficas')\n");
         scanf("%9[^\n]",accion);//se lee su instruccion hasta detectar salto de linea
         guardian_2(accion,3);//revision de instruccion, perro guardian
+        system ("cls");
+        scanf("%c",&basura);
         if(strcmp(accion,all) == 0)//orden de mostrar todos los datos
         {
             system ("cls");//limpiar consola
@@ -368,7 +371,27 @@ int main()
                 }//cierre de mostrar el mes
         }//cierre de caso elegir un mes
 
-        //if(strcmp(accion,grafics) == 0)
+        if(comparar_cadenas(accion,grafics) == 1)
+        {
+            printf("Desde que mes deseas estudiar (escribir ej:'marzo')\n");
+            scanf("%9[^\n]",accion);//se lee su instruccion hasta detectar salto de linea
+            scanf("%c",&basura);
+            guardian_2(accion,4);
+            mes_1=enumerar_meses(accion);
+            printf("Hasta que mes deseas estudiar (escribir ej:'marzo')\n");
+            scanf("%9[^\n]",accion_2);//se lee su instruccion hasta detectar salto de linea
+            scanf("%c",&basura);
+            guardian_2(accion_2,4);
+            system ("cls");
+            mes_2=enumerar_meses(accion_2);
+            if(mes_2>mes_1)
+            {
+                i=mes_1;
+                mes_1=mes_2;
+                mes_2=i;
+            }
+            grafica(data,mes_1,mes_2);
+        }
 
         return 0;
         }//cierre del caso en el que el fichero se ha abierto correctamente
@@ -380,7 +403,7 @@ return 0;
 
 
 //Funcion para generar graficos de barras
-void grafica(mes fecha[10],int inicio,int fin)
+void grafica(mes fecha[],int inicio,int fin)
 {
     int i,j,k,condicion=0;
     float todos[17];
@@ -588,7 +611,7 @@ void limpiar_vector(float *pvector)
     }
 }
 
-void guardian_2(char command[15], int fila)
+void guardian_2(char command[], int fila)
 {
     //Funcionamiento de funcion guardian_2
     //command es la palabra que has escrito y quieres saber si esta dentro de las posibles palabras admitidas
@@ -627,9 +650,54 @@ void guardian_2(char command[15], int fila)
         {
             printf("error,intentalo de nuevo\n");
             scanf("%9s",command);
-            scanf("%c",&basura);
+            while(getchar() != '\n'); // Limpiar el búfer de entrada
             guardian_2(command,fila);
         }
         fclose(pfposibles_palabras);
     }
+}
+
+int enumerar_meses(char month[])
+{
+    if(comparar_cadenas(month,"enero"))
+    {
+        return 1;
+    }
+     if(comparar_cadenas(month,"febrero"))
+    {
+        return 2;
+    }
+     if(comparar_cadenas(month,"marzo"))
+    {
+        return 3;
+    }
+     if(comparar_cadenas(month,"abril"))
+    {
+        return 4;
+    }
+     if(comparar_cadenas(month,"mayo"))
+    {
+        return 5;
+    }
+     if(comparar_cadenas(month,"junio"))
+    {
+        return 6;
+    }
+     if(comparar_cadenas(month,"julio"))
+    {
+        return 7;
+    }
+     if(comparar_cadenas(month,"agosto"))
+    {
+        return 8;
+    }
+     if(comparar_cadenas(month,"septiembre"))
+    {
+        return 9;
+    }
+     if(comparar_cadenas(month,"octubre"))
+    {
+        return 10;
+    }
+    return -1;
 }
