@@ -31,6 +31,7 @@ typedef struct
 }mes;//cada mes tiene una fecha y sus respectivos datos
 
 void grafica(mes fecha[],int inicio,int fin);
+void tabla(float datos[]);
 void limpiar_vector(float *pvector);
 int comparar_cadenas(char primera[],char segunda[]);
 void guardian_2(char command[], int fila);
@@ -402,9 +403,9 @@ return 0;
 }
 
 
-//Funcion para generar graficos de barras
 void grafica(mes fecha[],int inicio,int fin)
 {
+    //Funcion para generar graficos de barras
     int i,j,k,condicion=0;
     float todos[17];
     float*p;
@@ -416,7 +417,7 @@ void grafica(mes fecha[],int inicio,int fin)
     //luego automaticamente escoje una escala de tal manera que
     //siempre tenga el mismo tamano la grafica pero distinta escala
      printf("--Ir atras (escribir'atras')\n"
-            "--GW/h de todos los tipos de generacion(si son varios meses se compara la suma de estos)(escribir'todos')\n"
+            "--GW/h de cada tipo de generacion(si son varios meses los datos son de la suma de estos)(escribir'todos')\n"
             "--GW/h total generados a nivel nacional (escribir'total')\n"
             "--GW/h de algunos tipos de generacion concretos (escribir tipo que deseas comparar:)\n"
                 "1 hidraulica\n"
@@ -437,6 +438,7 @@ void grafica(mes fecha[],int inicio,int fin)
                 "16 norenov\n"
                 "17 residrenov\n\n");
     scanf("%15[^\n]",decision);
+    guardian_2(decision,5);
     for(i=0,j=inicio-1;i<=fin-inicio;i++,j++)
     {
         k=0;
@@ -550,16 +552,30 @@ void grafica(mes fecha[],int inicio,int fin)
         {
             variable[i]=fecha[j].genertotal;
         }
-        else if(comparar_cadenas(decision,"atras")==1)
+        /*else if(comparar_cadenas(decision,"atras")==1)
         {
 
-        }
+        }*/
     }
+    if(comparar_cadenas(decision,"todos")==1)
+    {
+        tabla(todos);
+    }
+    else //tipo de generacion o  generacion total mensual
+    {
+        tabla(variable);
+    }
+
 }
 
-//Compara si dos cadenas son iguales
+void tabla(float datos[])
+{
+
+}
+
 int comparar_cadenas(char primera[],char segunda[])
 {
+    //Compara si dos cadenas son iguales
     int i=0;
     int tamano_1=0,tamano_2=0;
     //primero vemos cual es mayor
@@ -601,9 +617,9 @@ int comparar_cadenas(char primera[],char segunda[])
     }
 }
 
-//Convierte todas las celdas de un vector en '0';
 void limpiar_vector(float *pvector)
 {
+    //Convierte todas las celdas de un vector en '0';
     int i;
     for(i=0;i<17;i++)
     {
@@ -627,7 +643,7 @@ void guardian_2(char command[], int fila)
     else
     {
         char posible_palabra[15];
-        char caracter='\0',basura;
+        char caracter='\0';
         int i,iguales=0;
         for(i=1;i<fila;i++)//Posiciona en la fila con las palabras a comparar
         {
@@ -649,8 +665,8 @@ void guardian_2(char command[], int fila)
         if(iguales==0)
         {
             printf("error,intentalo de nuevo\n");
-            scanf("%9s",command);
-            while(getchar() != '\n'); // Limpiar el búfer de entrada
+            scanf("%15s",command);
+            while(getchar() != '\n'); // Limpiar el búfer de entrada, es para que si añadimos más caracteres de los k puede almacenar se eliminen y no se metan en la segunda cadena.
             guardian_2(command,fila);
         }
         fclose(pfposibles_palabras);
