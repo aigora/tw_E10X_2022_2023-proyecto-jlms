@@ -36,6 +36,9 @@ void limpiar_vector(float *pvector);
 int comparar_cadenas(char primera[],char segunda[]);
 void guardian_2(char command[], int fila);
 int enumerar_meses(char month[]);
+int digitos_numero(float numero);
+float valor_division(float datos[]);
+void tabla(float datos[]);
 
 
 int main()
@@ -570,8 +573,96 @@ void grafica(mes fecha[],int inicio,int fin)
 
 void tabla(float datos[])
 {
-
+    char matriz[45][190];
+    char unidades[]="GW/h";
+    int filas,columnas,resto,digitos,numero_division,espacios;
+    float valor_div;
+    printf("%s\n",unidades);
+    for(filas=0;filas<45;filas++) //Primero rellenamos la matriz
+    {
+        for(columnas=0;columnas<190;columnas++)
+        {
+            resto=filas%5;
+            if(filas==44&&columnas!=1&&columnas!=0) //dibuja eje 0X
+            {
+                matriz[filas][columnas]='_';
+            }
+            else if(columnas==1)//dibuja eje 0Y
+            {
+                matriz[filas][columnas]='|';
+            }
+            else if(columnas==0&&resto==0)//divide 0Y para mayor precision
+            {
+                matriz[filas][columnas]='-';
+            }
+            else//espacios donde no hay nada
+            {
+                matriz[filas][columnas]=' ';
+            }
+        }
+    }
+    valor_div=valor_division(datos);
+    for(filas=0,numero_division=9;filas<45;filas++)
+    { //Dibujamos la tabla (compuesta por varios elementos)
+        columnas=0;
+        resto=(filas)%5;
+        if(columnas==0&&resto==0)//Pone numero antes de las divisiones
+        {
+            digitos=digitos_numero(valor_div*numero_division);
+            while(digitos!=digitos_numero(valor_div*9.))
+            {
+                printf(" ");
+                digitos++;
+            }
+            printf("%.2f",valor_div*numero_division);
+            numero_division--;
+        }
+        else
+        {
+            for(espacios=0;espacios<digitos_numero(valor_div*9.)+3;espacios++)
+            {
+                printf(" ");
+            }
+        }
+        for(columnas=0;columnas<190;columnas++)
+        {
+            printf("%c",matriz[filas][columnas]);
+        }
+        printf("\n");
+    }
 }
+
+float valor_division(float datos[])
+{
+    float max= datos[0];
+    float valor_div=0.1;
+    int i;
+    for(i=1;i<17&&datos[i]!='\0';i++) //Primero calculamos el valor max
+    {
+        if(max<datos[i])
+        {
+            max=datos[i];
+        }
+    }
+    valor_div=max/9.;
+    return valor_div;
+}
+
+int digitos_numero(float numero)
+{ //Calcula nº digitos de un numero
+    //EJ: numero=23, 23/10=2, 23/100=0.
+    int divisor=1;
+    float cociente;
+    int digitos=0;
+    cociente = numero/divisor;
+    for(divisor=10;cociente>=1;divisor=divisor*10)
+    {
+        cociente=numero/divisor;
+        digitos++;
+    }
+    return digitos;
+}
+
 
 int comparar_cadenas(char primera[],char segunda[])
 {
