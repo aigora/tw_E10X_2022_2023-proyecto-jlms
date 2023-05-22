@@ -32,7 +32,6 @@ typedef struct
 
 void grafica(mes fecha[],int inicio,int fin);
 void tabla(float datos[]);
-void limpiar_vector(float *pvector);
 int comparar_cadenas(char primera[],char segunda[]);
 void guardian_2(char command[], int fila);
 int enumerar_meses(char month[]);
@@ -313,9 +312,9 @@ int main()
         printf("Puedes mostrar o 'todos' los datos o 'elegir' los meses que deseas estudiar\n");
         printf("Ver graficas (escribe 'graficas')\n");
         scanf("%9[^\n]",accion);//se lee su instruccion hasta detectar salto de linea
+        scanf("%c",&basura);
         guardian_2(accion,3);//revision de instruccion, perro guardian
         system ("cls");
-        scanf("%c",&basura);
         if(strcmp(accion,all) == 0)//orden de mostrar todos los datos
         {
             system ("cls");//limpiar consola
@@ -377,24 +376,31 @@ int main()
 
         if(comparar_cadenas(accion,grafics) == 1)
         {
-            printf("Desde que mes deseas estudiar (escribir ej:'marzo')\n");
-            scanf("%9[^\n]",accion);//se lee su instruccion hasta detectar salto de linea
-            scanf("%c",&basura);
-            guardian_2(accion,4);
-            mes_1=enumerar_meses(accion);
-            printf("Hasta que mes deseas estudiar (escribir ej:'marzo')\n");
-            scanf("%9[^\n]",accion_2);//se lee su instruccion hasta detectar salto de linea
-            scanf("%c",&basura);
-            guardian_2(accion_2,4);
-            system ("cls");
-            mes_2=enumerar_meses(accion_2);
-            if(mes_2>mes_1)
+            while(comparar_cadenas(accion,"finalizar")==0)
             {
-                i=mes_1;
-                mes_1=mes_2;
-                mes_2=i;
+                printf("Desde que mes deseas estudiar (como maximo octubre)(escribir ej:'marzo')\n");
+                scanf("%15[^\n]",accion);//se lee su instruccion hasta detectar salto de linea
+                scanf("%c",&basura);
+                guardian_2(accion,4);
+                mes_1=enumerar_meses(accion);
+                printf("Hasta que mes deseas estudiar(como maximo octubre)(escribir ej:'febrero')\n");
+                scanf("%15[^\n]",accion_2);//se lee su instruccion hasta detectar salto de linea
+                scanf("%c",&basura);
+                guardian_2(accion_2,4);
+                system ("cls");
+                mes_2=enumerar_meses(accion_2);
+                if(mes_2<mes_1)
+                {
+                    i=mes_1;
+                    mes_1=mes_2;
+                    mes_2=i;
+                }
+                grafica(data,mes_1,mes_2);
+                printf("\n\n-Atras\n-Finalizar\n");
+                scanf("%15[^\n]",accion);
+                guardian_2(accion,6);
+                system ("cls");
             }
-            grafica(data,mes_1,mes_2);
         }
 
         return 0;
@@ -413,14 +419,14 @@ void grafica(mes fecha[],int inicio,int fin)
     char decision[15];
     float variable[11];
     float todos[18];
-    float*p;
-    p=todos;
-    limpiar_vector(p);
+    for(i=0;i<18;i++)
+    {
+        todos[i]=0;
+    }
     //Primero tienes que elegir que generaciones quieres comparar
     //luego automaticamente escoje una escala de tal manera que
     //siempre tenga el mismo tamano la grafica pero distinta escala
-     printf("--Ir atras (escribir'atras')\n"
-            "--GW/h de cada tipo de generacion(si son varios meses los datos son de la suma de estos)(escribir'todos')\n"
+     printf("--GW/h de cada tipo de generacion(si son varios meses los datos son de la suma de estos)(escribir'todos')\n"
             "--GW/h total generados a nivel nacional (escribir'total')\n"
             "--GW/h de algunos tipos de generacion concretos (escribir tipo que deseas comparar:)\n"
                 "1 hidraulica\n"
@@ -442,6 +448,7 @@ void grafica(mes fecha[],int inicio,int fin)
                 "17 residrenov\n\n");
     scanf("%15[^\n]",decision);
     guardian_2(decision,5);
+    //system ("cls");
     for(i=0,j=inicio-1;i<=fin-inicio;i++,j++)
     {
         k=0;
@@ -449,43 +456,43 @@ void grafica(mes fecha[],int inicio,int fin)
         {
             condicion=1;
         }
-        else if(comparar_cadenas(decision,"hidraulica")==1||condicion==1)
+        if(comparar_cadenas(decision,"hidraulica")==1||condicion==1)
         {
             variable[i]=fecha[j].hidraulica;
             todos[k]=todos[k]+fecha[j].hidraulica;
             k++;
         }
-        else if(comparar_cadenas(decision,"turbbombeo")==1||condicion==1)
+        if(comparar_cadenas(decision,"turbbombeo")==1||condicion==1)
         {
             variable[i]=fecha[j].turbbombeo;
             todos[k]=todos[k]+fecha[j].turbbombeo;
             k++;
         }
-        else if(comparar_cadenas(decision,"nuclear")==1||condicion==1)
+        if(comparar_cadenas(decision,"nuclear")==1||condicion==1)
         {
             variable[i]=fecha[j].nuclear;
             todos[k]=todos[k]+fecha[j].nuclear;
             k++;
         }
-        else if(comparar_cadenas(decision,"carbon")==1||condicion==1)
+        if(comparar_cadenas(decision,"carbon")==1||condicion==1)
         {
             variable[i]=fecha[j].carbon;
             todos[k]=todos[k]+fecha[j].carbon;
             k++;
         }
-        else if(comparar_cadenas(decision,"fuelgas")==1||condicion==1)
+        if(comparar_cadenas(decision,"fuelgas")==1||condicion==1)
         {
             variable[i]=fecha[j].fuelgas;
             todos[k]=todos[k]+fecha[j].fuelgas;
             k++;
         }
-        else if(comparar_cadenas(decision,"motdiesel")==1||condicion==1)
+        if(comparar_cadenas(decision,"motdiesel")==1||condicion==1)
         {
             variable[i]=fecha[j].motdiesel;
             todos[k]=todos[k]+fecha[j].motdiesel;
             k++;
         }
-        else if(comparar_cadenas(decision,"turbinagas")==1||condicion==1)
+        if(comparar_cadenas(decision,"turbinagas")==1||condicion==1)
         {
             variable[i]=fecha[j].turbinagas;
             todos[k]=todos[k]+fecha[j].turbinagas;
@@ -497,65 +504,66 @@ void grafica(mes fecha[],int inicio,int fin)
             todos[k]=todos[k]+fecha[j].turbvapor;
             k++;
         }
-        else if(comparar_cadenas(decision,"ccombinado")==1||condicion==1)
+        if(comparar_cadenas(decision,"ccombinado")==1||condicion==1)
         {
             variable[i]=fecha[j].ccombinado;
             todos[k]=todos[k]+fecha[j].ccombinado;
             k++;
         }
-        else if(comparar_cadenas(decision,"hidroeolica")==1||condicion==1)
+        if(comparar_cadenas(decision,"hidroeolica")==1||condicion==1)
         {
             variable[i]=fecha[j].hidroeolica;
             todos[k]=todos[k]+fecha[j].hidroeolica;
             k++;
         }
-        else if(comparar_cadenas(decision,"eolica")==1||condicion==1)
+        if(comparar_cadenas(decision,"eolica")==1||condicion==1)
         {
             variable[i]=fecha[j].eolica;
             todos[k]=todos[k]+fecha[j].eolica;
             k++;
         }
-        else if(comparar_cadenas(decision,"solarfoto")==1||condicion==1)
+        if(comparar_cadenas(decision,"solarfoto")==1||condicion==1)
         {
             variable[i]=fecha[j].solarfoto;
             todos[k]=todos[k]+fecha[j].solarfoto;
             k++;
         }
-        else if(comparar_cadenas(decision,"solarterm")==1||condicion==1)
+        if(comparar_cadenas(decision,"solarterm")==1||condicion==1)
         {
             variable[i]=fecha[j].solarterm;
             todos[k]=todos[k]+fecha[j].solarterm;
             k++;
         }
-        else if(comparar_cadenas(decision,"otrasreno")==1||condicion==1)
+        if(comparar_cadenas(decision,"otrasreno")==1||condicion==1)
         {
             variable[i]=fecha[j].otrasreno;
             todos[k]=todos[k]+fecha[j].otrasreno;
             k++;
         }
-        else if(comparar_cadenas(decision,"cogenerac")==1||condicion==1)
+        if(comparar_cadenas(decision,"cogenerac")==1||condicion==1)
         {
             variable[i]=fecha[j].cogenerac;
             todos[k]=todos[k]+fecha[j].cogenerac;
             k++;
         }
-        else if(comparar_cadenas(decision,"norenov")==1||condicion==1)
+        if(comparar_cadenas(decision,"norenov")==1||condicion==1)
         {
             variable[i]=fecha[j].norenov;
             todos[k]=todos[k]+fecha[j].norenov;
             k++;
         }
-        else if(comparar_cadenas(decision,"residrenov")==1||condicion==1)
+        if(comparar_cadenas(decision,"residrenov")==1||condicion==1)
         {
             variable[i]=fecha[j].residrenov;
             todos[k]=todos[k]+fecha[j].residrenov;
             k++;
         }
-        else if(comparar_cadenas(decision,"total")==1)
+        if(comparar_cadenas(decision,"total")==1)
         {
             variable[i]=fecha[j].genertotal;
         }
     }
+    i=0;
     if(comparar_cadenas(decision,"todos")==1)
     {
         tabla(todos);
@@ -571,15 +579,18 @@ void tabla(float datos[])
 {
     char matriz[45][190];
     char unidades[]="GW/h";
-    int filas,columnas,resto,resto_2,digitos,numero_division,espacios,altura_actual,i=0;
-    int altura[18]={1};
+    int filas,columnas,resto,resto_2,digitos,numero_division,espacios,altura_actual,i;
+    int altura[200];
+    for(i=0;i!=200;i++)
+    {
+        altura[0]=0;
+    }
     float valor_div;
     printf("%s\n",unidades);
     valor_div=valor_division(datos);
-    while(datos[i]!='\0')
+    for(i=0;i!=17;i++)
     { //Para saber la altura de la barra de cada dato
         altura[i]=datos[i]/(valor_div/5);
-        i++;
     }
     for(filas=0,i=0;filas<45;filas++) //Primero rellenamos la matriz
     {
@@ -599,7 +610,7 @@ void tabla(float datos[])
             {
                 matriz[filas][columnas]='-';
             }
-            else if ((resto_2==0||resto_2==1)&&columnas!=0&&columnas!=1&&altura[i]!='\0')
+            else if ((resto_2==0||resto_2==1)&&columnas!=0&&columnas!=1)
             { //Para guardar las columnas de 2 de grosor separadas entre ellas por otras dos
                 altura_actual=45-filas;
                 //altura actual= 4, altura[0]=2, altura_actual<=altura[i]?NO
@@ -660,7 +671,7 @@ float valor_division(float datos[])
     float max= datos[0];
     float valor_div=0.1;
     int i;
-    for(i=1;i<18&&datos[i]!='\0';i++) //Primero calculamos el valor max
+    for(i=1;i<18;i++) //Primero calculamos el valor max &&datos[i]!='\0'
     {
         if(max<datos[i])
         {
@@ -728,16 +739,6 @@ int comparar_cadenas(char primera[],char segunda[])
             i++;
         }
         return 1;
-    }
-}
-
-void limpiar_vector(float *pvector)
-{
-    //Convierte todas las celdas de un vector en '0';
-    int i;
-    for(i=0;i<17;i++)
-    {
-        *(pvector+i)=0;
     }
 }
 
