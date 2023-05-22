@@ -410,12 +410,12 @@ void grafica(mes fecha[],int inicio,int fin)
 {
     //Funcion para generar graficos de barras
     int i,j,k,condicion=0;
-    float todos[17];
+    char decision[15];
+    float variable[11];
+    float todos[18];
     float*p;
     p=todos;
     limpiar_vector(p);
-    char decision[15];
-    float variable[10];
     //Primero tienes que elegir que generaciones quieres comparar
     //luego automaticamente escoje una escala de tal manera que
     //siempre tenga el mismo tamano la grafica pero distinta escala
@@ -458,107 +458,103 @@ void grafica(mes fecha[],int inicio,int fin)
         else if(comparar_cadenas(decision,"turbbombeo")==1||condicion==1)
         {
             variable[i]=fecha[j].turbbombeo;
-            todos[k]=todos[k]+fecha[j].hidraulica;
+            todos[k]=todos[k]+fecha[j].turbbombeo;
             k++;
         }
         else if(comparar_cadenas(decision,"nuclear")==1||condicion==1)
         {
             variable[i]=fecha[j].nuclear;
-            todos[k]=todos[k]+fecha[j].hidraulica;
+            todos[k]=todos[k]+fecha[j].nuclear;
             k++;
         }
         else if(comparar_cadenas(decision,"carbon")==1||condicion==1)
         {
             variable[i]=fecha[j].carbon;
-            todos[k]=todos[k]+fecha[j].hidraulica;
+            todos[k]=todos[k]+fecha[j].carbon;
             k++;
         }
         else if(comparar_cadenas(decision,"fuelgas")==1||condicion==1)
         {
             variable[i]=fecha[j].fuelgas;
-            todos[k]=todos[k]+fecha[j].hidraulica;
+            todos[k]=todos[k]+fecha[j].fuelgas;
             k++;
         }
         else if(comparar_cadenas(decision,"motdiesel")==1||condicion==1)
         {
             variable[i]=fecha[j].motdiesel;
-            todos[k]=todos[k]+fecha[j].hidraulica;
+            todos[k]=todos[k]+fecha[j].motdiesel;
             k++;
         }
         else if(comparar_cadenas(decision,"turbinagas")==1||condicion==1)
         {
             variable[i]=fecha[j].turbinagas;
-            todos[k]=todos[k]+fecha[j].hidraulica;
+            todos[k]=todos[k]+fecha[j].turbinagas;
             k++;
         }
         else if(comparar_cadenas(decision,"turbvapor")==1||condicion==1)
         {
             variable[i]=fecha[j].turbvapor;
-            todos[k]=todos[k]+fecha[j].hidraulica;
+            todos[k]=todos[k]+fecha[j].turbvapor;
             k++;
         }
         else if(comparar_cadenas(decision,"ccombinado")==1||condicion==1)
         {
             variable[i]=fecha[j].ccombinado;
-            todos[k]=todos[k]+fecha[j].hidraulica;
+            todos[k]=todos[k]+fecha[j].ccombinado;
             k++;
         }
         else if(comparar_cadenas(decision,"hidroeolica")==1||condicion==1)
         {
             variable[i]=fecha[j].hidroeolica;
-            todos[k]=todos[k]+fecha[j].hidraulica;
+            todos[k]=todos[k]+fecha[j].hidroeolica;
             k++;
         }
         else if(comparar_cadenas(decision,"eolica")==1||condicion==1)
         {
             variable[i]=fecha[j].eolica;
-            todos[k]=todos[k]+fecha[j].hidraulica;
+            todos[k]=todos[k]+fecha[j].eolica;
             k++;
         }
         else if(comparar_cadenas(decision,"solarfoto")==1||condicion==1)
         {
             variable[i]=fecha[j].solarfoto;
-            todos[k]=todos[k]+fecha[j].hidraulica;
+            todos[k]=todos[k]+fecha[j].solarfoto;
             k++;
         }
         else if(comparar_cadenas(decision,"solarterm")==1||condicion==1)
         {
             variable[i]=fecha[j].solarterm;
-            todos[k]=todos[k]+fecha[j].hidraulica;
+            todos[k]=todos[k]+fecha[j].solarterm;
             k++;
         }
         else if(comparar_cadenas(decision,"otrasreno")==1||condicion==1)
         {
             variable[i]=fecha[j].otrasreno;
-            todos[k]=todos[k]+fecha[j].hidraulica;
+            todos[k]=todos[k]+fecha[j].otrasreno;
             k++;
         }
         else if(comparar_cadenas(decision,"cogenerac")==1||condicion==1)
         {
             variable[i]=fecha[j].cogenerac;
-            todos[k]=todos[k]+fecha[j].hidraulica;
+            todos[k]=todos[k]+fecha[j].cogenerac;
             k++;
         }
         else if(comparar_cadenas(decision,"norenov")==1||condicion==1)
         {
             variable[i]=fecha[j].norenov;
-            todos[k]=todos[k]+fecha[j].hidraulica;
+            todos[k]=todos[k]+fecha[j].norenov;
             k++;
         }
         else if(comparar_cadenas(decision,"residrenov")==1||condicion==1)
         {
             variable[i]=fecha[j].residrenov;
-            todos[k]=todos[k]+fecha[j].hidraulica;
+            todos[k]=todos[k]+fecha[j].residrenov;
             k++;
         }
         else if(comparar_cadenas(decision,"total")==1)
         {
             variable[i]=fecha[j].genertotal;
         }
-        /*else if(comparar_cadenas(decision,"atras")==1)
-        {
-
-        }*/
     }
     if(comparar_cadenas(decision,"todos")==1)
     {
@@ -575,14 +571,22 @@ void tabla(float datos[])
 {
     char matriz[45][190];
     char unidades[]="GW/h";
-    int filas,columnas,resto,digitos,numero_division,espacios;
+    int filas,columnas,resto,resto_2,digitos,numero_division,espacios,altura_actual,i=0;
+    int altura[18]={1};
     float valor_div;
     printf("%s\n",unidades);
-    for(filas=0;filas<45;filas++) //Primero rellenamos la matriz
+    valor_div=valor_division(datos);
+    while(datos[i]!='\0')
+    { //Para saber la altura de la barra de cada dato
+        altura[i]=datos[i]/(valor_div/5);
+        i++;
+    }
+    for(filas=0,i=0;filas<45;filas++) //Primero rellenamos la matriz
     {
         for(columnas=0;columnas<190;columnas++)
         {
             resto=filas%5;
+            resto_2=columnas%4;
             if(filas==44&&columnas!=1&&columnas!=0) //dibuja eje 0X
             {
                 matriz[filas][columnas]='_';
@@ -595,15 +599,34 @@ void tabla(float datos[])
             {
                 matriz[filas][columnas]='-';
             }
+            else if ((resto_2==0||resto_2==1)&&columnas!=0&&columnas!=1&&altura[i]!='\0')
+            { //Para guardar las columnas de 2 de grosor separadas entre ellas por otras dos
+                altura_actual=45-filas;
+                //altura actual= 4, altura[0]=2, altura_actual<=altura[i]?NO
+                if(altura_actual<=altura[i])
+                {
+                    matriz[filas][columnas]='X';
+                }
+                else
+                {
+                    matriz[filas][columnas]=' ';
+                }
+                if(resto_2==1)
+                {
+                    i++;
+                }
+            }
             else//espacios donde no hay nada
             {
                 matriz[filas][columnas]=' ';
             }
         }
+        i=0;
     }
-    valor_div=valor_division(datos);
+
+    //Dibujamos la tabla (compuesta por varios elementos)
     for(filas=0,numero_division=9;filas<45;filas++)
-    { //Dibujamos la tabla (compuesta por varios elementos)
+    {
         columnas=0;
         resto=(filas)%5;
         if(columnas==0&&resto==0)//Pone numero antes de las divisiones
@@ -637,7 +660,7 @@ float valor_division(float datos[])
     float max= datos[0];
     float valor_div=0.1;
     int i;
-    for(i=1;i<17&&datos[i]!='\0';i++) //Primero calculamos el valor max
+    for(i=1;i<18&&datos[i]!='\0';i++) //Primero calculamos el valor max
     {
         if(max<datos[i])
         {
