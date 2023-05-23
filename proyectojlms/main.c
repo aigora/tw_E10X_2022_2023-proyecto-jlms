@@ -563,7 +563,6 @@ void grafica(mes fecha[],int inicio,int fin)
             variable[i]=fecha[j].genertotal;
         }
     }
-    i=0;
     if(comparar_cadenas(decision,"todos")==1)
     {
         tabla(todos,17);
@@ -582,8 +581,8 @@ void tabla(float datos[],int tamano)
     int filas,columnas,resto,resto_2,digitos,numero_division,espacios,altura_actual,i;
     int altura[200];
     float valor_div;
-    printf("%s\n",unidades);
     valor_div=valor_division(datos,tamano);
+    printf("%s\n",unidades);
     for(i=0;i<tamano;i++)
     { //Para saber la altura de la barra de cada dato
         altura[i]=datos[i]/(valor_div/5);
@@ -669,7 +668,7 @@ void tabla(float datos[],int tamano)
 float valor_division(float datos[],int tamano)
 {
     float max= datos[0];
-    float valor_div=0.1;
+    float valor_div;
     int i;
     for(i=1;i<tamano;i++) //Primero calculamos el valor max
     {
@@ -703,43 +702,15 @@ int comparar_cadenas(char primera[],char segunda[])
     //Compara si dos cadenas son iguales
     int i=0;
     int tamano_1=0,tamano_2=0;
-    //primero vemos cual es mayor
-    while(primera[i]!='\0')
+    while(primera[i]!='\0'||segunda[i]!='\0')
     {
-        tamano_1++;
+        if(primera[i]!=segunda[i])
+        {
+            return 0;
+        }
         i++;
     }
-    i=0;
-    while(segunda[i]!='\0')
-    {
-        tamano_2++;
-        i++;
-    }
-    i=0;
-    if(tamano_1>tamano_2)
-    {
-        while(primera[i]!='\0')
-        {
-            if(primera[i]!=segunda[i])
-            {
-                return 0;
-            }
-            i++;
-        }
-        return 1;
-    }
-    else
-    {
-        while(segunda[i]!='\0')
-        {
-            if(primera[i]!=segunda[i])
-            {
-                return 0;
-            }
-            i++;
-        }
-        return 1;
-    }
+    return 1;
 }
 
 void guardian_2(char command[], int fila)
