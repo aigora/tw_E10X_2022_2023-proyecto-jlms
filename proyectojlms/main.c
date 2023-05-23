@@ -31,13 +31,12 @@ typedef struct
 }mes;//cada mes tiene una fecha y sus respectivos datos
 
 void grafica(mes fecha[],int inicio,int fin);
-void tabla(float datos[]);
 int comparar_cadenas(char primera[],char segunda[]);
 void guardian_2(char command[], int fila);
 int enumerar_meses(char month[]);
 int digitos_numero(float numero);
-float valor_division(float datos[]);
-void tabla(float datos[]);
+float valor_division(float datos[],int tamano);
+void tabla(float datos[],int tamano);
 
 
 int main()
@@ -52,7 +51,8 @@ int main()
   char car,basura, open[] = "abrir",length[] = "contar",end[] = "finalizar",all[] = "todos",elegir[] = "elegir",grafics[]="graficas";
   pf = fopen("generacion.txt", "r"); //puntero dirigido abrir el fichero en modo lectura
   printf("Bienvenido al programa\n");
-  printf("a continuacion, eliga la acccion que quiere realizar, diga: 'abrir'\n");//primera instruccion
+  printf("Se recomienda para un correcto funcionaminto de las graficas la pantalla completa\n");
+  printf("A continuacion, eliga la acccion que quiere realizar, diga: 'abrir'\n");//primera instruccion
   scanf("%9[^\n]",accion);
   scanf("%c",&basura);
   guardian_2(accion,1);//revision de instruccion, perro guardian
@@ -417,16 +417,16 @@ void grafica(mes fecha[],int inicio,int fin)
     //Funcion para generar graficos de barras
     int i,j,k,condicion=0;
     char decision[15];
-    float variable[11];
-    float todos[18];
-    for(i=0;i<18;i++)
+    float variable[10];
+    float todos[17];
+    for(i=0;i<17;i++)
     {
         todos[i]=0;
     }
     //Primero tienes que elegir que generaciones quieres comparar
     //luego automaticamente escoje una escala de tal manera que
     //siempre tenga el mismo tamano la grafica pero distinta escala
-     printf("--GW/h de cada tipo de generacion(si son varios meses los datos son de la suma de estos)(escribir'todos')\n"
+     printf("--GW/h de cada tipo de generacion(apareceran en el orden de abajo)(si son varios meses los datos son de la suma de estos)(escribir'todos')\n"
             "--GW/h total generados a nivel nacional (escribir'total')\n"
             "--GW/h de algunos tipos de generacion concretos (escribir tipo que deseas comparar:)\n"
                 "1 hidraulica\n"
@@ -448,7 +448,7 @@ void grafica(mes fecha[],int inicio,int fin)
                 "17 residrenov\n\n");
     scanf("%15[^\n]",decision);
     guardian_2(decision,5);
-    //system ("cls");
+    system ("cls");
     for(i=0,j=inicio-1;i<=fin-inicio;i++,j++)
     {
         k=0;
@@ -498,7 +498,7 @@ void grafica(mes fecha[],int inicio,int fin)
             todos[k]=todos[k]+fecha[j].turbinagas;
             k++;
         }
-        else if(comparar_cadenas(decision,"turbvapor")==1||condicion==1)
+        if(comparar_cadenas(decision,"turbvapor")==1||condicion==1)
         {
             variable[i]=fecha[j].turbvapor;
             todos[k]=todos[k]+fecha[j].turbvapor;
@@ -566,38 +566,38 @@ void grafica(mes fecha[],int inicio,int fin)
     i=0;
     if(comparar_cadenas(decision,"todos")==1)
     {
-        tabla(todos);
+        tabla(todos,17);
     }
     else //tipo de generacion o  generacion total mensual
     {
-        tabla(variable);
+        tabla(variable,10);
     }
 
 }
 
-void tabla(float datos[])
+void tabla(float datos[],int tamano)
 {
-    char matriz[45][190];
+    char matriz[45][180];
     char unidades[]="GW/h";
     int filas,columnas,resto,resto_2,digitos,numero_division,espacios,altura_actual,i;
     int altura[200];
-    for(i=0;i!=200;i++)
-    {
-        altura[0]=0;
-    }
     float valor_div;
     printf("%s\n",unidades);
-    valor_div=valor_division(datos);
-    for(i=0;i!=17;i++)
+    valor_div=valor_division(datos,tamano);
+    for(i=0;i<tamano;i++)
     { //Para saber la altura de la barra de cada dato
         altura[i]=datos[i]/(valor_div/5);
     }
+    for(i=tamano;i<200;i++)
+    { //Necesario para que cuando terminen los datos de tamano no haga errores
+        altura[i]=0;
+    }
     for(filas=0,i=0;filas<45;filas++) //Primero rellenamos la matriz
     {
-        for(columnas=0;columnas<190;columnas++)
+        for(columnas=0;columnas<180;columnas++)
         {
             resto=filas%5;
-            resto_2=columnas%4;
+            resto_2=columnas%10;
             if(filas==44&&columnas!=1&&columnas!=0) //dibuja eje 0X
             {
                 matriz[filas][columnas]='_';
@@ -610,7 +610,7 @@ void tabla(float datos[])
             {
                 matriz[filas][columnas]='-';
             }
-            else if ((resto_2==0||resto_2==1)&&columnas!=0&&columnas!=1)
+            else if (resto_2!=2&&resto_2!=3&&resto_2!=4&&resto_2!=5&&columnas!=0&&columnas!=1)
             { //Para guardar las columnas de 2 de grosor separadas entre ellas por otras dos
                 altura_actual=45-filas;
                 //altura actual= 4, altura[0]=2, altura_actual<=altura[i]?NO
@@ -639,12 +639,12 @@ void tabla(float datos[])
     for(filas=0,numero_division=9;filas<45;filas++)
     {
         columnas=0;
-        resto=(filas)%5;
+        resto=filas%5;
         if(columnas==0&&resto==0)//Pone numero antes de las divisiones
         {
             digitos=digitos_numero(valor_div*numero_division);
-            while(digitos!=digitos_numero(valor_div*9.))
-            {
+            while(digitos<digitos_numero(valor_div*9.))
+            { //Son los espacios en numeros menores para que se alinien bien
                 printf(" ");
                 digitos++;
             }
@@ -658,7 +658,7 @@ void tabla(float datos[])
                 printf(" ");
             }
         }
-        for(columnas=0;columnas<190;columnas++)
+        for(columnas=0;columnas<180;columnas++)
         {
             printf("%c",matriz[filas][columnas]);
         }
@@ -666,12 +666,12 @@ void tabla(float datos[])
     }
 }
 
-float valor_division(float datos[])
+float valor_division(float datos[],int tamano)
 {
     float max= datos[0];
     float valor_div=0.1;
     int i;
-    for(i=1;i<18;i++) //Primero calculamos el valor max &&datos[i]!='\0'
+    for(i=1;i<tamano;i++) //Primero calculamos el valor max
     {
         if(max<datos[i])
         {
