@@ -702,15 +702,43 @@ int comparar_cadenas(char primera[],char segunda[])
     //Compara si dos cadenas son iguales
     int i=0;
     int tamano_1=0,tamano_2=0;
-    while(primera[i]!='\0'||segunda[i]!='\0')
+    //primero vemos cual es mayor
+    while(primera[i]!='\0')
     {
-        if(primera[i]!=segunda[i])
-        {
-            return 0;
-        }
+        tamano_1++;
         i++;
     }
-    return 1;
+    i=0;
+    while(segunda[i]!='\0')
+    {
+        tamano_2++;
+        i++;
+    }
+    i=0;
+    if(tamano_1>tamano_2)
+    {
+        while(primera[i]!='\0')
+        {
+            if(primera[i]!=segunda[i])
+            {
+                return 0;
+            }
+            i++;
+        }
+        return 1;
+    }
+    else
+    {
+        while(segunda[i]!='\0')
+        {
+            if(primera[i]!=segunda[i])
+            {
+                return 0;
+            }
+            i++;
+        }
+        return 1;
+    }
 }
 
 void guardian_2(char command[], int fila)
@@ -742,7 +770,9 @@ void guardian_2(char command[], int fila)
         }
         i=0;
         do//do porque inicialmente caracter es \n
-        {//Compara las palabras admitidas con la palabra escrita, en caso erroneopide que la escribas de nuevo y repite la funcion
+        {
+            //Compara las palabras admitidas con la palabra escrita,
+            //en caso erroneo pide que la escribas de nuevo y repite la funcion
             fscanf(pfposibles_palabras,"%s", posible_palabra);
             iguales=comparar_cadenas(posible_palabra,command);
             fscanf(pfposibles_palabras,"%c", &caracter);
@@ -752,7 +782,9 @@ void guardian_2(char command[], int fila)
         {
             printf("error,intentalo de nuevo\n");
             scanf("%15s",command);
-            while(getchar() != '\n'); // Limpiar el búfer de entrada, es para que si añadimos más caracteres de los k puede almacenar se eliminen y no se metan en la segunda cadena.
+            while(getchar() != '\n');
+            // Limpiar el búfer de entrada, es para que si añadimos más caracteres de los k puede almacenar
+            //se eliminen y no se metan en la segunda cadena.
             guardian_2(command,fila);
         }
         fclose(pfposibles_palabras);
