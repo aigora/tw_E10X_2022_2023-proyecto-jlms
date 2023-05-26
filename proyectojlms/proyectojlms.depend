@@ -19,3 +19,14 @@
 
 1685042077 c:\users\usuario\downloads\segundo 22\info23\tw_e10x_2022_2023-proyecto-jlms\proyectojlms\estructuras.h
 
+1685101712 source:/Users/jbermejo/Desktop/JLMS/proyectojlms/lib.c
+	"lib.h"
+	"estructuras.h"
+
+1685052158 /Users/jbermejo/Desktop/JLMS/proyectojlms/lib.h
+	<stdio.h>
+	<string.h>
+	"estructuras.h"
+
+1685052158 /Users/jbermejo/Desktop/JLMS/proyectojlms/estructuras.h
+

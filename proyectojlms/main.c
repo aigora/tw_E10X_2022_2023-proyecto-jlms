@@ -28,7 +28,7 @@ int main()
         }
     else
         {
-            system ("cls");//se limpia la consola
+            limpia_consola();//se limpia la consola
             printf("el fichero ha sido abierto correctamente\n");
             printf("ahora que accion quieres realizar? Puedes 'finalizar' el programa o 'contar' las lineas\n");
             scanf("%9[^\n]",accion);
@@ -42,7 +42,7 @@ int main()
             }
             if(strcmp(accion,length) == 0)//se elige contar el numero de lineas
             {
-               system ("cls");
+               limpia_consola();
                while (fscanf(pf, "%c", &car) != EOF)//recorrido de cada caracter del fichero
                 {
                 if (car == '\n')//si se detecta un salto de linea
@@ -277,10 +277,10 @@ int main()
         scanf("%9[^\n]",accion);//se lee su instruccion hasta detectar salto de linea
         scanf("%c",&basura);
         guardian_2(accion,3);//revision de instruccion, perro guardian
-        system ("cls");
+        limpia_consola();
         if(strcmp(accion,all) == 0)//orden de mostrar todos los datos
         {
-            system ("cls");//limpiar consola
+            limpia_consola();
             printf("has seleccionado mostrar todos los datos, en ese caso seria:\n");
             for(i=0;i<10;i++)//el bucle for recorre los datos de los 10 meses
             {
@@ -308,11 +308,11 @@ int main()
         }//cierre del caso para mostrar todos los datos
         if(strcmp(accion,elegir) == 0)//el usario quiere solo mostrar un mes
         {
-            system ("cls");//limpiar consola
+            limpia_consola();
             printf("de acuerdo, te voy a mostrar los datos de un solo mes\n");
             printf("dime el numero del mes!(es de 1 a 10)\n");
             scanf("%d",&num);
-            system ("cls");//limpiar consola
+            limpia_consola();
             for(i=num-1;i<num;i++)//sea cual sea el valor del numero, solo se avanza una posicion
                 {
                 printf("%d/%d: \n",data[i].date.month,data[i].date.year);
@@ -350,7 +350,7 @@ int main()
                 scanf("%15[^\n]",accion_2);//se lee su instruccion hasta detectar salto de linea
                 scanf("%c",&basura);
                 guardian_2(accion_2,4);
-                system ("cls");
+                limpia_consola();
                 mes_2=enumerar_meses(accion_2);
                 if(mes_2<mes_1)
                 {
@@ -362,7 +362,7 @@ int main()
                 printf("\n\n-Atras\n-Finalizar\n");
                 scanf("%15[^\n]",accion);
                 guardian_2(accion,6);
-                system ("cls");
+                limpia_consola();
             }
         }
 

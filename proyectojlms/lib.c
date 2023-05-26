@@ -88,7 +88,7 @@ void grafica(mes fecha[],int inicio,int fin)
                 "17 residrenov\n\n");
     scanf("%15[^\n]",decision);
     guardian_2(decision,5);
-    system ("cls");
+    limpia_consola();
     for(i=0,j=inicio-1;i<=fin-inicio;i++,j++)
     {
         k=0;
@@ -424,4 +424,10 @@ int enumerar_meses(char month[])
         return 10;
     }
     return -1;
+}
+
+void limpia_consola(void)
+{
+//    system("cls");      //Para dispositivos Windows
+    printf("\033[2J");      //Para dispositivos Mac y Linux
 }

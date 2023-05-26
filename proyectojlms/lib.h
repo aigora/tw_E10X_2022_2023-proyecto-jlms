@@ -12,6 +12,7 @@ int enumerar_meses(char month[]);
 int digitos_numero(float numero);
 float valor_division(float datos[],int tamano);
 void tabla(float datos[],int tamano);
+void limpia_consola(void);
 
 
 #endif // LIB_H_INCLUDED
