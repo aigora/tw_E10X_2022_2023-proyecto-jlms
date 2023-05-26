@@ -275,14 +275,19 @@ int main()
             printf("Numero de bytes: %li\n",fsize);
             printf("Numero de lineas: %d\n",nLineas);
             //segunda instruccion del usuario
-            printf("Ahora puedes mostrar o 'todos' los datos o 'elegir' los meses que deseas estudiar\n");
-            printf("Ver graficas (escribe 'graficas')\n");
+            printf("Ahora puedes consultar 'todos' los datos numericos o 'elegir' un mes concreto\n");
+            printf("Tenemos datos desde enero a octubre, ambos incluidos\n");
+            printf("Si quieres ver graficas, entonces escribe 'graficas'\n");
             scanf("%9[^\n]",accion);//se lee su instruccion hasta detectar salto de linea
             scanf("%c",&basura);
             guardian_2(accion,3);//revision de instruccion, perro guardian
             limpia_consola();
             if(strcmp(accion,end) == 0)
+            {
+                printf("fin\n");
+                fclose(pf);
                 return 0;
+            }
             if(strcmp(accion,all) == 0)//orden de mostrar todos los datos
                 {
                 limpia_consola();
