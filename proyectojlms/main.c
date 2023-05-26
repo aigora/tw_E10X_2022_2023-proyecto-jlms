@@ -28,7 +28,7 @@ int main()
         }
     else
         {
-            limpia_consola();//se limpia la consola
+            limpia_consola();
             printf("el fichero ha sido abierto correctamente\n");
             printf("ahora que accion quieres realizar? Puedes 'finalizar' el programa o 'contar' las lineas\n");
             scanf("%9[^\n]",accion);

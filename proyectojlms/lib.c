@@ -428,6 +428,6 @@ int enumerar_meses(char month[])
 
 void limpia_consola(void)
 {
-//    system("cls");      //Para dispositivos Windows
-    printf("\033[2J");      //Para dispositivos Mac y Linux
+    system("cls");      //Para dispositivos Windows
+//    printf("\033[2J");      //Para dispositivos Mac y Linux
 }
