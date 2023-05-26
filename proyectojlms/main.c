@@ -308,7 +308,7 @@ int main()
         }//cierre del caso para mostrar todos los datos
         if(strcmp(accion,elegir) == 0)//el usario quiere solo mostrar un mes
         {
-            system ("cls");//limpiar consola
+            limpia_consola();
             printf("de acuerdo, te voy a mostrar los datos de un solo mes, escribelo:\n");
             scanf("%15[^\n]",accion);
             scanf("%c",&basura);
