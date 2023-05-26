@@ -6,6 +6,7 @@
 //listado de funciones
 
 void guardian_2(char command[], int fila);
+int elige_un_mes(char mes[]);
 void grafica(mes fecha[],int inicio,int fin);
 int comparar_cadenas(char primera[],char segunda[]);
 int enumerar_meses(char month[]);

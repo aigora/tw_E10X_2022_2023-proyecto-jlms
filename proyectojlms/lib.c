@@ -51,6 +51,35 @@ void guardian_2(char command[], int fila)
     }
 }
 
+//funcion para cuando el usuario quiere mostrar un mes
+int elige_un_mes(char mes[])
+{
+    year calendario = {"enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"};
+    int num,i;
+    if(strcmp(mes,calendario.enero) == 0)
+        num = 1;
+    if(strcmp(mes,calendario.febrero) == 0)
+        num = 2;
+    if(strcmp(mes,calendario.marzo) == 0)
+        num = 3;
+    if(strcmp(mes,calendario.abril) == 0)
+        num = 4;
+    if(strcmp(mes,calendario.mayo) == 0)
+        num = 5;
+    if(strcmp(mes,calendario.junio) == 0)
+        num = 6;
+    if(strcmp(mes,calendario.julio) == 0)
+        num = 7;
+    if(strcmp(mes,calendario.agosto) == 0)
+        num = 8;
+    if(strcmp(mes,calendario.septiembre) == 0)
+        num = 9;
+    if(strcmp(mes,calendario.octubre) == 0)
+        num = 10;
+    system ("cls");//limpiar consola
+return num;
+}
+
 //funcion de grafica
 void grafica(mes fecha[],int inicio,int fin)
 {

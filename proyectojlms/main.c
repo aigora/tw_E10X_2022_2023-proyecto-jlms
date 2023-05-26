@@ -308,11 +308,12 @@ int main()
         }//cierre del caso para mostrar todos los datos
         if(strcmp(accion,elegir) == 0)//el usario quiere solo mostrar un mes
         {
-            limpia_consola();
-            printf("de acuerdo, te voy a mostrar los datos de un solo mes\n");
-            printf("dime el numero del mes!(es de 1 a 10)\n");
-            scanf("%d",&num);
-            limpia_consola();
+            system ("cls");//limpiar consola
+            printf("de acuerdo, te voy a mostrar los datos de un solo mes, escribelo:\n");
+            scanf("%15[^\n]",accion);
+            scanf("%c",&basura);
+            guardian_2(accion,4);//comprabacion de instruccion del usuario
+            num = elige_un_mes(accion); //funcion que devuelve el valor apto para cada mes
             for(i=num-1;i<num;i++)//sea cual sea el valor del numero, solo se avanza una posicion
                 {
                 printf("%d/%d: \n",data[i].date.month,data[i].date.year);
