@@ -1,6 +1,6 @@
-abrir
-finalizar contar
-todos elegir graficas
+finalizar comenzar
+finalizar datos ingresar
+finalizar todos elegir graficas
 enero febrero marzo abril mayo junio julio agosto septiembre octubre
 todos total hidraulica turbbombeo nuclear carbon fuelgas motdiesel turbinagas turbvapor ccombinado hidroeolica eolica solarfoto solarterm otrasreno cogenerac norenov residrenov
 atras finalizar
