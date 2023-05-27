@@ -5,7 +5,8 @@ typedef struct
 {
     int month;
     int year;
-}fecha;
+} fecha;
+
 typedef struct
 {
     fecha date;
@@ -27,7 +28,7 @@ typedef struct
     float norenov;
     float residrenov;
     float genertotal;
-}mes;
+} mes;
 
 typedef struct
 {
@@ -43,6 +44,6 @@ typedef struct
     char octubre[20];
     char noviembre[20];
     char diciembre[20];
-}year;
+} year;
 
 #endif // ESTRUCTURAS_H_INCLUDED

@@ -19,16 +19,16 @@ void guardian_2(char command[], int fila)
         char posible_palabra[15];
         char caracter='\0';
         int i,iguales=0;
-        for(i=1;i<fila;i++)//Posiciona en la fila con las palabras a comparar
+        for(i=1; i<fila; i++) //Posiciona en la fila con las palabras a comparar
         {
-            fscanf(pfposibles_palabras,"%c", &caracter);//Para avanzar al siguientecaracter cuan este sea \n
+            fscanf(pfposibles_palabras,"%c", &caracter);//Para avanzar al siguiente caracter cuando este sea \n
             while(caracter!='\n')
             {
                 fscanf(pfposibles_palabras,"%c", &caracter);
                 //Para saber cuando hay un cambio de linea
             }
         }
-        i=0;
+
         do//do porque inicialmente caracter es \n
         {
             //Compara las palabras admitidas con la palabra escrita,
@@ -36,14 +36,15 @@ void guardian_2(char command[], int fila)
             fscanf(pfposibles_palabras,"%s", posible_palabra);
             iguales=comparar_cadenas(posible_palabra,command);
             fscanf(pfposibles_palabras,"%c", &caracter);
-        }while(caracter!='\n'&&iguales==0);
+        }
+        while(caracter!='\n'&&iguales==0);
 
         if(iguales==0)
         {
             printf("error,intentalo de nuevo\n");
             scanf("%15s",command);
             while(getchar() != '\n');
-            // Limpiar el búfer de entrada, es para que si añadimos más caracteres de los k puede almacenar
+            // Limpiar el búfer de entrada, para que si añadimos más caracteres de los que puede almacenar
             //se eliminen y no se metan en la segunda cadena.
             guardian_2(command,fila);
         }
@@ -55,29 +56,29 @@ void guardian_2(char command[], int fila)
 int elige_un_mes(char mes[])
 {
     year calendario = {"enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"};
-    int num,i;
+    int num;
     if(strcmp(mes,calendario.enero) == 0)
-        num = 1;
+        num = 0;
     if(strcmp(mes,calendario.febrero) == 0)
-        num = 2;
+        num = 1;
     if(strcmp(mes,calendario.marzo) == 0)
-        num = 3;
+        num = 2;
     if(strcmp(mes,calendario.abril) == 0)
-        num = 4;
+        num = 3;
     if(strcmp(mes,calendario.mayo) == 0)
-        num = 5;
+        num = 4;
     if(strcmp(mes,calendario.junio) == 0)
-        num = 6;
+        num = 5;
     if(strcmp(mes,calendario.julio) == 0)
-        num = 7;
+        num = 6;
     if(strcmp(mes,calendario.agosto) == 0)
-        num = 8;
+        num = 7;
     if(strcmp(mes,calendario.septiembre) == 0)
-        num = 9;
+        num = 8;
     if(strcmp(mes,calendario.octubre) == 0)
-        num = 10;
-    system ("cls");//limpiar consola
-return num;
+        num = 9;
+    limpia_consola();
+    return num;
 }
 
 //funcion de grafica
@@ -88,37 +89,37 @@ void grafica(mes fecha[],int inicio,int fin)
     char decision[15];
     float variable[10];
     float todos[17];
-    for(i=0;i<17;i++)
+    for(i=0; i<17; i++)
     {
         todos[i]=0;
     }
     //Primero tienes que elegir que generaciones quieres comparar
     //luego automaticamente escoje una escala de tal manera que
     //siempre tenga el mismo tamano la grafica pero distinta escala
-     printf("--GW/h de cada tipo de generacion(apareceran en el orden de abajo)(si son varios meses los datos son de la suma de estos)(escribir'todos')\n"
-            "--GW/h total generados a nivel nacional (escribir'total')\n"
-            "--GW/h de algunos tipos de generacion concretos (escribir tipo que deseas comparar:)\n"
-                "1 hidraulica\n"
-                "2 turbbombeo\n"
-                "3 nuclear\n"
-                "4 carbon\n"
-                "5 fuelgas\n"
-                "6 motdiesel\n"
-                "7 turbinagas\n"
-                "8 turbvapor\n"
-                "9 ccombinado\n"
-                "10 hidroeolica\n"
-                "11 eolica\n"
-                "12 solarfoto\n"
-                "13 solarterm\n"
-                "14 otrasreno\n"
-                "15 cogenerac\n"
-                "16 norenov\n"
-                "17 residrenov\n\n");
+    printf("--GW/h de cada tipo de generacion(apareceran en el orden de abajo)(si son varios meses los datos son de la suma de estos)(escribir'todos')\n"
+           "--GW/h total generados a nivel nacional (escribir'total')\n"
+           "--GW/h de algunos tipos de generacion concretos (escribir tipo que deseas comparar:)\n"
+           "1 hidraulica\n"
+           "2 turbbombeo\n"
+           "3 nuclear\n"
+           "4 carbon\n"
+           "5 fuelgas\n"
+           "6 motdiesel\n"
+           "7 turbinagas\n"
+           "8 turbvapor\n"
+           "9 ccombinado\n"
+           "10 hidroeolica\n"
+           "11 eolica\n"
+           "12 solarfoto\n"
+           "13 solarterm\n"
+           "14 otrasreno\n"
+           "15 cogenerac\n"
+           "16 norenov\n"
+           "17 residrenov\n\n");
     scanf("%15[^\n]",decision);
     guardian_2(decision,5);
     limpia_consola();
-    for(i=0,j=inicio-1;i<=fin-inicio;i++,j++)
+    for(i=0,j=inicio-1; i<=fin-inicio; i++,j++)
     {
         k=0;
         if(comparar_cadenas(decision,"todos")==1)
@@ -252,17 +253,19 @@ void tabla(float datos[],int tamano)
     float valor_div;
     valor_div=valor_division(datos,tamano);
     printf("%s\n",unidades);
-    for(i=0;i<tamano;i++)
-    { //Para saber la altura de la barra de cada dato
+    for(i=0; i<tamano; i++)
+    {
+        //Para saber la altura de la barra de cada dato
         altura[i]=datos[i]/(valor_div/5);
     }
-    for(i=tamano;i<200;i++)
-    { //Necesario para que cuando terminen los datos de tamano no haga errores
+    for(i=tamano; i<200; i++)
+    {
+        //Necesario para que cuando terminen los datos de tamano no haga errores
         altura[i]=0;
     }
-    for(filas=0,i=0;filas<45;filas++) //Primero rellenamos la matriz
+    for(filas=0,i=0; filas<45; filas++) //Primero rellenamos la matriz
     {
-        for(columnas=0;columnas<180;columnas++)
+        for(columnas=0; columnas<180; columnas++)
         {
             resto=filas%5;
             resto_2=columnas%10;
@@ -279,7 +282,8 @@ void tabla(float datos[],int tamano)
                 matriz[filas][columnas]='-';
             }
             else if (resto_2!=2&&resto_2!=3&&resto_2!=4&&resto_2!=5&&columnas!=0&&columnas!=1)
-            { //Para guardar las columnas de 2 de grosor separadas entre ellas por otras dos
+            {
+                //Para guardar las columnas de 2 de grosor separadas entre ellas por otras dos
                 altura_actual=45-filas;
                 //altura actual= 4, altura[0]=2, altura_actual<=altura[i]?NO
                 if(altura_actual<=altura[i])
@@ -304,7 +308,7 @@ void tabla(float datos[],int tamano)
     }
 
     //Dibujamos la tabla (compuesta por varios elementos)
-    for(filas=0,numero_division=9;filas<45;filas++)
+    for(filas=0,numero_division=9; filas<45; filas++)
     {
         columnas=0;
         resto=filas%5;
@@ -312,7 +316,8 @@ void tabla(float datos[],int tamano)
         {
             digitos=digitos_numero(valor_div*numero_division);
             while(digitos<digitos_numero(valor_div*9.))
-            { //Son los espacios en numeros menores para que se alinien bien
+            {
+                //Son los espacios en numeros menores para que se alinien bien
                 printf(" ");
                 digitos++;
             }
@@ -321,12 +326,12 @@ void tabla(float datos[],int tamano)
         }
         else
         {
-            for(espacios=0;espacios<digitos_numero(valor_div*9.)+3;espacios++)
+            for(espacios=0; espacios<digitos_numero(valor_div*9.)+3; espacios++)
             {
                 printf(" ");
             }
         }
-        for(columnas=0;columnas<180;columnas++)
+        for(columnas=0; columnas<180; columnas++)
         {
             printf("%c",matriz[filas][columnas]);
         }
@@ -339,7 +344,7 @@ float valor_division(float datos[],int tamano)
     float max= datos[0];
     float valor_div;
     int i;
-    for(i=1;i<tamano;i++) //Primero calculamos el valor max
+    for(i=1; i<tamano; i++) //Primero calculamos el valor max
     {
         if(max<datos[i])
         {
@@ -351,13 +356,14 @@ float valor_division(float datos[],int tamano)
 }
 
 int digitos_numero(float numero)
-{ //Calcula nº digitos de un numero
+{
+    //Calcula nº digitos de un numero
     //EJ: numero=23, 23/10=2, 23/100=0.
     int divisor=1;
     float cociente;
     int digitos=0;
     cociente = numero/divisor;
-    for(divisor=10;cociente>=1;divisor=divisor*10)
+    for(divisor=10; cociente>=1; divisor=divisor*10)
     {
         cociente=numero/divisor;
         digitos++;
@@ -416,39 +422,39 @@ int enumerar_meses(char month[])
     {
         return 1;
     }
-     if(comparar_cadenas(month,"febrero")==1)
+    if(comparar_cadenas(month,"febrero")==1)
     {
         return 2;
     }
-     if(comparar_cadenas(month,"marzo")==1)
+    if(comparar_cadenas(month,"marzo")==1)
     {
         return 3;
     }
-     if(comparar_cadenas(month,"abril")==1)
+    if(comparar_cadenas(month,"abril")==1)
     {
         return 4;
     }
-     if(comparar_cadenas(month,"mayo")==1)
+    if(comparar_cadenas(month,"mayo")==1)
     {
         return 5;
     }
-     if(comparar_cadenas(month,"junio")==1)
+    if(comparar_cadenas(month,"junio")==1)
     {
         return 6;
     }
-     if(comparar_cadenas(month,"julio")==1)
+    if(comparar_cadenas(month,"julio")==1)
     {
         return 7;
     }
-     if(comparar_cadenas(month,"agosto")==1)
+    if(comparar_cadenas(month,"agosto")==1)
     {
         return 8;
     }
-     if(comparar_cadenas(month,"septiembre")==1)
+    if(comparar_cadenas(month,"septiembre")==1)
     {
         return 9;
     }
-     if(comparar_cadenas(month,"octubre")==1)
+    if(comparar_cadenas(month,"octubre")==1)
     {
         return 10;
     }

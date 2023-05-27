@@ -22,16 +22,16 @@
 
 1685131250 c:\users\usuario\downloads\segundo 22\info23\tw_e10x_2022_2023-proyecto-jlms\proyectojlms\estructuras.h
 
-1685101712 source:/Users/jbermejo/Desktop/JLMS/proyectojlms/lib.c
+1685219606 source:/Users/jbermejo/Desktop/JLMS/proyectojlms/lib.c
 	"lib.h"
 	"estructuras.h"
 
-1685052158 /Users/jbermejo/Desktop/JLMS/proyectojlms/lib.h
+1685185112 /Users/jbermejo/Desktop/JLMS/proyectojlms/lib.h
 	<stdio.h>
 	<string.h>
 	"estructuras.h"
 
-1685052158 /Users/jbermejo/Desktop/JLMS/proyectojlms/estructuras.h
+1685217237 /Users/jbermejo/Desktop/JLMS/proyectojlms/estructuras.h
 
 1685181353 c:\santiago\1 carrera\informatica\3 matricula\tw_e10x_2022_2023-proyecto-jlms\proyectojlms\lib.h
 	<stdio.h>
@@ -41,6 +41,12 @@
 1685181353 c:\santiago\1 carrera\informatica\3 matricula\tw_e10x_2022_2023-proyecto-jlms\proyectojlms\estructuras.h
 
 1685182881 source:c:\santiago\1 carrera\informatica\3 matricula\tw_e10x_2022_2023-proyecto-jlms\proyectojlms\lib.c
+	"lib.h"
+	"estructuras.h"
+
+1685219710 source:/Users/jbermejo/Desktop/JLMS/proyectojlms/main.c
+	<stdio.h>
+	<string.h>
 	"lib.h"
 	"estructuras.h"
 
