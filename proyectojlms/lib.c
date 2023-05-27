@@ -412,43 +412,43 @@ int comparar_cadenas(char primera[],char segunda[])
 
 int enumerar_meses(char month[])
 {
-    if(comparar_cadenas(month,"enero"))
+    if(comparar_cadenas(month,"enero")==1)
     {
         return 1;
     }
-     if(comparar_cadenas(month,"febrero"))
+     if(comparar_cadenas(month,"febrero")==1)
     {
         return 2;
     }
-     if(comparar_cadenas(month,"marzo"))
+     if(comparar_cadenas(month,"marzo")==1)
     {
         return 3;
     }
-     if(comparar_cadenas(month,"abril"))
+     if(comparar_cadenas(month,"abril")==1)
     {
         return 4;
     }
-     if(comparar_cadenas(month,"mayo"))
+     if(comparar_cadenas(month,"mayo")==1)
     {
         return 5;
     }
-     if(comparar_cadenas(month,"junio"))
+     if(comparar_cadenas(month,"junio")==1)
     {
         return 6;
     }
-     if(comparar_cadenas(month,"julio"))
+     if(comparar_cadenas(month,"julio")==1)
     {
         return 7;
     }
-     if(comparar_cadenas(month,"agosto"))
+     if(comparar_cadenas(month,"agosto")==1)
     {
         return 8;
     }
-     if(comparar_cadenas(month,"septiembre"))
+     if(comparar_cadenas(month,"septiembre")==1)
     {
         return 9;
     }
-     if(comparar_cadenas(month,"octubre"))
+     if(comparar_cadenas(month,"octubre")==1)
     {
         return 10;
     }
