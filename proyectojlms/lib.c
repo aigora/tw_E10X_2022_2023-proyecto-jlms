@@ -461,6 +461,97 @@ int enumerar_meses(char month[])
     return -1;
 }
 
+float datos_a_vector(mes month, float *p)
+{
+    *p = month.hidraulica;
+    *(p+1) = month.turbbombeo;
+    *(p+2) = month.nuclear;
+    *(p+3) = month.carbon;
+    *(p+4) = month.fuelgas;
+    *(p+5) = month.motdiesel;
+    *(p+6) = month.turbinagas;
+    *(p+7) = month.turbvapor;
+    *(p+8) = month.ccombinado;
+    *(p+9) = month.hidroeolica;
+    *(p+10) = month.eolica;
+    *(p+11) = month.solarfoto;
+    *(p+12) = month.solarterm;
+    *(p+13) = month.otrasreno;
+    *(p+14) = month.cogenerac;
+    *(p+15) = month.norenov;
+    *(p+16) = month.residrenov;
+
+    return 0;
+}
+
+float maximo(float vect[], int tamano, int *posicion)
+{
+    float max = vect[0];
+    int i;
+    *posicion = 0;
+
+    for (i = 1; i < tamano; i++)
+    {
+        if (vect[i] > max)
+        {
+            max = vect[i];
+            *posicion = i;
+        }
+    }
+
+    return max;
+}
+
+float minimo(float vect[], int tamano, int *posicion)
+{
+    float min = vect[0];
+    int i;
+    *posicion = 0;
+
+    for (i = 1; i < tamano; i++)
+    {
+        if (vect[i] < min)
+        {
+            min = vect[i];
+            *posicion = i;
+        }
+    }
+
+    return min;
+}
+
+void obtener_palabra(const char vect[], int posicion, char palabra[])
+{
+    int contador = 0;
+    int longitudPalabra = 0;
+    int indice = 0;
+    int longitudVector = strlen(vect);
+    int i;
+
+    for (i = 0; i < longitudVector; i++)
+    {
+        if (vect[i] != ' ')
+        {
+            if (contador == posicion)
+            {
+                palabra[indice] = vect[i];
+                indice++;
+                longitudPalabra++;
+            }
+        }
+        else
+        {
+            if (contador == posicion)
+            {
+                break;
+            }
+            contador++;
+        }
+    }
+
+    palabra[longitudPalabra] = '\0';
+}
+
 void limpia_consola(void)
 {
     system("cls");      //Para dispositivos Windows

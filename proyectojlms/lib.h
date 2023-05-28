@@ -13,6 +13,10 @@ int enumerar_meses(char month[]);
 int digitos_numero(float numero);
 float valor_division(float datos[],int tamano);
 void tabla(float datos[],int tamano);
+float datos_a_vector(mes month,float *p);
+float maximo(float vect[], int tamano, int *posicion);
+float minimo(float vect[], int tamano, int *posicion);
+void obtener_palabra(const char vect[], int posicion, char palabra[]);
 void limpia_consola(void);
 
 

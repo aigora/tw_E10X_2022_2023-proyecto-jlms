@@ -6,6 +6,9 @@ int main()
 {
     FILE *pf; //puntero dirijido a archivo
     int nLineas=0,i,num; //variables auxiliares
+    float max, min, generacion[17];
+    char gen[20], tiposgen[] = "hidraulica turbbombeo nuclear carbon fuelgas motdiesel turbinagas turbvapor ccombinado hidraulica eolica solarfoto solarterm otrasreno cogenerac norenob residrenov";
+    int posicion;
     int mes_1,mes_2;//limites de meses estudiados
     long int fsize; //variable que almacena el numero de bytes
     mes data[10]; //tenemos 10 meses de datos, luego se define vector de estructuras
@@ -348,6 +351,34 @@ int main()
                     printf("norenov: %f\n",data[num].norenov);
                     printf("residrenov: %f\n",data[num].residrenov);
                     printf("genertotal: %f\n",data[num].genertotal);
+                    printf("\n");
+                    printf("Mostrar 'maximo' o 'minimo'\n");
+
+                    scanf("%15[^\n]",accion);
+                    scanf("%c",&basura);
+                    guardian_2(accion,7);
+
+                    if(strcmp(accion,"maximo") == 0)
+                    {
+                        limpia_consola();
+                        datos_a_vector(data[num], &generacion[0]);
+
+                        max = maximo(generacion, 17, &posicion);
+                        obtener_palabra(tiposgen, posicion, gen);
+
+                        printf("El tipo de generacion que mas energia ha producido ese mes es la %s con %f GW/h\n", gen, max);
+                    }
+
+                    if(strcmp(accion,"minimo") == 0)
+                    {
+                        limpia_consola();
+                        datos_a_vector(data[num], &generacion[0]);
+
+                        min = minimo(generacion, 17, &posicion);
+                        obtener_palabra(tiposgen, posicion, gen);
+
+                        printf("El tipo de generacion que menos energia ha producido ese mes es la %s con %f GW/h\n", gen, min);
+                    }
                 }//cierre de caso elegir un mes
 
                 if(comparar_cadenas(accion,grafics) == 1)
