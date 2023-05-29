@@ -557,3 +557,151 @@ void limpia_consola(void)
     system("cls");      //Para dispositivos Windows
 //    printf("\033[2J");      //Para dispositivos Mac y Linux
 }
+
+//funcion para calcular la media global
+float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de energia seleccionado por el usario y vect es el vector que nos trae los datos energeticos
+{
+    int i;//variable auxiliar para el bucle for
+    float suma1 =0.0;//valor inicial de la suma
+    //se definen los 17 tipos de generacion de energía;
+    char gen1[] = "hidraulica",gen2[] = "turbbombeo",gen3[] = "nuclear",gen4[] = "carbon",gen5[] = "fuelgas";
+    char gen6[] = "motdiesel",gen7[] = "turbinagas",gen8[] = "turbvapor",gen9[] = "ccombinado";
+    char gen10[] = "hidroeolica",gen11[] = "eolica",gen12[] = "solarfoto",gen13[] = "solarterm",gen14[] = "otrasreno",gen15[] = "cogenerac",gen16[] = "norenov",gen17[] = "residrenov";
+    //para cada tipo de energía se plantea un if
+    if(strcmp(tipo,gen1) == 0)//cuando se detecta un tipo de energia
+    {
+        for(i=0;i<10;i++)//el bucle recorre los 10 meses
+        {
+            suma1 = suma1 + vect[i].hidraulica;//segun el tipo de energía seleccionada
+        }
+        return suma1/10.0;//la funcion devuelve el valor de la suma dividido entre 10, que es la media correspondiente a los 10 meses
+    }
+    if(strcmp(tipo,gen2) == 0)
+    {
+        for(i=0;i<10;i++)
+        {
+            suma1 = suma1 + vect[i].turbbombeo;
+        }
+        return suma1/10.0;
+    }
+    if(strcmp(tipo,gen3) == 0)
+    {
+        for(i=0;i<10;i++)
+        {
+            suma1 = suma1 + vect[i].nuclear;
+        }
+        return suma1/10.0;
+    }
+    if(strcmp(tipo,gen4) == 0)
+    {
+        for(i=0;i<10;i++)
+        {
+            suma1 = suma1 + vect[i].carbon;
+        }
+        return suma1/10.0;
+    }
+    if(strcmp(tipo,gen5) == 0)
+    {
+        for(i=0;i<10;i++)
+        {
+            suma1 = suma1 + vect[i].fuelgas;
+        }
+        return suma1/10.0;
+    }
+    if(strcmp(tipo,gen6) == 0)
+    {
+        for(i=0;i<10;i++)
+        {
+            suma1 = suma1 + vect[i].motdiesel;
+        }
+        return suma1/10.0;
+    }
+    if(strcmp(tipo,gen7) == 0)
+    {
+        for(i=0;i<10;i++)
+        {
+            suma1 = suma1 + vect[i].turbinagas;
+        }
+        return suma1/10.0;
+    }
+    if(strcmp(tipo,gen8) == 0)
+    {
+        for(i=0;i<10;i++)
+        {
+            suma1 = suma1 + vect[i].turbvapor;
+        }
+        return suma1/10.0;
+    }
+    if(strcmp(tipo,gen9) == 0)
+    {
+        for(i=0;i<10;i++)
+        {
+            suma1 = suma1 + vect[i].ccombinado;
+        }
+        return suma1/10.0;
+    }
+    if(strcmp(tipo,gen10) == 0)
+    {
+        for(i=0;i<10;i++)
+        {
+            suma1 = suma1 + vect[i].hidroeolica;
+        }
+        return suma1/10.0;
+    }
+    if(strcmp(tipo,ge11) == 0)
+    {
+        for(i=0;i<10;i++)
+        {
+            suma1 = suma1 + vect[i].eolica;
+        }
+        return suma1/10.0;
+    }
+    if(strcmp(tipo,gen12) == 0)
+    {
+        for(i=0;i<10;i++)
+        {
+            suma1 = suma1 + vect[i].solarfoto;
+        }
+        return suma1/10.0;
+    }
+    if(strcmp(tipo,gen13) == 0)
+    {
+        for(i=0;i<10;i++)
+        {
+            suma1 = suma1 + vect[i].solarterm;
+        }
+        return suma1/10.0;
+    }
+    if(strcmp(tipo,gen14) == 0)
+    {
+        for(i=0;i<10;i++)
+        {
+            suma1 = suma1 + vect[i].otrasreno;
+        }
+        return suma1/10.0;
+    }
+    if(strcmp(tipo,gen15) == 0)
+    {
+        for(i=0;i<10;i++)
+        {
+            suma1 = suma1 + vect[i].cogenerac;
+        }
+        return suma1/10.0;
+    }
+    if(strcmp(tipo,gen16) == 0)
+    {
+        for(i=0;i<10;i++)
+        {
+            suma1 = suma1 + vect[i].norenov;
+        }
+        return suma1/10.0;
+    }
+    if(strcmp(tipo,gen17) == 0)
+    {
+        for(i=0;i<10;i++)
+        {
+            suma1 = suma1 + vect[i].residrenov;
+        }
+        return suma1/10.0;
+    }
+}

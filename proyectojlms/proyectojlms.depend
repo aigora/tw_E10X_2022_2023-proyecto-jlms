@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1685135312 source:c:\users\usuario\downloads\segundo 22\info23\tw_e10x_2022_2023-proyecto-jlms\proyectojlms\main.c
+1685357332 source:c:\users\usuario\downloads\segundo 22\info23\tw_e10x_2022_2023-proyecto-jlms\proyectojlms\main.c
 	<stdio.h>
 	<string.h>
 	"lib.h"
@@ -11,16 +11,16 @@
 	"lib.h"
 	"estructuras.h"
 
-1685131552 source:c:\users\usuario\downloads\segundo 22\info23\tw_e10x_2022_2023-proyecto-jlms\proyectojlms\lib.c
+1685306321 source:c:\users\usuario\downloads\segundo 22\info23\tw_e10x_2022_2023-proyecto-jlms\proyectojlms\lib.c
 	"lib.h"
 	"estructuras.h"
 
-1685131579 c:\users\usuario\downloads\segundo 22\info23\tw_e10x_2022_2023-proyecto-jlms\proyectojlms\lib.h
+1685306321 c:\users\usuario\downloads\segundo 22\info23\tw_e10x_2022_2023-proyecto-jlms\proyectojlms\lib.h
 	<stdio.h>
 	<string.h>
 	"estructuras.h"
 
-1685131250 c:\users\usuario\downloads\segundo 22\info23\tw_e10x_2022_2023-proyecto-jlms\proyectojlms\estructuras.h
+1685306321 c:\users\usuario\downloads\segundo 22\info23\tw_e10x_2022_2023-proyecto-jlms\proyectojlms\estructuras.h
 
 1685302567 source:/Users/jbermejo/Desktop/JLMS/proyectojlms/lib.c
 	"lib.h"

@@ -2,6 +2,7 @@
 #include<string.h>
 #include "lib.h"
 #include "estructuras.h"
+
 int main()
 {
     FILE *pf; //puntero dirijido a archivo
@@ -15,11 +16,12 @@ int main()
     char accion[20],accion_2[20],aux[100]; //variables auxiliares que recogeran las acciones del usuario y recorreran el archivo
     //car es una variable auxiliar y el resto son las instrucciones que guiaran el programa
     char car,basura,begin[] = "comenzar",consultar[] = "datos",end[] = "finalizar",all[] = "todos",elegir[] = "elegir",grafics[]="graficas";
+    char estad[]="estadistica",mediaglobal[]="xglobal",mediaparcial[]="xparcial",percent[]="porcentajes";
     pf = fopen("generacion.txt", "r"); //puntero dirigido abrir el fichero en modo lectura
     printf("Bienvenido al programa\n");
     printf("Se recomienda para un correcto funcionaminto de las graficas la pantalla completa y el uso de minusculas\n");
     printf("Recuerda que en cualquier momento, si escribes 'finalizar', se acaba el programa\n");
-    printf("A continuacion, para abrir el fichero, diga : comenzar\n");//primera instruccion
+    printf("A continuacion, para abrir el fichero, diga : 'comenzar'\n");//primera instruccion
     scanf("%9[^\n]",accion);
     scanf("%c",&basura);
     guardian_2(accion,1);//revision de instruccion, perro guardian
@@ -283,7 +285,8 @@ int main()
                 printf("Ahora puedes consultar 'todos' los datos numericos o 'elegir' un mes concreto\n");
                 printf("Tenemos datos desde enero a octubre, ambos incluidos\n");
                 printf("Si quieres ver graficas, entonces escribe 'graficas'\n");
-                scanf("%9[^\n]",accion);//se lee su instruccion hasta detectar salto de linea
+                printf("Si quieres realizar calculos estadisticos, escribe 'estadistica'\n");
+                scanf("%19[^\n]",accion);//se lee su instruccion hasta detectar salto de linea
                 scanf("%c",&basura);
                 guardian_2(accion,3);//revision de instruccion, perro guardian
                 limpia_consola();
@@ -293,7 +296,6 @@ int main()
                     fclose(pf);
                     return 0;
                 }
-
                 if(strcmp(accion,all) == 0)//orden de mostrar todos los datos
                 {
                     limpia_consola();
@@ -330,8 +332,14 @@ int main()
                     scanf("%15[^\n]",accion);
                     scanf("%c",&basura);
                     guardian_2(accion,4);//comprabacion de instruccion del usuario
+                    if(strcmp(accion,end) == 0)
+                    {
+                    printf("fin\n");
+                    fclose(pf);
+                    return 0;
+                    }
                     num = elige_un_mes(accion); //funcion que devuelve el valor apto para cada mes
-
+                    printf("(datos en GWh)\n");
                     printf("%d/%d: \n",data[num].date.month,data[num].date.year);
                     printf("hidraulica: %f\n",data[num].hidraulica);
                     printf("turbbombeo: %f\n",data[num].turbbombeo);
@@ -409,6 +417,37 @@ int main()
                         limpia_consola();
                     }
                 }
+                if(strcmp(accion,estad) == 0)//el usuario quiere realizar calculos estadisticos
+                {
+                    limpia_consola();
+                    printf("Ahora puede elegir entre:\n");
+                    printf("Calcular la media de consumo para un tipo de energia en un periodo de tiempo: 'xparcial'\n");
+                    printf("Calcular la media de consumo para un tipo de energia de manera global: 'xglobal'\n");
+                    printf("Calcular porcentajes de reduccion en un periodo de tiempo: 'porcentajes'\n");
+                    scanf("%19[^\n]",accion);
+                    scanf("%c",&basura);
+                    guardian_2(accion,8);
+                    if(strcmp(accion,end) == 0)//orden de finalizar
+                    {
+                    printf("fin\n");
+                    fclose(pf);
+                    return 0;
+                    }
+                    if(strcmp(accion,mediaglobal) == 0)//orden de calcular la media global
+                    {
+                        limpia_consola();
+                        printf("Ahora elija el tipo de energia:\n");
+                        printf("Le recuerdo que existen estos tipos de energia:\n");
+                        printf("hidraulica turbbombeo nuclear carbon fuelgas motdiesel turbinagas turbvapor ccombinado hidroeolica eolica solarfoto solarterm otrasreno cogenerac norenov residrenov\n");
+                        scanf("%19[^\n]",accion);
+                        scanf("%c",&basura);
+                        guardian_2(accion,5);
+                        printf("la media es %fGWh para %s\n",mediaglo(accion,data),accion);
+                    }
+                    if(strcmp(accion,mediaparcial) == 0)
+                        printf("has elegido la media parcial \n");
+
+                }//fin de caso estadistica
             }//fin de la orden de consultar datos
             return 0;
         }//cierre del caso en el que el fichero se ha abierto correctamente
