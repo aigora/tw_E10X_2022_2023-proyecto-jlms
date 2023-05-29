@@ -425,6 +425,8 @@ int enumerar_meses(char month[])
     return -1;
 }
 
+//guarda la estructura mes en un puntero
+
 void datos_a_vector(mes month, float *p)
 {
     *p = month.hidraulica;
@@ -870,7 +872,7 @@ float maximo2(int fila)
     int n=0,i;
     char aux='\0';
     char energia[20];
-    float val[10],max=0;
+    float val[10],max;
     FILE *pf1;
     pf1 = fopen("generacion.txt", "r");
     if (pf1 == NULL)
@@ -891,7 +893,8 @@ float maximo2(int fila)
                   if (n==fila)
                   {
                     fscanf(pf1,"%99[^ ] %f %f %f %f %f %f %f %f %f %f",energia,&val[0],&val[1],&val[2],&val[3],&val[4],&val[5],&val[6],&val[7],&val[8],&val[9]);
-                    for(i=0;i<10;i++)
+                    max=val[0];
+                    for(i=1;i<10;i++)
                     {
                         if(max<val[i])
                         {
@@ -916,7 +919,7 @@ float minimo2(int fila)
     int n=0,i;
     char aux='\0';
     char energia[20];
-    float val[10],min=10000000;
+    float val[10],min;
     FILE *pf2;
     pf2 = fopen("generacion.txt", "r");
     if (pf2 == NULL)
@@ -937,7 +940,8 @@ float minimo2(int fila)
                   if (n==fila)
                   {
                     fscanf(pf2,"%99[^ ] %f %f %f %f %f %f %f %f %f %f",energia,&val[0],&val[1],&val[2],&val[3],&val[4],&val[5],&val[6],&val[7],&val[8],&val[9]);
-                    for(i=0;i<10;i++)
+                    min=val[0];
+                    for(i=1;i<10;i++)
                     {
 
                         if(min>val[i])
