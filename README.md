@@ -10,6 +10,8 @@ Matias Gabriel Polo Reyes
 Santiago Carazo Pintado
 
 Luis Peñaranda del Mazo
+
+Jose Bermejo Mengíbar
 ## Objetivos del trabajo
 
 -Correcta lectura y almacenamiento de los datos obtenidos a trav del fichero ofrecido por el profesorado.
