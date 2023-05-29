@@ -846,3 +846,69 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
         return suma/dif;
     }
 }
+
+//funcion para pedir al usuario nuevos datos
+void registrarnew(int dimension)
+{
+    int i;
+    mes nuevainfo[1000];//vector que almacena nuevos datos
+    for(i=0;i<dimension;i++)
+    {
+        printf("Introduzca el N de year (21,22,23...): ");
+        scanf("%d",&nuevainfo[i].date.year);
+        printf("Introduzca el N de mes (01,02,03...): ");
+        scanf("%d",&nuevainfo[i].date.month);
+        printf("Introduzca los datos de:\n");
+        printf("Hidraulica: ");
+        scanf("%f",&nuevainfo[i].hidraulica);
+        printf("Turbinacion bombeo: ");
+        scanf("%f",&nuevainfo[i].turbbombeo);
+        printf("Nuclear: ");
+        scanf("%f",&nuevainfo[i].nuclear);
+        printf("Carbon: ");
+        scanf("%f",&nuevainfo[i].carbon);
+        printf("Fuel+Gas: ");
+        scanf("%f",&nuevainfo[i].fuelgas);
+        printf("Motores Diesel: ");
+        scanf("%f",&nuevainfo[i].motdiesel);
+        printf("Turbina de gas: ");
+        scanf("%f",&nuevainfo[i].turbinagas);
+        printf("Turbina de vapor: ");
+        scanf("%f",&nuevainfo[i].turbvapor);
+        printf("Ciclo Combinado: ");
+        scanf("%f",&nuevainfo[i].ccombinado);
+        printf("Hidroeolica: ");
+        scanf("%f",&nuevainfo[i].hidroeolica);
+        printf("Eolica: ");
+        scanf("%f",&nuevainfo[i].eolica);
+        printf("Solar fotovoltaica: ");
+        scanf("%f",&nuevainfo[i].solarfoto);
+        printf("Solar termica: ");
+        scanf("%f",&nuevainfo[i].solarterm);
+        printf("Otras renovables: ");
+        scanf("%f",&nuevainfo[i].otrasreno);
+        printf("Cogeneracion: ");
+        scanf("%f",&nuevainfo[i].cogenerac);
+        printf("Residuos no renovables: ");
+        scanf("%f",&nuevainfo[i].residrenov);
+        printf("Residuos renovables: ");
+        scanf("%f",&nuevainfo[i].residrenov);
+        printf("Generacion total: ");
+        scanf("%f",&nuevainfo[i].genertotal);
+        limpia_consola();
+    }
+
+    crearfichero(nuevainfo,dimension);
+}
+
+//funcion para crear un nuevo fichero con los nuevos datos
+void crearfichero(mes intro[],int dimension)
+{
+    int i;
+    FILE *salida;
+    salida=fopen("nuevosdatos.txt","w");
+    for(i=0;i<dimension;i++)
+    {
+        fprintf(salida,"%d/%d  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f\n",intro[i].date.month,intro[i].date.year,intro[i].hidraulica,intro[i].turbbombeo,intro[i].nuclear,intro[i].carbon,intro[i].fuelgas,intro[i].motdiesel,intro[i].turbinagas,intro[i].turbvapor,intro[i].ccombinado,intro[i].hidroeolica,intro[i].eolica,intro[i].solarfoto,intro[i].solarterm,intro[i].otrasreno,intro[i].cogenerac,intro[i].norenov,intro[i].residrenov,intro[i].genertotal);
+    }
+}
