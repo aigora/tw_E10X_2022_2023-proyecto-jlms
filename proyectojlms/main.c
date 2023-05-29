@@ -290,7 +290,7 @@ int main()
                 scanf("%c",&basura);
                 guardian_2(accion,3);//revision de instruccion, perro guardian
                 limpia_consola();
-                if(strcmp(accion,end) == 0)
+                if(strcmp(accion,end) == 0)//orden de finalizar
                 {
                     printf("fin\n");
                     fclose(pf);
@@ -339,6 +339,7 @@ int main()
                     return 0;
                     }
                     num = elige_un_mes(accion); //funcion que devuelve el valor apto para cada mes
+                    limpia_consola();
                     printf("(datos en GWh)\n");
                     printf("%d/%d: \n",data[num].date.month,data[num].date.year);
                     printf("hidraulica: %f\n",data[num].hidraulica);
@@ -436,16 +437,36 @@ int main()
                     if(strcmp(accion,mediaglobal) == 0)//orden de calcular la media global
                     {
                         limpia_consola();
-                        printf("Ahora elija el tipo de energia:\n");
+                        printf("Ahora elije el tipo de energia:\n");
                         printf("Le recuerdo que existen estos tipos de energia:\n");
                         printf("hidraulica turbbombeo nuclear carbon fuelgas motdiesel turbinagas turbvapor ccombinado hidroeolica eolica solarfoto solarterm otrasreno cogenerac norenov residrenov\n");
                         scanf("%19[^\n]",accion);
                         scanf("%c",&basura);
                         guardian_2(accion,5);
-                        printf("la media es %fGWh para %s\n",mediaglo(accion,data),accion);
-                    }
+                        printf("La media anual consumo de %s es %fGWh\n",accion,mediaglo(accion,data));
+                    }//fin de caso de mediaglobal
                     if(strcmp(accion,mediaparcial) == 0)
-                        printf("has elegido la media parcial \n");
+                    {
+                        limpia_consola();
+                        printf("Ahora elije el tipo de energia:\n");
+                        printf("Le recuerdo que existen estos tipos de energia:\n");
+                        printf("hidraulica turbbombeo nuclear carbon fuelgas motdiesel turbinagas turbvapor ccombinado hidroeolica eolica solarfoto solarterm otrasreno cogenerac norenov residrenov\n");
+                        scanf("%19[^\n]",accion_2);//se elige el tipo de energia
+                        scanf("%c",&basura);
+                        guardian_2(accion_2,5);
+                        printf("Ahora elije entre que dos meses (desde enero a octubre)\n");
+                        printf("Primer mes: ");//primer mes
+                        scanf("%19[^\n]",accion);
+                        scanf("%c",&basura);
+                        guardian_2(accion,4);
+                        mes_1 = elige_un_mes(accion);//funcion que nos devuelve el identificador de cada mes
+                        printf("Segundo mes: ");//segundo mes
+                        scanf("%19[^\n]",accion);
+                        scanf("%c",&basura);
+                        guardian_2(accion,4);
+                        mes_2 = elige_un_mes(accion);//funcion que nos devuelve el identificador de cada mes
+                        printf("La media correspondiente es %fGWh para %s entre %d/2021 y %d/2021",mediaparcia(accion_2,mes_1,mes_2,data),accion_2,mes_1+1,mes_2+1);
+                    }
 
                 }//fin de caso estadistica
             }//fin de la orden de consultar datos

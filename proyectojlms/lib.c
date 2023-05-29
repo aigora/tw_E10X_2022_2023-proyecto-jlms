@@ -55,10 +55,10 @@ void guardian_2(char command[], int fila)
 //funcion para cuando el usuario quiere mostrar un mes
 int elige_un_mes(char mes[])
 {
-    year calendario = {"enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"};
+    year calendario = {"enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"};//variable auxiliar para detectar los meses
     int num;
-    if(strcmp(mes,calendario.enero) == 0)
-        num = 0;
+    if(strcmp(mes,calendario.enero) == 0)//cuando se detecta un mes
+        num = 0;//se devuelve el valor correspondiente
     if(strcmp(mes,calendario.febrero) == 0)
         num = 1;
     if(strcmp(mes,calendario.marzo) == 0)
@@ -77,7 +77,6 @@ int elige_un_mes(char mes[])
         num = 8;
     if(strcmp(mes,calendario.octubre) == 0)
         num = 9;
-    limpia_consola();
     return num;
 }
 
@@ -648,7 +647,7 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
         }
         return suma1/10.0;
     }
-    if(strcmp(tipo,ge11) == 0)
+    if(strcmp(tipo,gen11) == 0)
     {
         for(i=0;i<10;i++)
         {
@@ -703,5 +702,143 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
             suma1 = suma1 + vect[i].residrenov;
         }
         return suma1/10.0;
+    }
+}
+
+//funcion para mostrar media parcial
+float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe el tipo de energía y los limites temporales
+{
+    float suma = 0.0;
+    int i,dif = (mes2+1) - (mes1);//diferencia entre los meses seleccionados
+    char gen1[] = "hidraulica",gen2[] = "turbbombeo",gen3[] = "nuclear",gen4[] = "carbon",gen5[] = "fuelgas";
+    char gen6[] = "motdiesel",gen7[] = "turbinagas",gen8[] = "turbvapor",gen9[] = "ccombinado";
+    char gen10[] = "hidroeolica",gen11[] = "eolica",gen12[] = "solarfoto",gen13[] = "solarterm",gen14[] = "otrasreno",gen15[] = "cogenerac",gen16[] = "norenov",gen17[] = "residrenov";
+    if(strcmp(tipo,gen1) == 0)//detectado el tipo de energía
+    {
+        for(i=mes1;i<=mes2;i++)//solo se recorren los datos en el lapso temporal definido
+        {
+            suma = suma + dat[i].hidraulica;//se suman los datos
+        }
+        return suma/dif;//la funcion devuelve la media
+    }
+    if(strcmp(tipo,gen2) == 0)
+    {
+        for(i=mes1;i<=mes2;i++)
+        {
+            suma = suma + dat[i].turbbombeo;
+        }
+        return suma/dif;
+    }
+    if(strcmp(tipo,gen3) == 0)
+    {
+        for(i=mes1;i<=mes2;i++)
+        {
+            suma = suma + dat[i].nuclear;
+        }
+        return suma/dif;
+    }
+    if(strcmp(tipo,gen4) == 0)
+    {
+        for(i=mes1;i<=mes2;i++)
+        {
+            suma = suma + dat[i].carbon;
+        }
+        return suma/dif;
+    }
+    if(strcmp(tipo,gen5) == 0)
+    {
+        for(i=mes1;i<=mes2;i++)
+        {
+            suma = suma + dat[i].fuelgas;
+        }
+        return suma/dif;
+    }
+    if(strcmp(tipo,gen6) == 0)
+    {
+        for(i=mes1;i<=mes2;i++)
+        {
+            suma = suma + dat[i].motdiesel;
+        }
+        return suma/dif;
+    }
+    if(strcmp(tipo,gen7) == 0)
+    {
+        for(i=mes1;i<=mes2;i++)
+        {
+            suma = suma + dat[i].turbinagas;
+        }
+        return suma/dif;
+    }
+    if(strcmp(tipo,gen8) == 0)
+    {
+        for(i=mes1;i<=mes2;i++)
+        {
+            suma = suma + dat[i].turbvapor;
+        }
+        return suma/dif;
+    }
+    if(strcmp(tipo,gen9) == 0)
+    {
+        for(i=mes1;i<=mes2;i++)
+        {
+            suma = suma + dat[i].ccombinado;
+        }
+        return suma/dif;
+    }
+    if(strcmp(tipo,gen10) == 0)
+    {
+        for(i=mes1;i<=mes2;i++)
+        {
+            suma = suma + dat[i].hidroeolica;
+        }
+        return suma/dif;
+    }
+    if(strcmp(tipo,gen11) == 0)
+    {
+        for(i=mes1;i<=mes2;i++)
+        {
+            suma = suma + dat[i].eolica;
+        }
+        return suma/dif;
+    }
+    if(strcmp(tipo,gen13) == 0)
+    {
+        for(i=mes1;i<=mes2;i++)
+        {
+            suma = suma + dat[i].solarterm;
+        }
+        return suma/dif;
+    }
+    if(strcmp(tipo,gen14) == 0)
+    {
+        for(i=mes1;i<=mes2;i++)
+        {
+            suma = suma + dat[i].otrasreno;
+        }
+        return suma/dif;
+    }
+    if(strcmp(tipo,gen15) == 0)
+    {
+        for(i=mes1;i<=mes2;i++)
+        {
+            suma = suma + dat[i].cogenerac;
+        }
+        return suma/dif;
+    }
+    if(strcmp(tipo,gen16) == 0)
+    {
+        for(i=mes1;i<=mes2;i++)
+        {
+            suma = suma + dat[i].norenov;
+        }
+        return suma/dif;
+    }
+    if(strcmp(tipo,gen17) == 0)
+    {
+        for(i=mes1;i<=mes2;i++)
+        {
+            suma = suma + dat[i].residrenov;
+        }
+        return suma/dif;
     }
 }

@@ -19,5 +19,6 @@ float minimo(float vect[], int tamano, int *posicion);
 void obtener_palabra(const char vect[], int posicion, char palabra[]);
 void limpia_consola(void);
 float mediaglo(char tipo[],mes vect[10]);
+float mediaparcia(char tipo[],int mes1,int mes2,mes datos[10]);
 
 #endif // LIB_H_INCLUDED
