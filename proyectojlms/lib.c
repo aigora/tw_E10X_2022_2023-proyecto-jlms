@@ -367,6 +367,10 @@ int digitos_numero(float numero)
         cociente=numero/divisor;
         digitos++;
     }
+    if(digitos==0)
+    {
+        digitos++;
+    }
     return digitos;
 }
 
