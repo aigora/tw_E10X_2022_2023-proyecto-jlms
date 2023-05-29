@@ -14,7 +14,7 @@ int main()
     mes data[10]; //tenemos 10 meses de datos, luego se define vector de estructuras
     char accion[20],accion_2[20],aux[100]; //variables auxiliares que recogeran las acciones del usuario y recorreran el archivo
     //car es una variable auxiliar y el resto son las instrucciones que guiaran el programa
-    char car,basura,begin[] = "comenzar",consultar[] = "datos",login[] = "ingresar",end[] = "finalizar",all[] = "todos",elegir[] = "elegir",grafics[]="graficas";
+    char car,basura,begin[] = "comenzar",consultar[] = "datos",login[] = "ingresar",end[] = "finalizar",all[] = "todos",elegir[] = "elegir", energia[]= "energia",grafics[]="graficas";
     char estad[]="estadistica",mediaglobal[]="xglobal",mediaparcial[]="xparcial";
     pf = fopen("generacion.txt", "r"); //puntero dirigido abrir el fichero en modo lectura
     printf("Bienvenido al programa\n");
@@ -37,7 +37,7 @@ int main()
         {
             limpia_consola();
             printf("El fichero ha sido abierto correctamente. El fichero contiene datos energeticos.\n");
-            printf("Ahora que accion quieres realizar? Puedes ver los 'datos' del fichero o 'ingresar' nuevos datos\n");
+            printf("Ahora que accion quieres realizar? Puedes ver los 'datos' del fichero o 'ingresar' nuevos datos \n");
             scanf("%9[^\n]",accion);
             scanf("%c",&basura);
             guardian_2(accion,2);//revision de instruccion, perro guardian
@@ -281,7 +281,7 @@ int main()
                 printf("Numero de bytes: %li\n",fsize);
                 printf("Numero de lineas: %d\n",nLineas);
                 //segunda instruccion del usuario
-                printf("Ahora puedes consultar 'todos' los datos numericos o 'elegir' un mes concreto\n");
+                printf("Ahora puedes consultar 'todos' los datos numericos, 'elegir' un mes concreto o introduce una fuente de 'energia' para estudiarla\n");
                 printf("Tenemos datos desde enero a octubre, ambos incluidos\n");
                 printf("Si quieres ver graficas, entonces escribe 'graficas'\n");
                 printf("Si quieres realizar calculos estadisticos, escribe 'estadistica'\n");
@@ -333,9 +333,9 @@ int main()
                     guardian_2(accion,4);//comprabacion de instruccion del usuario
                     if(strcmp(accion,end) == 0)
                     {
-                    printf("fin\n");
-                    fclose(pf);
-                    return 0;
+                        printf("fin\n");
+                        fclose(pf);
+                        return 0;
                     }
                     num = elige_un_mes(accion); //funcion que devuelve el valor apto para cada mes
                     limpia_consola();
@@ -428,9 +428,9 @@ int main()
                     guardian_2(accion,8);
                     if(strcmp(accion,end) == 0)//orden de finalizar
                     {
-                    printf("fin\n");
-                    fclose(pf);
-                    return 0;
+                        printf("fin\n");
+                        fclose(pf);
+                        return 0;
                     }
                     if(strcmp(accion,mediaglobal) == 0)//orden de calcular la media global
                     {
@@ -468,13 +468,133 @@ int main()
                 }//fin de caso estadistica
             }//fin de la orden de consultar datos
             if(strcmp(accion,login) == 0)
-             {
+            {
                 limpia_consola();
                 printf("De acuerdo. Actualmente tenemos datos (expresados en GWh) desde enero a octubre de 2021\n");
                 printf("Indique a continuacion cuantos meses de datos nuevos va a ingresar: ");
                 scanf("%d",&dimension);
                 registrarnew(dimension);
             }
+
+            if(strcmp(accion,energia) == 0)//el usario quiere solo mostrar una fuente de energia
+            {
+                limpia_consola();
+                printf("Selecciona una fuente de energia concreta\n");
+                printf("1. hidraulica\n");
+                printf("2. turbbombeo\n");
+                printf("3. nuclear\n");
+                printf("4. carbon\n");
+                printf("5. fuelgas\n");
+                printf("6. motdiesel\n");
+                printf("7. turbinagas\n");
+                printf("8. turbvapor\n");
+                printf("9. ccombinado\n");
+                printf("10. hidroeolica\n");
+                printf("11. eolica\n");
+                printf("12. solarfoto\n");
+                printf("13. solarterm\n");
+                printf("14. otrasreno\n");
+                printf("15. cogenerac\n");
+                printf("16. norenov\n");
+                printf("17. residrenov\n");
+                printf("\n\n");
+
+                scanf("%15[^\n]",accion);
+                scanf("%c",&basura);
+                guardian_2(accion,5);
+
+                limpia_consola();
+
+                if(strcmp(accion,"hidraulica")==0)
+                {
+                    printf("El maximo consumo son %f GW/h al mes",maximo2(3));
+
+                }
+                else if (strcmp(accion,"turbbombeo")==0)
+                {
+                    printf("El maximo consumo son %f GW/h al mes",maximo2(4));
+
+                }
+                else if (strcmp(accion,"nuclear")==0)
+                {
+                    printf("El maximo consumo son %f GW/h al mes",maximo2(5));
+
+                }
+                else if (strcmp(accion,"carbon")==0)
+                {
+                    printf("El maximo consumo son %f GW/h al mes",maximo2(6));
+
+                }
+                else if (strcmp(accion,"fuelgas")==0)
+                {
+                    printf("El maximo consumo son %f GW/h al mes",maximo2(7));
+
+                }
+                else if (strcmp(accion,"motdiesel")==0)
+                {
+                    printf("El maximo consumo son %f GW/h al mes",maximo2(8));
+
+                }
+                else if(strcmp(accion,"turbinagas")==0)
+                {
+                    printf("El maximo consumo son %f GW/h al mes",maximo2(9));
+
+                }
+                else if (strcmp(accion,"turbvapor")==0)
+                {
+                    printf("El maximo consumo son %f GW/h al mes",maximo2(10));
+
+                }
+                else if (strcmp(accion,"ccombinado")==0)
+                {
+                    printf("El maximo consumo son %f GW/h al mes",maximo2(11));
+
+                }
+                else if (strcmp(accion,"hidroeolica")==0)
+                {
+                    printf("El maximo consumo son %f GW/h al mes",maximo2(12));
+
+                }
+                else if (strcmp(accion,"eolica")==0)
+                {
+                    printf("El maximo consumo son %f GW/h al mes",maximo2(3));
+
+                }
+                else if (strcmp(accion,"solarfoto")==0)
+                {
+                    printf("El maximo consumo son %f GW/h al mes",maximo2(14));
+
+                }
+                else if (strcmp(accion,"solarterm")==0)
+                {
+                    printf("El maximo consumo son %f GW/h al mes",maximo2(15));
+
+                }
+                else if (strcmp(accion,"otrasreno")==0)
+                {
+                    printf("El maximo consumo son %f GW/h al mes",maximo2(16));
+
+                }
+                else if(strcmp(accion,"cogenerac")==0)
+                {
+                    printf("El maximo consumo son %f GW/h al mes",maximo2(17));
+
+                }
+                else if (strcmp(accion,"norenov")==0)
+                {
+                    printf("El maximo consumo son %f GW/h al mes",maximo2(18));
+
+                }
+                else if (strcmp(accion,"residrenov")==0)
+
+                    printf("El maximo consumo son %f GW/h al mes",maximo2(19));
+
+            }
+            else
+            {
+                printf("Error");
+            }
+
             return 0;
         }//cierre del caso en el que el fichero se ha abierto correctamente
     }//cierre del caso donde el usuario ha tecleado 'comezar'

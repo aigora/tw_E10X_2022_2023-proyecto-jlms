@@ -864,6 +864,47 @@ void registrarnew(int dimension)
     crearfichero(nuevainfo,dimension);
 }
 
+float maximo2(int fila)
+{
+    int n=0,i;
+    char aux='\0';
+    char energia[20];
+    float val[10],max=0;
+    FILE *pf1;
+    pf1 = fopen("generacion.txt", "r");
+    if (pf1 == NULL)
+    {
+        printf("Error al abrir el fichero generacion.txt.\n");
+        return -1;
+    }else
+        {
+            while(fscanf(pf1, "%c",&aux)!=EOF)
+            {
+                if(aux == '\n')
+                {
+                  n++;
+
+                  if (n==fila)
+                  {
+                    fscanf(pf1,"%99[^ ] %f %f %f %f %f %f %f %f %f %f",energia,&val[0],&val[1],&val[2],&val[3],&val[4],&val[5],&val[6],&val[7],&val[8],&val[9]);
+                    for(i=0;i<10;i++)
+                    {
+                        if(max<val[i])
+                        {
+                            max=val[i];
+                        }
+                    }
+
+                  }
+                }
+            }
+
+            fclose(pf1);
+      }
+
+return max;
+}
+
 //funcion para crear un nuevo fichero con los nuevos datos
 void crearfichero(mes intro[],int dimension)
 {
