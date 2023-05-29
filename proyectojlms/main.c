@@ -2,21 +2,22 @@
 #include<string.h>
 #include "lib.h"
 #include "estructuras.h"
-
+void crearfichero(mes intro[],int dimension);
 int main()
 {
     FILE *pf; //puntero dirijido a archivo
     int nLineas=0,i,num; //variables auxiliares
     float max, min, generacion[17];
     char gen[20], tiposgen[] = "hidraulica turbbombeo nuclear carbon fuelgas motdiesel turbinagas turbvapor ccombinado hidraulica eolica solarfoto solarterm otrasreno cogenerac norenob residrenov";
-    int posicion;
+    int posicion,dimension;
     int mes_1,mes_2;//limites de meses estudiados
     long int fsize; //variable que almacena el numero de bytes
     mes data[10]; //tenemos 10 meses de datos, luego se define vector de estructuras
+    mes nuevainfo[1000];
     char accion[20],accion_2[20],aux[100]; //variables auxiliares que recogeran las acciones del usuario y recorreran el archivo
     //car es una variable auxiliar y el resto son las instrucciones que guiaran el programa
-    char car,basura,begin[] = "comenzar",consultar[] = "datos",end[] = "finalizar",all[] = "todos",elegir[] = "elegir",grafics[]="graficas";
-    char estad[]="estadistica",mediaglobal[]="xglobal",mediaparcial[]="xparcial",percent[]="porcentajes";
+    char car,basura,begin[] = "comenzar",consultar[] = "datos",login[] = "ingresar",end[] = "finalizar",all[] = "todos",elegir[] = "elegir",grafics[]="graficas";
+    char estad[]="estadistica",mediaglobal[]="xglobal",mediaparcial[]="xparcial";
     pf = fopen("generacion.txt", "r"); //puntero dirigido abrir el fichero en modo lectura
     printf("Bienvenido al programa\n");
     printf("Se recomienda para un correcto funcionaminto de las graficas la pantalla completa y el uso de minusculas\n");
@@ -37,7 +38,7 @@ int main()
         else
         {
             limpia_consola();
-            printf("El fichero ha sido abierto correctamente\n");
+            printf("El fichero ha sido abierto correctamente. El fichero contiene datos energeticos.\n");
             printf("Ahora que accion quieres realizar? Puedes ver los 'datos' del fichero o 'ingresar' nuevos datos\n");
             scanf("%9[^\n]",accion);
             scanf("%c",&basura);
@@ -299,7 +300,7 @@ int main()
                 if(strcmp(accion,all) == 0)//orden de mostrar todos los datos
                 {
                     limpia_consola();
-                    printf("Has seleccionado mostrar todos los datos, en ese caso seria:\n");
+                    printf("Has seleccionado mostrar todos los datos (GWh), en ese caso seria:\n");
                     for(i=0; i<10; i++) //el bucle for recorre los datos de los 10 meses
                     {
                         printf("%d/%d:\n",data[i].date.month,data[i].date.year);
@@ -423,8 +424,7 @@ int main()
                     limpia_consola();
                     printf("Ahora puede elegir entre:\n");
                     printf("Calcular la media de consumo para un tipo de energia en un periodo de tiempo: 'xparcial'\n");
-                    printf("Calcular la media de consumo para un tipo de energia de manera global: 'xglobal'\n");
-                    printf("Calcular porcentajes de reduccion en un periodo de tiempo: 'porcentajes'\n");
+                    printf("Calcular la media de consumo para un tipo de energia de manera anual: 'xglobal'\n");
                     scanf("%19[^\n]",accion);
                     scanf("%c",&basura);
                     guardian_2(accion,8);
@@ -439,7 +439,7 @@ int main()
                         limpia_consola();
                         printf("Ahora elije el tipo de energia:\n");
                         printf("Le recuerdo que existen estos tipos de energia:\n");
-                        printf("hidraulica turbbombeo nuclear carbon fuelgas motdiesel turbinagas turbvapor ccombinado hidroeolica eolica solarfoto solarterm otrasreno cogenerac norenov residrenov\n");
+                        printf("'hidraulica turbbombeo nuclear carbon fuelgas motdiesel turbinagas turbvapor ccombinado hidroeolica eolica solarfoto solarterm otrasreno cogenerac norenov residrenov'\n");
                         scanf("%19[^\n]",accion);
                         scanf("%c",&basura);
                         guardian_2(accion,5);
@@ -450,7 +450,7 @@ int main()
                         limpia_consola();
                         printf("Ahora elije el tipo de energia:\n");
                         printf("Le recuerdo que existen estos tipos de energia:\n");
-                        printf("hidraulica turbbombeo nuclear carbon fuelgas motdiesel turbinagas turbvapor ccombinado hidroeolica eolica solarfoto solarterm otrasreno cogenerac norenov residrenov\n");
+                        printf("'hidraulica turbbombeo nuclear carbon fuelgas motdiesel turbinagas turbvapor ccombinado hidroeolica eolica solarfoto solarterm otrasreno cogenerac norenov residrenov'\n");
                         scanf("%19[^\n]",accion_2);//se elige el tipo de energia
                         scanf("%c",&basura);
                         guardian_2(accion_2,5);
@@ -467,11 +467,73 @@ int main()
                         mes_2 = elige_un_mes(accion);//funcion que nos devuelve el identificador de cada mes
                         printf("La media correspondiente es %fGWh para %s entre %d/2021 y %d/2021",mediaparcia(accion_2,mes_1,mes_2,data),accion_2,mes_1+1,mes_2+1);
                     }
-
                 }//fin de caso estadistica
             }//fin de la orden de consultar datos
+            if(strcmp(accion,login) == 0)
+            {
+                limpia_consola();
+                printf("De acuerdo. Actualmente tenemos datos (expresados en GWh) desde enero a octubre de 2021\n");
+                printf("Indique a continuacion cuantos meses de datos nuevos va a ingresar: ");
+                scanf("%d",&dimension);
+                for(i=0;i<dimension;i++)
+                {
+                    printf("Introduzca el N de year (21,22,23...): ");
+                    scanf("%d",&nuevainfo[i].date.year);
+                    printf("Introduzca el N de mes (01,02,03...): ");
+                    scanf("%d",&nuevainfo[i].date.month);
+                    printf("Introduzca los datos de:\n");
+                    printf("Hidraulica: ");
+                    scanf("%f",&nuevainfo[i].hidraulica);
+                    printf("Turbinacion bombeo: ");
+                    scanf("%f",&nuevainfo[i].turbbombeo);
+                    printf("Nuclear: ");
+                    scanf("%f",&nuevainfo[i].nuclear);
+                    printf("Carbon: ");
+                    scanf("%f",&nuevainfo[i].carbon);
+                    printf("Fuel+Gas: ");
+                    scanf("%f",&nuevainfo[i].fuelgas);
+                    printf("Motores Diesel: ");
+                    scanf("%f",&nuevainfo[i].motdiesel);
+                    printf("Turbina de gas: ");
+                    scanf("%f",&nuevainfo[i].turbinagas);
+                    printf("Turbina de vapor: ");
+                    scanf("%f",&nuevainfo[i].turbvapor);
+                    printf("Ciclo Combinado: ");
+                    scanf("%f",&nuevainfo[i].ccombinado);
+                    printf("Hidroeolica: ");
+                    scanf("%f",&nuevainfo[i].hidroeolica);
+                    printf("Eolica: ");
+                    scanf("%f",&nuevainfo[i].eolica);
+                    printf("Solar fotovoltaica: ");
+                    scanf("%f",&nuevainfo[i].solarfoto);
+                    printf("Solar termica: ");
+                    scanf("%f",&nuevainfo[i].solarterm);
+                    printf("Otras renovables: ");
+                    scanf("%f",&nuevainfo[i].otrasreno);
+                    printf("Cogeneracion: ");
+                    scanf("%f",&nuevainfo[i].cogenerac);
+                    printf("Residuos no renovables: ");
+                    scanf("%f",&nuevainfo[i].residrenov);
+                    printf("Residuos renovables: ");
+                    scanf("%f",&nuevainfo[i].residrenov);
+                    printf("Generacion total: ");
+                    scanf("%f",&nuevainfo[i].genertotal);
+                    limpia_consola();
+                }
+                crearfichero(nuevainfo,dimension);
+            }
             return 0;
         }//cierre del caso en el que el fichero se ha abierto correctamente
     }//cierre del caso donde el usuario ha tecleado 'comezar'
 }
 
+void crearfichero(mes intro[],int dimension)
+{
+    int i;
+    FILE *salida;
+    salida=fopen("nuevosdatos.txt","w");
+    for(i=0;i<dimension;i++)
+    {
+        fprintf(salida,"%d/%d  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f\n",intro[i].date.month,intro[i].date.year,intro[i].hidraulica,intro[i].turbbombeo,intro[i].nuclear,intro[i].carbon,intro[i].fuelgas,intro[i].motdiesel,intro[i].turbinagas,intro[i].turbvapor,intro[i].ccombinado,intro[i].hidroeolica,intro[i].eolica,intro[i].solarfoto,intro[i].solarterm,intro[i].otrasreno,intro[i].cogenerac,intro[i].norenov,intro[i].residrenov,intro[i].genertotal);
+    }
+}
