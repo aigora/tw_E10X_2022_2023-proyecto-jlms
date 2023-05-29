@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1685361937 source:c:\users\usuario\downloads\segundo 22\info23\tw_e10x_2022_2023-proyecto-jlms\proyectojlms\main.c
+1685369404 source:c:\users\usuario\downloads\segundo 22\info23\tw_e10x_2022_2023-proyecto-jlms\proyectojlms\main.c
 	<stdio.h>
 	<string.h>
 	"lib.h"
@@ -11,11 +11,11 @@
 	"lib.h"
 	"estructuras.h"
 
-1685361325 source:c:\users\usuario\downloads\segundo 22\info23\tw_e10x_2022_2023-proyecto-jlms\proyectojlms\lib.c
+1685362425 source:c:\users\usuario\downloads\segundo 22\info23\tw_e10x_2022_2023-proyecto-jlms\proyectojlms\lib.c
 	"lib.h"
 	"estructuras.h"
 
-1685358273 c:\users\usuario\downloads\segundo 22\info23\tw_e10x_2022_2023-proyecto-jlms\proyectojlms\lib.h
+1685362446 c:\users\usuario\downloads\segundo 22\info23\tw_e10x_2022_2023-proyecto-jlms\proyectojlms\lib.h
 	<stdio.h>
 	<string.h>
 	"estructuras.h"
