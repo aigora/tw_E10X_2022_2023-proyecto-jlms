@@ -960,6 +960,50 @@ float minimo2(int fila)
 return min;
 }
 
+float mediaglo2(int fila)
+{
+    int n=0,i;
+    char aux='\0';
+    char energia[20];
+    float val[10],med=0.0;
+    FILE *pf3;
+    pf3 = fopen("generacion.txt", "r");
+    if (pf3 == NULL)
+    {
+        printf("Error al abrir el fichero generacion.txt.\n");
+        return -1;
+    }else
+        {
+            while(fscanf(pf3, "%c",&aux)!=EOF)
+            {
+                //primero hay que descartar las primeras lineas que no nos aportan los datos que buscamos
+                if(aux == '\n')
+                {
+                  n++;
+
+                  //la funcion empieza a guardar los datos en el vector val[] cuando se alcanza la fila que corresponde a la fuente de energia que queremos estudiar
+
+                  if (n==fila)
+                  {
+                    fscanf(pf3,"%99[^ ] %f %f %f %f %f %f %f %f %f %f",energia,&val[0],&val[1],&val[2],&val[3],&val[4],&val[5],&val[6],&val[7],&val[8],&val[9]);
+
+                    for(i=0;i<10;i++)
+                    {
+                        med=med+val[i];
+
+                    }
+                    med=med/10;
+
+                  }
+                }
+            }
+
+            fclose(pf3);
+      }
+
+return med;
+}
+
 
 //funcion para crear un nuevo fichero con los nuevos datos
 void crearfichero(mes intro[],int dimension)

@@ -23,6 +23,7 @@ void crearfichero(mes intro[],int dimension);
 void registrarnew(int dimension);
 float maximo2(int fila);
 float minimo2(int fila);
+float mediaglo2(int fila);
 
 
 #endif // LIB_H_INCLUDED

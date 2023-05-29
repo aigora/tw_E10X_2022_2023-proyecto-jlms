@@ -509,87 +509,87 @@ int main()
                 //el valor se obtiene empleando la funcion llamda maximo2 y minimo2
                 if(strcmp(accion,"hidraulica")==0)
                 {
-                    printf("El maximo consumo son %f GW/h al mes y el minimo son %f GW/h al mes",maximo2(3),minimo2(3));
+                    printf("El maximo consumo son %f GW/h al mes, el minimo son %f GW/h al mes y la media son %f GW/h",maximo2(3),minimo2(3),mediaglo2(3));
 
                 }
                 else if (strcmp(accion,"turbbombeo")==0)
                 {
-                    printf("El maximo consumo son %f GW/h al mes y el minimo son %f GW/h al mes",maximo2(4),minimo2(4));
+                    printf("El maximo consumo son %f GW/h al mes, el minimo son %f GW/h al mes y la media son %f GW/h",maximo2(4),minimo2(4),mediaglo2(3));
 
                 }
                 else if (strcmp(accion,"nuclear")==0)
                 {
-                    printf("El maximo consumo son %f GW/h al mes y el minimo son %f GW/h al mes",maximo2(5),minimo2(5));
+                    printf("El maximo consumo son %f GW/h al mes, el minimo son %f GW/h al mes y la media son %f GW/h",maximo2(5),minimo2(5),mediaglo2(3));
 
                 }
                 else if (strcmp(accion,"carbon")==0)
                 {
-                    printf("El maximo consumo son %f GW/h al mes y el minimo son %f GW/h al mes",maximo2(6),minimo2(6));
+                    printf("El maximo consumo son %f GW/h al mes, el minimo son %f GW/h al mes y la media son %f GW/h",maximo2(6),minimo2(6),mediaglo2(3));
 
                 }
                 else if (strcmp(accion,"fuelgas")==0)
                 {
-                    printf("El maximo consumo son %f GW/h al mes y el minimo son %f GW/h al mes",maximo2(7),minimo2(7));
+                    printf("El maximo consumo son %f GW/h al mes, el minimo son %f GW/h al mes y la media son %f GW/h",maximo2(7),minimo2(7),mediaglo2(3));
 
                 }
                 else if (strcmp(accion,"motdiesel")==0)
                 {
-                    printf("El maximo consumo son %f GW/h al mes y el minimo son %f GW/h al mes",maximo2(8),minimo2(8));
+                    printf("El maximo consumo son %f GW/h al mes, el minimo son %f GW/h al mes y la media son %f GW/h",maximo2(8),minimo2(8),mediaglo2(3));
 
                 }
                 else if(strcmp(accion,"turbinagas")==0)
                 {
-                    printf("El maximo consumo son %f GW/h al mes y el minimo son %f GW/h al mes",maximo2(9),minimo2(9));
+                    printf("El maximo consumo son %f GW/h al mes, el minimo son %f GW/h al mes y la media son %f GW/h",maximo2(9),minimo2(9),mediaglo2(3));
 
                 }
                 else if (strcmp(accion,"turbvapor")==0)
                 {
-                    printf("El maximo consumo son %f GW/h al mes y el minimo son %f GW/h al mes",maximo2(10),minimo2(10));
+                    printf("El maximo consumo son %f GW/h al mes, el minimo son %f GW/h al mesy la media son %f GW/h",maximo2(10),minimo2(10),mediaglo2(3));
 
                 }
                 else if (strcmp(accion,"ccombinado")==0)
                 {
-                    printf("El maximo consumo son %f GW/h al mes y el minimo son %f GW/h al mes",maximo2(11),minimo2(11));
+                    printf("El maximo consumo son %f GW/h al mes, el minimo son %f GW/h al mes y la media son %f GW/h",maximo2(11),minimo2(11),mediaglo2(3));
 
                 }
                 else if (strcmp(accion,"hidroeolica")==0)
                 {
-                    printf("El maximo consumo son %f GW/h al mes y el minimo son %f GW/h al mes",maximo2(12),minimo2(12));
+                    printf("El maximo consumo son %f GW/h al mes, el minimo son %f GW/h al mes y la media son %f GW/h",maximo2(12),minimo2(12),mediaglo2(3));
 
                 }
                 else if (strcmp(accion,"eolica")==0)
                 {
-                    printf("El maximo consumo son %f GW/h al mes y el minimo son %f GW/h al mes",maximo2(3),minimo2(13));
+                    printf("El maximo consumo son %f GW/h al mes, el minimo son %f GW/h al mes y la media son %f GW/h",maximo2(3),minimo2(13),mediaglo2(3));
 
                 }
                 else if (strcmp(accion,"solarfoto")==0)
                 {
-                    printf("El maximo consumo son %f GW/h al mes y el minimo son %f GW/h al mes",maximo2(14),minimo2(14));
+                    printf("El maximo consumo son %f GW/h al mes, el minimo son %f GW/h al mes y la media son %f GW/h",maximo2(14),minimo2(14),mediaglo2(3));
 
                 }
                 else if (strcmp(accion,"solarterm")==0)
                 {
-                    printf("El maximo consumo son %f GW/h al mes y el minimo son %f GW/h al mes",maximo2(15),minimo2(15));
+                    printf("El maximo consumo son %f GW/h al mes, el minimo son %f GW/h al mes y la media son %f GW/h",maximo2(15),minimo2(15),mediaglo2(3));
 
                 }
                 else if (strcmp(accion,"otrasreno")==0)
                 {
-                    printf("El maximo consumo son %f GW/h al mes y el minimo son %f GW/h al mes",maximo2(16),minimo2(16));
+                    printf("El maximo consumo son %f GW/h al mes, el minimo son %f GW/h al mes y la media son %f GW/h",maximo2(16),minimo2(16),mediaglo2(3));
 
                 }
                 else if(strcmp(accion,"cogenerac")==0)
                 {
-                    printf("El maximo consumo son %f GW/h al mes y el minimo son %f GW/h al mes",maximo2(17),minimo2(17));
+                    printf("El maximo consumo son %f GW/h al mes, el minimo son %f GW/h al mes y la media son %f GW/h",maximo2(17),minimo2(17),mediaglo2(3));
 
                 }
                 else if (strcmp(accion,"norenov")==0)
                 {
-                    printf("El maximo consumo son %f GW/h al mes y el minimo son %f GW/h al mes",maximo2(18),minimo2(18));
+                    printf("El maximo consumo son %f GW/h al mes, el minimo son %f GW/h al mes y la media son %f GW/h",maximo2(18),minimo2(18),mediaglo2(3));
 
                 }
                 else if (strcmp(accion,"residrenov")==0)
 
-                    printf("El maximo consumo son %f GW/h al mes y el minimo son %f GW/h al mes",maximo2(19),minimo2(19));
+                    printf("El maximo consumo son %f GW/h al mes, el minimo son %f GW/h al mes y la media son %f GW/h",maximo2(19),minimo2(19),mediaglo2(3));
 
             }
             else
