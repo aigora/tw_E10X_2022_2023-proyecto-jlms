@@ -499,6 +499,7 @@ int main()
                 printf("17. residrenov\n");
                 printf("\n");
 
+
                 //se introduce el nombre de la fuente de energia a estudiar
                 scanf("%15[^\n]",accion);
                 scanf("%c",&basura);
@@ -591,13 +592,14 @@ int main()
 
                     printf("El maximo consumo son %f GW/h al mes, el minimo son %f GW/h al mes y la media son %f GW/h",maximo2(19),minimo2(19),mediaglo2(3));
 
-            }
-            else
-            {
-                printf("Error");
-            }
+                else
+                {
+                    printf("Error");
+                }
 
-            return 0;
-        }//cierre del caso en el que el fichero se ha abierto correctamente
-    }//cierre del caso donde el usuario ha tecleado 'comezar'
+
+                return 0;
+            }//cierre del caso en el que el fichero se ha abierto correctamente
+        }//cierre del caso donde el usuario ha tecleado 'comezar'
+    }
 }

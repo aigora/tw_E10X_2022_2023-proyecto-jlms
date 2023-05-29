@@ -530,7 +530,7 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
     //para cada tipo de energía se plantea un if
     if(strcmp(tipo,gen1) == 0)//cuando se detecta un tipo de energia
     {
-        for(i=0;i<10;i++)//el bucle recorre los 10 meses
+        for(i=0; i<10; i++) //el bucle recorre los 10 meses
         {
             suma1 = suma1 + vect[i].hidraulica;//segun el tipo de energía seleccionada
         }
@@ -538,7 +538,7 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
     }
     if(strcmp(tipo,gen2) == 0)
     {
-        for(i=0;i<10;i++)
+        for(i=0; i<10; i++)
         {
             suma1 = suma1 + vect[i].turbbombeo;
         }
@@ -546,7 +546,7 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
     }
     if(strcmp(tipo,gen3) == 0)
     {
-        for(i=0;i<10;i++)
+        for(i=0; i<10; i++)
         {
             suma1 = suma1 + vect[i].nuclear;
         }
@@ -554,7 +554,7 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
     }
     if(strcmp(tipo,gen4) == 0)
     {
-        for(i=0;i<10;i++)
+        for(i=0; i<10; i++)
         {
             suma1 = suma1 + vect[i].carbon;
         }
@@ -562,7 +562,7 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
     }
     if(strcmp(tipo,gen5) == 0)
     {
-        for(i=0;i<10;i++)
+        for(i=0; i<10; i++)
         {
             suma1 = suma1 + vect[i].fuelgas;
         }
@@ -570,7 +570,7 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
     }
     if(strcmp(tipo,gen6) == 0)
     {
-        for(i=0;i<10;i++)
+        for(i=0; i<10; i++)
         {
             suma1 = suma1 + vect[i].motdiesel;
         }
@@ -578,7 +578,7 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
     }
     if(strcmp(tipo,gen7) == 0)
     {
-        for(i=0;i<10;i++)
+        for(i=0; i<10; i++)
         {
             suma1 = suma1 + vect[i].turbinagas;
         }
@@ -586,7 +586,7 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
     }
     if(strcmp(tipo,gen8) == 0)
     {
-        for(i=0;i<10;i++)
+        for(i=0; i<10; i++)
         {
             suma1 = suma1 + vect[i].turbvapor;
         }
@@ -594,7 +594,7 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
     }
     if(strcmp(tipo,gen9) == 0)
     {
-        for(i=0;i<10;i++)
+        for(i=0; i<10; i++)
         {
             suma1 = suma1 + vect[i].ccombinado;
         }
@@ -602,7 +602,7 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
     }
     if(strcmp(tipo,gen10) == 0)
     {
-        for(i=0;i<10;i++)
+        for(i=0; i<10; i++)
         {
             suma1 = suma1 + vect[i].hidroeolica;
         }
@@ -610,7 +610,7 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
     }
     if(strcmp(tipo,gen11) == 0)
     {
-        for(i=0;i<10;i++)
+        for(i=0; i<10; i++)
         {
             suma1 = suma1 + vect[i].eolica;
         }
@@ -618,7 +618,7 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
     }
     if(strcmp(tipo,gen12) == 0)
     {
-        for(i=0;i<10;i++)
+        for(i=0; i<10; i++)
         {
             suma1 = suma1 + vect[i].solarfoto;
         }
@@ -626,7 +626,7 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
     }
     if(strcmp(tipo,gen13) == 0)
     {
-        for(i=0;i<10;i++)
+        for(i=0; i<10; i++)
         {
             suma1 = suma1 + vect[i].solarterm;
         }
@@ -634,7 +634,7 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
     }
     if(strcmp(tipo,gen14) == 0)
     {
-        for(i=0;i<10;i++)
+        for(i=0; i<10; i++)
         {
             suma1 = suma1 + vect[i].otrasreno;
         }
@@ -642,7 +642,7 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
     }
     if(strcmp(tipo,gen15) == 0)
     {
-        for(i=0;i<10;i++)
+        for(i=0; i<10; i++)
         {
             suma1 = suma1 + vect[i].cogenerac;
         }
@@ -650,7 +650,7 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
     }
     if(strcmp(tipo,gen16) == 0)
     {
-        for(i=0;i<10;i++)
+        for(i=0; i<10; i++)
         {
             suma1 = suma1 + vect[i].norenov;
         }
@@ -658,7 +658,7 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
     }
     if(strcmp(tipo,gen17) == 0)
     {
-        for(i=0;i<10;i++)
+        for(i=0; i<10; i++)
         {
             suma1 = suma1 + vect[i].residrenov;
         }
@@ -676,7 +676,7 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
     char gen10[] = "hidroeolica",gen11[] = "eolica",gen12[] = "solarfoto",gen13[] = "solarterm",gen14[] = "otrasreno",gen15[] = "cogenerac",gen16[] = "norenov",gen17[] = "residrenov";
     if(strcmp(tipo,gen1) == 0)//detectado el tipo de energía
     {
-        for(i=mes1;i<=mes2;i++)//solo se recorren los datos en el lapso temporal definido
+        for(i=mes1; i<=mes2; i++) //solo se recorren los datos en el lapso temporal definido
         {
             suma = suma + dat[i].hidraulica;//se suman los datos
         }
@@ -684,7 +684,7 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
     }
     if(strcmp(tipo,gen2) == 0)
     {
-        for(i=mes1;i<=mes2;i++)
+        for(i=mes1; i<=mes2; i++)
         {
             suma = suma + dat[i].turbbombeo;
         }
@@ -692,7 +692,7 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
     }
     if(strcmp(tipo,gen3) == 0)
     {
-        for(i=mes1;i<=mes2;i++)
+        for(i=mes1; i<=mes2; i++)
         {
             suma = suma + dat[i].nuclear;
         }
@@ -700,7 +700,7 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
     }
     if(strcmp(tipo,gen4) == 0)
     {
-        for(i=mes1;i<=mes2;i++)
+        for(i=mes1; i<=mes2; i++)
         {
             suma = suma + dat[i].carbon;
         }
@@ -708,7 +708,7 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
     }
     if(strcmp(tipo,gen5) == 0)
     {
-        for(i=mes1;i<=mes2;i++)
+        for(i=mes1; i<=mes2; i++)
         {
             suma = suma + dat[i].fuelgas;
         }
@@ -716,7 +716,7 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
     }
     if(strcmp(tipo,gen6) == 0)
     {
-        for(i=mes1;i<=mes2;i++)
+        for(i=mes1; i<=mes2; i++)
         {
             suma = suma + dat[i].motdiesel;
         }
@@ -724,7 +724,7 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
     }
     if(strcmp(tipo,gen7) == 0)
     {
-        for(i=mes1;i<=mes2;i++)
+        for(i=mes1; i<=mes2; i++)
         {
             suma = suma + dat[i].turbinagas;
         }
@@ -732,7 +732,7 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
     }
     if(strcmp(tipo,gen8) == 0)
     {
-        for(i=mes1;i<=mes2;i++)
+        for(i=mes1; i<=mes2; i++)
         {
             suma = suma + dat[i].turbvapor;
         }
@@ -740,7 +740,7 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
     }
     if(strcmp(tipo,gen9) == 0)
     {
-        for(i=mes1;i<=mes2;i++)
+        for(i=mes1; i<=mes2; i++)
         {
             suma = suma + dat[i].ccombinado;
         }
@@ -748,7 +748,7 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
     }
     if(strcmp(tipo,gen10) == 0)
     {
-        for(i=mes1;i<=mes2;i++)
+        for(i=mes1; i<=mes2; i++)
         {
             suma = suma + dat[i].hidroeolica;
         }
@@ -756,7 +756,7 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
     }
     if(strcmp(tipo,gen11) == 0)
     {
-        for(i=mes1;i<=mes2;i++)
+        for(i=mes1; i<=mes2; i++)
         {
             suma = suma + dat[i].eolica;
         }
@@ -764,7 +764,7 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
     }
     if(strcmp(tipo,gen12) == 0)
     {
-        for(i=mes1;i<=mes2;i++)
+        for(i=mes1; i<=mes2; i++)
         {
             suma = suma + dat[i].solarfoto;
         }
@@ -772,7 +772,7 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
     }
     if(strcmp(tipo,gen13) == 0)
     {
-        for(i=mes1;i<=mes2;i++)
+        for(i=mes1; i<=mes2; i++)
         {
             suma = suma + dat[i].solarterm;
         }
@@ -780,7 +780,7 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
     }
     if(strcmp(tipo,gen14) == 0)
     {
-        for(i=mes1;i<=mes2;i++)
+        for(i=mes1; i<=mes2; i++)
         {
             suma = suma + dat[i].otrasreno;
         }
@@ -788,7 +788,7 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
     }
     if(strcmp(tipo,gen15) == 0)
     {
-        for(i=mes1;i<=mes2;i++)
+        for(i=mes1; i<=mes2; i++)
         {
             suma = suma + dat[i].cogenerac;
         }
@@ -796,7 +796,7 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
     }
     if(strcmp(tipo,gen16) == 0)
     {
-        for(i=mes1;i<=mes2;i++)
+        for(i=mes1; i<=mes2; i++)
         {
             suma = suma + dat[i].norenov;
         }
@@ -804,7 +804,7 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
     }
     if(strcmp(tipo,gen17) == 0)
     {
-        for(i=mes1;i<=mes2;i++)
+        for(i=mes1; i<=mes2; i++)
         {
             suma = suma + dat[i].residrenov;
         }
@@ -817,7 +817,7 @@ void registrarnew(int dimension)
 {
     int i;
     mes nuevainfo[1000];//vector que almacena nuevos datos
-    for(i=0;i<dimension;i++)
+    for(i=0; i<dimension; i++)
     {
         printf("Introduzca el N de year (21,22,23...): ");
         scanf("%d",&nuevainfo[i].date.year);
@@ -879,22 +879,23 @@ float maximo2(int fila)
     {
         printf("Error al abrir el fichero generacion.txt.\n");
         return -1;
-    }else
+    }
+    else
+    {
+        while(fscanf(pf1, "%c",&aux)!=EOF)
         {
-            while(fscanf(pf1, "%c",&aux)!=EOF)
+            //primero hay que descartar las primeras lineas que no nos aportan los datos que buscamos
+            if(aux == '\n')
             {
-                //primero hay que descartar las primeras lineas que no nos aportan los datos que buscamos
-                if(aux == '\n')
+                n++;
+
+                //la funcion empieza a guardar los datos en el vector val[] cuando se alcanza la fila que corresponde a la fuente de energia que queremos estudiar
+
+                if (n==fila)
                 {
-                  n++;
-
-                  //la funcion empieza a guardar los datos en el vector val[] cuando se alcanza la fila que corresponde a la fuente de energia que queremos estudiar
-
-                  if (n==fila)
-                  {
                     fscanf(pf1,"%99[^ ] %f %f %f %f %f %f %f %f %f %f",energia,&val[0],&val[1],&val[2],&val[3],&val[4],&val[5],&val[6],&val[7],&val[8],&val[9]);
                     max=val[0];
-                    for(i=1;i<10;i++)
+                    for(i=1; i<10; i++)
                     {
                         if(max<val[i])
                         {
@@ -902,14 +903,14 @@ float maximo2(int fila)
                         }
                     }
 
-                  }
                 }
             }
+        }
 
-            fclose(pf1);
-      }
+        fclose(pf1);
+    }
 
-return max;
+    return max;
 }
 
 //funcion que calcula el valor minimo de una fuente de energia para todos los meses dados
@@ -926,22 +927,23 @@ float minimo2(int fila)
     {
         printf("Error al abrir el fichero generacion.txt.\n");
         return -1;
-    }else
+    }
+    else
+    {
+        while(fscanf(pf2, "%c",&aux)!=EOF)
         {
-            while(fscanf(pf2, "%c",&aux)!=EOF)
+            //primero hay que descartar las primeras lineas que no nos aportan los datos que buscamos
+            if(aux == '\n')
             {
-                //primero hay que descartar las primeras lineas que no nos aportan los datos que buscamos
-                if(aux == '\n')
+                n++;
+
+                //la funcion empieza a guardar los datos en el vector val[] cuando se alcanza la fila que corresponde a la fuente de energia que queremos estudiar
+
+                if (n==fila)
                 {
-                  n++;
-
-                  //la funcion empieza a guardar los datos en el vector val[] cuando se alcanza la fila que corresponde a la fuente de energia que queremos estudiar
-
-                  if (n==fila)
-                  {
                     fscanf(pf2,"%99[^ ] %f %f %f %f %f %f %f %f %f %f",energia,&val[0],&val[1],&val[2],&val[3],&val[4],&val[5],&val[6],&val[7],&val[8],&val[9]);
                     min=val[0];
-                    for(i=1;i<10;i++)
+                    for(i=1; i<10; i++)
                     {
 
                         if(min>val[i])
@@ -950,14 +952,14 @@ float minimo2(int fila)
                         }
                     }
 
-                  }
                 }
             }
+        }
 
-            fclose(pf2);
-      }
+        fclose(pf2);
+    }
 
-return min;
+    return min;
 }
 
 float mediaglo2(int fila)
@@ -972,36 +974,37 @@ float mediaglo2(int fila)
     {
         printf("Error al abrir el fichero generacion.txt.\n");
         return -1;
-    }else
+    }
+    else
+    {
+        while(fscanf(pf3, "%c",&aux)!=EOF)
         {
-            while(fscanf(pf3, "%c",&aux)!=EOF)
+            //primero hay que descartar las primeras lineas que no nos aportan los datos que buscamos
+            if(aux == '\n')
             {
-                //primero hay que descartar las primeras lineas que no nos aportan los datos que buscamos
-                if(aux == '\n')
+                n++;
+
+                //la funcion empieza a guardar los datos en el vector val[] cuando se alcanza la fila que corresponde a la fuente de energia que queremos estudiar
+
+                if (n==fila)
                 {
-                  n++;
-
-                  //la funcion empieza a guardar los datos en el vector val[] cuando se alcanza la fila que corresponde a la fuente de energia que queremos estudiar
-
-                  if (n==fila)
-                  {
                     fscanf(pf3,"%99[^ ] %f %f %f %f %f %f %f %f %f %f",energia,&val[0],&val[1],&val[2],&val[3],&val[4],&val[5],&val[6],&val[7],&val[8],&val[9]);
 
-                    for(i=0;i<10;i++)
+                    for(i=0; i<10; i++)
                     {
                         med=med+val[i];
 
                     }
                     med=med/10;
 
-                  }
                 }
             }
+        }
 
-            fclose(pf3);
-      }
+        fclose(pf3);
+    }
 
-return med;
+    return med;
 }
 
 
@@ -1011,7 +1014,7 @@ void crearfichero(mes intro[],int dimension)
     int i;
     FILE *salida;
     salida=fopen("nuevosdatos.txt","w");
-    for(i=0;i<dimension;i++)
+    for(i=0; i<dimension; i++)
     {
         fprintf(salida,"%d/%d  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f\n",intro[i].date.month,intro[i].date.year,intro[i].hidraulica,intro[i].turbbombeo,intro[i].nuclear,intro[i].carbon,intro[i].fuelgas,intro[i].motdiesel,intro[i].turbinagas,intro[i].turbvapor,intro[i].ccombinado,intro[i].hidroeolica,intro[i].eolica,intro[i].solarfoto,intro[i].solarterm,intro[i].otrasreno,intro[i].cogenerac,intro[i].norenov,intro[i].residrenov,intro[i].genertotal);
     }
