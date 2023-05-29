@@ -1,5 +1,11 @@
 #include "lib.h"
 #include "estructuras.h"
+void limpia_consola(void)
+{
+    system("cls");      //Para dispositivos Windows
+//   printf("\033[2J");      //Para dispositivos Mac y Linux
+}
+
 //funcion de comprobacion de instrucciones de usuario
 void guardian_2(char command[], int fila)
 {
@@ -18,7 +24,7 @@ void guardian_2(char command[], int fila)
     {
         char posible_palabra[15];
         char caracter='\0';
-        int i,iguales=0;
+        int i,iguales=1;
         for(i=1; i<fila; i++) //Posiciona en la fila con las palabras a comparar
         {
             fscanf(pfposibles_palabras,"%c", &caracter);//Para avanzar al siguiente caracter cuando este sea \n
@@ -34,12 +40,12 @@ void guardian_2(char command[], int fila)
             //Compara las palabras admitidas con la palabra escrita,
             //en caso erroneo pide que la escribas de nuevo y repite la funcion
             fscanf(pfposibles_palabras,"%s", posible_palabra);
-            iguales=comparar_cadenas(posible_palabra,command);
+            iguales=strcmp(posible_palabra,command);
             fscanf(pfposibles_palabras,"%c", &caracter);
         }
-        while(caracter!='\n'&&iguales==0);
+        while(caracter!='\n'&&iguales!=0);
 
-        if(iguales==0)
+        if(iguales!=0)
         {
             printf("error,intentalo de nuevo\n");
             scanf("%15s",command);
@@ -121,118 +127,118 @@ void grafica(mes fecha[],int inicio,int fin)
     for(i=0,j=inicio-1; i<=fin-inicio; i++,j++)
     {
         k=0;
-        if(comparar_cadenas(decision,"todos")==1)
+        if(strcmp(decision,"todos")==0)
         {
             condicion=1;
         }
-        if(comparar_cadenas(decision,"hidraulica")==1||condicion==1)
+        if(strcmp(decision,"hidraulica")==0||condicion==1)
         {
             variable[i]=fecha[j].hidraulica;
             todos[k]=todos[k]+fecha[j].hidraulica;
             k++;
         }
-        if(comparar_cadenas(decision,"turbbombeo")==1||condicion==1)
+        if(strcmp(decision,"turbbombeo")==0||condicion==1)
         {
             variable[i]=fecha[j].turbbombeo;
             todos[k]=todos[k]+fecha[j].turbbombeo;
             k++;
         }
-        if(comparar_cadenas(decision,"nuclear")==1||condicion==1)
+        if(strcmp(decision,"nuclear")==0||condicion==1)
         {
             variable[i]=fecha[j].nuclear;
             todos[k]=todos[k]+fecha[j].nuclear;
             k++;
         }
-        if(comparar_cadenas(decision,"carbon")==1||condicion==1)
+        if(strcmp(decision,"carbon")==0||condicion==1)
         {
             variable[i]=fecha[j].carbon;
             todos[k]=todos[k]+fecha[j].carbon;
             k++;
         }
-        if(comparar_cadenas(decision,"fuelgas")==1||condicion==1)
+        if(strcmp(decision,"fuelgas")==0||condicion==1)
         {
             variable[i]=fecha[j].fuelgas;
             todos[k]=todos[k]+fecha[j].fuelgas;
             k++;
         }
-        if(comparar_cadenas(decision,"motdiesel")==1||condicion==1)
+        if(strcmp(decision,"motdiesel")==0||condicion==1)
         {
             variable[i]=fecha[j].motdiesel;
             todos[k]=todos[k]+fecha[j].motdiesel;
             k++;
         }
-        if(comparar_cadenas(decision,"turbinagas")==1||condicion==1)
+        if(strcmp(decision,"turbinagas")==0||condicion==1)
         {
             variable[i]=fecha[j].turbinagas;
             todos[k]=todos[k]+fecha[j].turbinagas;
             k++;
         }
-        if(comparar_cadenas(decision,"turbvapor")==1||condicion==1)
+        if(strcmp(decision,"turbvapor")==0||condicion==1)
         {
             variable[i]=fecha[j].turbvapor;
             todos[k]=todos[k]+fecha[j].turbvapor;
             k++;
         }
-        if(comparar_cadenas(decision,"ccombinado")==1||condicion==1)
+        if(strcmp(decision,"ccombinado")==0||condicion==1)
         {
             variable[i]=fecha[j].ccombinado;
             todos[k]=todos[k]+fecha[j].ccombinado;
             k++;
         }
-        if(comparar_cadenas(decision,"hidroeolica")==1||condicion==1)
+        if(strcmp(decision,"hidroeolica")==0||condicion==1)
         {
             variable[i]=fecha[j].hidroeolica;
             todos[k]=todos[k]+fecha[j].hidroeolica;
             k++;
         }
-        if(comparar_cadenas(decision,"eolica")==1||condicion==1)
+        if(strcmp(decision,"eolica")==0||condicion==1)
         {
             variable[i]=fecha[j].eolica;
             todos[k]=todos[k]+fecha[j].eolica;
             k++;
         }
-        if(comparar_cadenas(decision,"solarfoto")==1||condicion==1)
+        if(strcmp(decision,"solarfoto")==0||condicion==1)
         {
             variable[i]=fecha[j].solarfoto;
             todos[k]=todos[k]+fecha[j].solarfoto;
             k++;
         }
-        if(comparar_cadenas(decision,"solarterm")==1||condicion==1)
+        if(strcmp(decision,"solarterm")==0||condicion==1)
         {
             variable[i]=fecha[j].solarterm;
             todos[k]=todos[k]+fecha[j].solarterm;
             k++;
         }
-        if(comparar_cadenas(decision,"otrasreno")==1||condicion==1)
+        if(strcmp(decision,"otrasreno")==0||condicion==1)
         {
             variable[i]=fecha[j].otrasreno;
             todos[k]=todos[k]+fecha[j].otrasreno;
             k++;
         }
-        if(comparar_cadenas(decision,"cogenerac")==1||condicion==1)
+        if(strcmp(decision,"cogenerac")==0||condicion==1)
         {
             variable[i]=fecha[j].cogenerac;
             todos[k]=todos[k]+fecha[j].cogenerac;
             k++;
         }
-        if(comparar_cadenas(decision,"norenov")==1||condicion==1)
+        if(strcmp(decision,"norenov")==0||condicion==1)
         {
             variable[i]=fecha[j].norenov;
             todos[k]=todos[k]+fecha[j].norenov;
             k++;
         }
-        if(comparar_cadenas(decision,"residrenov")==1||condicion==1)
+        if(strcmp(decision,"residrenov")==0||condicion==1)
         {
             variable[i]=fecha[j].residrenov;
             todos[k]=todos[k]+fecha[j].residrenov;
             k++;
         }
-        if(comparar_cadenas(decision,"total")==1)
+        if(strcmp(decision,"total")==0)
         {
             variable[i]=fecha[j].genertotal;
         }
     }
-    if(comparar_cadenas(decision,"todos")==1)
+    if(strcmp(decision,"todos")==0)
     {
         tabla(todos,17);
     }
@@ -374,97 +380,52 @@ int digitos_numero(float numero)
     return digitos;
 }
 
-
-int comparar_cadenas(char primera[],char segunda[])
-{
-    //Compara si dos cadenas son iguales
-    int i=0;
-    int tamano_1=0,tamano_2=0;
-    //primero vemos cual es mayor
-    while(primera[i]!='\0')
-    {
-        tamano_1++;
-        i++;
-    }
-    i=0;
-    while(segunda[i]!='\0')
-    {
-        tamano_2++;
-        i++;
-    }
-    i=0;
-    if(tamano_1>tamano_2)
-    {
-        while(primera[i]!='\0')
-        {
-            if(primera[i]!=segunda[i])
-            {
-                return 0;
-            }
-            i++;
-        }
-        return 1;
-    }
-    else
-    {
-        while(segunda[i]!='\0')
-        {
-            if(primera[i]!=segunda[i])
-            {
-                return 0;
-            }
-            i++;
-        }
-        return 1;
-    }
-}
-
 int enumerar_meses(char month[])
 {
-    if(comparar_cadenas(month,"enero")==1)
+    if(strcmp(month,"enero")==0)
     {
         return 1;
     }
-    if(comparar_cadenas(month,"febrero")==1)
+    if(strcmp(month,"febrero")==0)
     {
         return 2;
     }
-    if(comparar_cadenas(month,"marzo")==1)
+    if(strcmp(month,"marzo")==0)
     {
         return 3;
     }
-    if(comparar_cadenas(month,"abril")==1)
+    if(strcmp(month,"abril")==0)
     {
         return 4;
     }
-    if(comparar_cadenas(month,"mayo")==1)
+    if(strcmp(month,"mayo")==0)
     {
         return 5;
     }
-    if(comparar_cadenas(month,"junio")==1)
+    if(strcmp(month,"junio")==0)
     {
         return 6;
     }
-    if(comparar_cadenas(month,"julio")==1)
+    if(strcmp(month,"julio")==0)
     {
         return 7;
     }
-    if(comparar_cadenas(month,"agosto")==1)
+    if(strcmp(month,"agosto")==0)
     {
         return 8;
     }
-    if(comparar_cadenas(month,"septiembre")==1)
+    if(strcmp(month,"septiembre")==0)
     {
         return 9;
     }
-    if(comparar_cadenas(month,"octubre")==1)
+    if(strcmp(month,"octubre")==0)
     {
         return 10;
     }
     return -1;
 }
 
-float datos_a_vector(mes month, float *p)
+void datos_a_vector(mes month, float *p)
 {
     *p = month.hidraulica;
     *(p+1) = month.turbbombeo;
@@ -483,8 +444,6 @@ float datos_a_vector(mes month, float *p)
     *(p+14) = month.cogenerac;
     *(p+15) = month.norenov;
     *(p+16) = month.residrenov;
-
-    return 0;
 }
 
 float maximo(float vect[], int tamano, int *posicion)
@@ -493,7 +452,7 @@ float maximo(float vect[], int tamano, int *posicion)
     int i;
     *posicion = 0;
 
-    for (i = 1; i < tamano; i++)
+    for (i = 0; i < tamano; i++)
     {
         if (vect[i] > max)
         {
@@ -511,7 +470,7 @@ float minimo(float vect[], int tamano, int *posicion)
     int i;
     *posicion = 0;
 
-    for (i = 1; i < tamano; i++)
+    for (i = 0; i < tamano; i++)
     {
         if (vect[i] < min)
         {
@@ -523,6 +482,8 @@ float minimo(float vect[], int tamano, int *posicion)
     return min;
 }
 
+//Dada una lista de palabras en un string y un entero, saca una sola palabra de esa lista,
+// que ocupa la posición marcada por el entero.
 void obtener_palabra(const char vect[], int posicion, char palabra[])
 {
     int contador = 0;
@@ -555,21 +516,15 @@ void obtener_palabra(const char vect[], int posicion, char palabra[])
     palabra[longitudPalabra] = '\0';
 }
 
-void limpia_consola(void)
-{
-    system("cls");      //Para dispositivos Windows
-//    printf("\033[2J");      //Para dispositivos Mac y Linux
-}
-
 //funcion para calcular la media global
 float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de energia seleccionado por el usario y vect es el vector que nos trae los datos energeticos
 {
     int i;//variable auxiliar para el bucle for
     float suma1 =0.0;//valor inicial de la suma
     //se definen los 17 tipos de generacion de energía;
-    char gen1[] = "hidraulica",gen2[] = "turbbombeo",gen3[] = "nuclear",gen4[] = "carbon",gen5[] = "fuelgas";
-    char gen6[] = "motdiesel",gen7[] = "turbinagas",gen8[] = "turbvapor",gen9[] = "ccombinado";
-    char gen10[] = "hidroeolica",gen11[] = "eolica",gen12[] = "solarfoto",gen13[] = "solarterm",gen14[] = "otrasreno",gen15[] = "cogenerac",gen16[] = "norenov",gen17[] = "residrenov";
+    char gen1[] = "hidraulica",gen2[] = "turbbombeo",gen3[] = "nuclear",gen4[] = "carbon",gen5[] = "fuelgas",gen6[] = "motdiesel";
+    char gen7[] = "turbinagas",gen8[] = "turbvapor",gen9[] = "ccombinado",gen10[] = "hidroeolica",gen11[] = "eolica",gen12[] = "solarfoto";
+    char gen13[] = "solarterm",gen14[] = "otrasreno",gen15[] = "cogenerac",gen16[] = "norenov",gen17[] = "residrenov";
     //para cada tipo de energía se plantea un if
     if(strcmp(tipo,gen1) == 0)//cuando se detecta un tipo de energia
     {
@@ -802,6 +757,14 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
         for(i=mes1;i<=mes2;i++)
         {
             suma = suma + dat[i].eolica;
+        }
+        return suma/dif;
+    }
+    if(strcmp(tipo,gen12) == 0)
+    {
+        for(i=mes1;i<=mes2;i++)
+        {
+            suma = suma + dat[i].solarfoto;
         }
         return suma/dif;
     }

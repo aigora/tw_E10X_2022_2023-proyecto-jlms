@@ -389,9 +389,9 @@ int main()
                     }
                 }//cierre de caso elegir un mes
 
-                if(comparar_cadenas(accion,grafics) == 1)
+                if (strcmp(accion,grafics) == 0)
                 {
-                    while(comparar_cadenas(accion,"finalizar")==0)
+                    while(strcmp(accion,"finalizar")!=0)
                     {
                         printf("Desde que mes deseas estudiar (como maximo octubre)(escribir ej:'marzo')\n");
                         scanf("%15[^\n]",accion);//se lee su instruccion hasta detectar salto de linea
@@ -479,6 +479,3 @@ int main()
         }//cierre del caso en el que el fichero se ha abierto correctamente
     }//cierre del caso donde el usuario ha tecleado 'comezar'
 }
-
-
-
