@@ -2,24 +2,36 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="lib.c" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="main.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="23786" topLine="864" />
+			<Cursor1 position="28258" topLine="549" />
 		</Cursor>
 	</File>
 	<File name="lib.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="855" topLine="1" />
-		</Cursor>
-	</File>
-	<File name="main.c" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="26158" topLine="485" />
+			<Cursor1 position="892" topLine="2" />
 		</Cursor>
 	</File>
 	<File name="estructuras.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="0" topLine="0" />
 		</Cursor>
+	</File>
+	<File name="lib.c" open="1" top="1" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="25170" topLine="408" />
+		</Cursor>
+		<Folding>
+			<Collapse line="347" />
+			<Collapse line="363" />
+			<Collapse line="383" />
+			<Collapse line="428" />
+			<Collapse line="449" />
+			<Collapse line="467" />
+			<Collapse line="487" />
+			<Collapse line="520" />
+			<Collapse line="668" />
+			<Collapse line="814" />
+		</Folding>
 	</File>
 </CodeBlocks_layout_file>

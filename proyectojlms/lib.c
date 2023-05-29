@@ -864,6 +864,7 @@ void registrarnew(int dimension)
     crearfichero(nuevainfo,dimension);
 }
 
+//funcion que calcula el valor maximo de una fuente de energia para todos los meses dados
 float maximo2(int fila)
 {
     int n=0,i;
@@ -880,9 +881,12 @@ float maximo2(int fila)
         {
             while(fscanf(pf1, "%c",&aux)!=EOF)
             {
+                //primero hay que descartar las primeras lineas que no nos aportan los datos que buscamos
                 if(aux == '\n')
                 {
                   n++;
+
+                  //la funcion empieza a guardar los datos en el vector val[] cuando se alcanza la fila que corresponde a la fuente de energia que queremos estudiar
 
                   if (n==fila)
                   {
@@ -904,6 +908,54 @@ float maximo2(int fila)
 
 return max;
 }
+
+//funcion que calcula el valor minimo de una fuente de energia para todos los meses dados
+
+float minimo2(int fila)
+{
+    int n=0,i;
+    char aux='\0';
+    char energia[20];
+    float val[10],min=10000000;
+    FILE *pf2;
+    pf2 = fopen("generacion.txt", "r");
+    if (pf2 == NULL)
+    {
+        printf("Error al abrir el fichero generacion.txt.\n");
+        return -1;
+    }else
+        {
+            while(fscanf(pf2, "%c",&aux)!=EOF)
+            {
+                //primero hay que descartar las primeras lineas que no nos aportan los datos que buscamos
+                if(aux == '\n')
+                {
+                  n++;
+
+                  //la funcion empieza a guardar los datos en el vector val[] cuando se alcanza la fila que corresponde a la fuente de energia que queremos estudiar
+
+                  if (n==fila)
+                  {
+                    fscanf(pf2,"%99[^ ] %f %f %f %f %f %f %f %f %f %f",energia,&val[0],&val[1],&val[2],&val[3],&val[4],&val[5],&val[6],&val[7],&val[8],&val[9]);
+                    for(i=0;i<10;i++)
+                    {
+
+                        if(min>val[i])
+                        {
+                            min=val[i];
+                        }
+                    }
+
+                  }
+                }
+            }
+
+            fclose(pf2);
+      }
+
+return min;
+}
+
 
 //funcion para crear un nuevo fichero con los nuevos datos
 void crearfichero(mes intro[],int dimension)

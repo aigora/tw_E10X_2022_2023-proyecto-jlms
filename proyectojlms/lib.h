@@ -22,6 +22,7 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes datos[10]);
 void crearfichero(mes intro[],int dimension);
 void registrarnew(int dimension);
 float maximo2(int fila);
+float minimo2(int fila);
 
 
 #endif // LIB_H_INCLUDED
