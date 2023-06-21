@@ -1,5 +1,6 @@
 #include "lib.h"
 #include "estructuras.h"
+#include<stdlib.h>
 void limpia_consola(void)
 {
     system("cls");      //Para dispositivos Windows
@@ -521,8 +522,8 @@ void obtener_palabra(const char vect[], int posicion, char palabra[])
 //funcion para calcular la media global
 float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de energia seleccionado por el usario y vect es el vector que nos trae los datos energeticos
 {
-    int i;//variable auxiliar para el bucle for
-    float suma1 =0.0;//valor inicial de la suma
+    int i,j;//variable auxiliar para el bucle for
+    float suma1=0.0,x[17];//valor inicial de la suma
     //se definen los 17 tipos de generacion de energía;
     char gen1[] = "hidraulica",gen2[] = "turbbombeo",gen3[] = "nuclear",gen4[] = "carbon",gen5[] = "fuelgas",gen6[] = "motdiesel";
     char gen7[] = "turbinagas",gen8[] = "turbvapor",gen9[] = "ccombinado",gen10[] = "hidroeolica",gen11[] = "eolica",gen12[] = "solarfoto";
@@ -534,7 +535,8 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
         {
             suma1 = suma1 + vect[i].hidraulica;//segun el tipo de energía seleccionada
         }
-        return suma1/10.0;//la funcion devuelve el valor de la suma dividido entre 10, que es la media correspondiente a los 10 meses
+        x[0] = suma1/10.0;//la funcion devuelve el valor de la suma dividido entre 10, que es la media correspondiente a los 10 meses
+        j=0;
     }
     if(strcmp(tipo,gen2) == 0)
     {
@@ -542,7 +544,8 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
         {
             suma1 = suma1 + vect[i].turbbombeo;
         }
-        return suma1/10.0;
+        x[1] = suma1/10.0;
+        j=1;
     }
     if(strcmp(tipo,gen3) == 0)
     {
@@ -550,7 +553,8 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
         {
             suma1 = suma1 + vect[i].nuclear;
         }
-        return suma1/10.0;
+        x[2] = suma1/10.0;
+        j=2;
     }
     if(strcmp(tipo,gen4) == 0)
     {
@@ -558,7 +562,8 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
         {
             suma1 = suma1 + vect[i].carbon;
         }
-        return suma1/10.0;
+        x[3] = suma1/10.0;
+        j=3;
     }
     if(strcmp(tipo,gen5) == 0)
     {
@@ -566,7 +571,9 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
         {
             suma1 = suma1 + vect[i].fuelgas;
         }
-        return suma1/10.0;
+        x[4] = suma1/10.0;
+        j=4;
+
     }
     if(strcmp(tipo,gen6) == 0)
     {
@@ -574,7 +581,8 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
         {
             suma1 = suma1 + vect[i].motdiesel;
         }
-        return suma1/10.0;
+        x[5] = suma1/10.0;
+        j=5;
     }
     if(strcmp(tipo,gen7) == 0)
     {
@@ -582,7 +590,9 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
         {
             suma1 = suma1 + vect[i].turbinagas;
         }
-        return suma1/10.0;
+        x[6] = suma1/10.0;
+        j=6;
+
     }
     if(strcmp(tipo,gen8) == 0)
     {
@@ -590,7 +600,9 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
         {
             suma1 = suma1 + vect[i].turbvapor;
         }
-        return suma1/10.0;
+        x[7] = suma1/10.0;
+        j=7;
+
     }
     if(strcmp(tipo,gen9) == 0)
     {
@@ -598,7 +610,8 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
         {
             suma1 = suma1 + vect[i].ccombinado;
         }
-        return suma1/10.0;
+        x[8] = suma1/10.0;
+        j=8;
     }
     if(strcmp(tipo,gen10) == 0)
     {
@@ -606,7 +619,8 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
         {
             suma1 = suma1 + vect[i].hidroeolica;
         }
-        return suma1/10.0;
+        x[9] = suma1/10.0;
+        j=9;
     }
     if(strcmp(tipo,gen11) == 0)
     {
@@ -614,7 +628,8 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
         {
             suma1 = suma1 + vect[i].eolica;
         }
-        return suma1/10.0;
+        x[10] = suma1/10.0;
+        j=10;
     }
     if(strcmp(tipo,gen12) == 0)
     {
@@ -622,7 +637,8 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
         {
             suma1 = suma1 + vect[i].solarfoto;
         }
-        return suma1/10.0;
+        x[11] = suma1/10.0;
+        j=11;
     }
     if(strcmp(tipo,gen13) == 0)
     {
@@ -630,7 +646,8 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
         {
             suma1 = suma1 + vect[i].solarterm;
         }
-        return suma1/10.0;
+        x[12] = suma1/10.0;
+        j=12;
     }
     if(strcmp(tipo,gen14) == 0)
     {
@@ -638,7 +655,8 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
         {
             suma1 = suma1 + vect[i].otrasreno;
         }
-        return suma1/10.0;
+        x[13] = suma1/10.0;
+        j=13;
     }
     if(strcmp(tipo,gen15) == 0)
     {
@@ -646,7 +664,8 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
         {
             suma1 = suma1 + vect[i].cogenerac;
         }
-        return suma1/10.0;
+        x[14] = suma1/10.0;
+        j=14;
     }
     if(strcmp(tipo,gen16) == 0)
     {
@@ -654,7 +673,8 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
         {
             suma1 = suma1 + vect[i].norenov;
         }
-        return suma1/10.0;
+        x[15] = suma1/10.0;
+        j=15;
     }
     if(strcmp(tipo,gen17) == 0)
     {
@@ -662,15 +682,17 @@ float mediaglo(char tipo[],mes vect[10])//la variable tipo nos da el tipo de ene
         {
             suma1 = suma1 + vect[i].residrenov;
         }
-        return suma1/10.0;
+        x[16] = suma1/10.0;
+        j=16;
     }
+    return x[j];
 }
 
 //funcion para mostrar media parcial
 float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe el tipo de energía y los limites temporales
 {
-    float suma = 0.0;
-    int i,dif = (mes2+1) - (mes1);//diferencia entre los meses seleccionados
+    float suma = 0.0,y[17];
+    int i,j,dif = (mes2+1) - (mes1);//diferencia entre los meses seleccionados
     char gen1[] = "hidraulica",gen2[] = "turbbombeo",gen3[] = "nuclear",gen4[] = "carbon",gen5[] = "fuelgas";
     char gen6[] = "motdiesel",gen7[] = "turbinagas",gen8[] = "turbvapor",gen9[] = "ccombinado";
     char gen10[] = "hidroeolica",gen11[] = "eolica",gen12[] = "solarfoto",gen13[] = "solarterm",gen14[] = "otrasreno",gen15[] = "cogenerac",gen16[] = "norenov",gen17[] = "residrenov";
@@ -680,7 +702,8 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
         {
             suma = suma + dat[i].hidraulica;//se suman los datos
         }
-        return suma/dif;//la funcion devuelve la media
+        j=0;
+        y[0]= suma/dif;//la funcion devuelve la media
     }
     if(strcmp(tipo,gen2) == 0)
     {
@@ -688,7 +711,8 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
         {
             suma = suma + dat[i].turbbombeo;
         }
-        return suma/dif;
+        j=1;
+        y[1]= suma/dif;
     }
     if(strcmp(tipo,gen3) == 0)
     {
@@ -696,7 +720,8 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
         {
             suma = suma + dat[i].nuclear;
         }
-        return suma/dif;
+        j=2;
+        y[2]= suma/dif;
     }
     if(strcmp(tipo,gen4) == 0)
     {
@@ -704,7 +729,8 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
         {
             suma = suma + dat[i].carbon;
         }
-        return suma/dif;
+        j=3;
+        y[3]= suma/dif;
     }
     if(strcmp(tipo,gen5) == 0)
     {
@@ -712,7 +738,8 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
         {
             suma = suma + dat[i].fuelgas;
         }
-        return suma/dif;
+        j=4;
+        y[4]= suma/dif;
     }
     if(strcmp(tipo,gen6) == 0)
     {
@@ -720,7 +747,8 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
         {
             suma = suma + dat[i].motdiesel;
         }
-        return suma/dif;
+        j=5;
+        y[5]= suma/dif;
     }
     if(strcmp(tipo,gen7) == 0)
     {
@@ -728,7 +756,8 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
         {
             suma = suma + dat[i].turbinagas;
         }
-        return suma/dif;
+        j=6;
+        y[6]= suma/dif;
     }
     if(strcmp(tipo,gen8) == 0)
     {
@@ -736,7 +765,8 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
         {
             suma = suma + dat[i].turbvapor;
         }
-        return suma/dif;
+        j=7;
+        y[7]= suma/dif;
     }
     if(strcmp(tipo,gen9) == 0)
     {
@@ -744,7 +774,8 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
         {
             suma = suma + dat[i].ccombinado;
         }
-        return suma/dif;
+        j=8;
+        y[8]= suma/dif;
     }
     if(strcmp(tipo,gen10) == 0)
     {
@@ -752,7 +783,8 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
         {
             suma = suma + dat[i].hidroeolica;
         }
-        return suma/dif;
+        j=9;
+        y[9]= suma/dif;
     }
     if(strcmp(tipo,gen11) == 0)
     {
@@ -760,7 +792,8 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
         {
             suma = suma + dat[i].eolica;
         }
-        return suma/dif;
+        j=10;
+        y[10]= suma/dif;
     }
     if(strcmp(tipo,gen12) == 0)
     {
@@ -768,7 +801,8 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
         {
             suma = suma + dat[i].solarfoto;
         }
-        return suma/dif;
+        j=11;
+        y[11]= suma/dif;
     }
     if(strcmp(tipo,gen13) == 0)
     {
@@ -776,7 +810,8 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
         {
             suma = suma + dat[i].solarterm;
         }
-        return suma/dif;
+        j=12;
+        y[12]= suma/dif;
     }
     if(strcmp(tipo,gen14) == 0)
     {
@@ -784,7 +819,8 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
         {
             suma = suma + dat[i].otrasreno;
         }
-        return suma/dif;
+        j=13;
+        y[13]= suma/dif;
     }
     if(strcmp(tipo,gen15) == 0)
     {
@@ -792,7 +828,8 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
         {
             suma = suma + dat[i].cogenerac;
         }
-        return suma/dif;
+        j=14;
+        y[14]= suma/dif;
     }
     if(strcmp(tipo,gen16) == 0)
     {
@@ -800,7 +837,8 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
         {
             suma = suma + dat[i].norenov;
         }
-        return suma/dif;
+        j=15;
+        y[15]= suma/dif;
     }
     if(strcmp(tipo,gen17) == 0)
     {
@@ -808,8 +846,11 @@ float mediaparcia(char tipo[],int mes1,int mes2,mes dat[10])//la funcion recibe 
         {
             suma = suma + dat[i].residrenov;
         }
-        return suma/dif;
+        j=16;
+        y[16]= suma/dif;
     }
+
+    return y[j];
 }
 
 //funcion para pedir al usuario nuevos datos
@@ -1019,3 +1060,4 @@ void crearfichero(mes intro[],int dimension)
         fprintf(salida,"%d/%d  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f\n",intro[i].date.month,intro[i].date.year,intro[i].hidraulica,intro[i].turbbombeo,intro[i].nuclear,intro[i].carbon,intro[i].fuelgas,intro[i].motdiesel,intro[i].turbinagas,intro[i].turbvapor,intro[i].ccombinado,intro[i].hidroeolica,intro[i].eolica,intro[i].solarfoto,intro[i].solarterm,intro[i].otrasreno,intro[i].cogenerac,intro[i].norenov,intro[i].residrenov,intro[i].genertotal);
     }
 }
+
