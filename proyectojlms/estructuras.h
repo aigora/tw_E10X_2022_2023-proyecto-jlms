@@ -46,4 +46,35 @@ typedef struct
     char diciembre[20];
 } year;
 
+
+typedef struct
+{
+    char nombre[30];
+    float ene21;
+    float feb21;
+    float mar21;
+    float abr21;
+    float may21;
+    float jun21;
+    float jul21;
+    float ago21;
+    float sep21;
+    float oct21;
+    float nov21;
+    float dic21;
+    float ene22;
+    float feb22;
+    float mar22;
+    float abr22;
+    float may22;
+    float jun22;
+    float jul22;
+    float ago22;
+    float sep22;
+    float oct22;
+    float nov22;
+    float dic22;
+
+}energia[17];
+
 #endif // ESTRUCTURAS_H_INCLUDED

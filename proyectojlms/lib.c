@@ -1,256 +1,582 @@
 #include "lib.h"
 #include "estructuras.h"
 #include<stdlib.h>
+
 void limpia_consola(void)
 {
     system("cls");      //Para dispositivos Windows
 //   printf("\033[2J");      //Para dispositivos Mac y Linux
 }
 
-//funcion de comprobacion de instrucciones de usuario
-void guardian_2(char command[], int fila)
-{
-    //Funcionamiento de funcion guardian_2
-    //command es la palabra que has escrito y quieres saber si esta dentro de las posibles palabras admitidas
-    //y fila es la fila en donde estan escritas las palabras admitidas en el fichero 'Posibles_palabras.txt'.
-    //Para añadir una nueva palabra/palabras para comparar las escribes en una nueva fila separadas por espacios
-    //y cuando cambies de linea un enter.
-    FILE *pfposibles_palabras;
-    pfposibles_palabras = fopen("Posibles_palabras.txt", "r");
-    if (pfposibles_palabras == NULL)
-    {
-        printf("Error al abrir el fichero Posibles_palabras.txt.\n");
-    }
-    else
-    {
-        char posible_palabra[15];
-        char caracter='\0';
-        int i,iguales=1;
-        for(i=1; i<fila; i++) //Posiciona en la fila con las palabras a comparar
-        {
-            fscanf(pfposibles_palabras,"%c", &caracter);//Para avanzar al siguiente caracter cuando este sea \n
-            while(caracter!='\n')
-            {
-                fscanf(pfposibles_palabras,"%c", &caracter);
-                //Para saber cuando hay un cambio de linea
-            }
-        }
-
-        do//do porque inicialmente caracter es \n
-        {
-            //Compara las palabras admitidas con la palabra escrita,
-            //en caso erroneo pide que la escribas de nuevo y repite la funcion
-            fscanf(pfposibles_palabras,"%s", posible_palabra);
-            iguales=strcmp(posible_palabra,command);
-            fscanf(pfposibles_palabras,"%c", &caracter);
-        }
-        while(caracter!='\n'&&iguales!=0);
-
-        if(iguales!=0)
-        {
-            printf("error,intentalo de nuevo\n");
-            scanf("%15s",command);
-            while(getchar() != '\n');
-            // Limpiar el búfer de entrada, para que si añadimos más caracteres de los que puede almacenar
-            //se eliminen y no se metan en la segunda cadena.
-            guardian_2(command,fila);
-        }
-        fclose(pfposibles_palabras);
-    }
-}
-
 //funcion para cuando el usuario quiere mostrar un mes
-int elige_un_mes(char mes[])
+void elige_un_mes(char meses[],int ano,energia fuente)
 {
     year calendario = {"enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"};//variable auxiliar para detectar los meses
-    int num;
-    if(strcmp(mes,calendario.enero) == 0)//cuando se detecta un mes
-        num = 0;//se devuelve el valor correspondiente
-    if(strcmp(mes,calendario.febrero) == 0)
-        num = 1;
-    if(strcmp(mes,calendario.marzo) == 0)
-        num = 2;
-    if(strcmp(mes,calendario.abril) == 0)
-        num = 3;
-    if(strcmp(mes,calendario.mayo) == 0)
-        num = 4;
-    if(strcmp(mes,calendario.junio) == 0)
-        num = 5;
-    if(strcmp(mes,calendario.julio) == 0)
-        num = 6;
-    if(strcmp(mes,calendario.agosto) == 0)
-        num = 7;
-    if(strcmp(mes,calendario.septiembre) == 0)
-        num = 8;
-    if(strcmp(mes,calendario.octubre) == 0)
-        num = 9;
-    return num;
+    int posicion;
+
+
+    if(strcmp(meses,calendario.enero) == 0)//cuando se detecta un mes
+    {
+        printf("(datos en GWh)\n");
+        printf("%c %d: \n",meses,ano);
+        printf("hidraulica: %f\n",fuente[0].ene21);
+        printf("turbbombeo: %f\n",fuente[1].ene21);
+        printf("nuclear: %f\n",fuente[2].ene21);
+        printf("carbon: %f\n",fuente[3].ene21);
+        printf("motdiesel: %f\n",fuente[4].ene21);
+        printf("turbinagas: %f\n",fuente[5].ene21);
+        printf("turbvapor: %f\n",fuente[6].ene21);
+        printf("ccombinado: %f\n",fuente[7].ene21);
+        printf("hidroeolica: %f\n",fuente[8].ene21);
+        printf("eolica: %f\n",fuente[9].ene21);
+        printf("solarfoto: %f\n",fuente[10].ene21);
+        printf("solarterm: %f\n",fuente[11].ene21);
+        printf("otrasreno: %f\n",fuente[12].ene21);
+        printf("cogenerac: %f\n",fuente[13].ene21);
+        printf("norenov: %f\n",fuente[14].ene21);
+        printf("residrenov: %f\n",fuente[15].ene21);
+        printf("genertotal: %f\n",fuente[16].ene21);
+        printf("\n");
+    }
+    if(strcmp(meses,calendario.febrero) == 0)
+    {
+        printf("(datos en GWh)\n");
+        printf("%c %d: \n",meses,ano);
+        printf("hidraulica: %f\n",fuente[0].feb21);
+        printf("turbbombeo: %f\n",fuente[1].feb21);
+        printf("nuclear: %f\n",fuente[2].feb21);
+        printf("carbon: %f\n",fuente[3].feb21);
+        printf("motdiesel: %f\n",fuente[4].feb21);
+        printf("turbinagas: %f\n",fuente[5].feb21);
+        printf("turbvapor: %f\n",fuente[6].feb21);
+        printf("ccombinado: %f\n",fuente[7].feb21);
+        printf("hidroeolica: %f\n",fuente[8].feb21);
+        printf("eolica: %f\n",fuente[9].feb21);
+        printf("solarfoto: %f\n",fuente[10].feb21);
+        printf("solarterm: %f\n",fuente[11].feb21);
+        printf("otrasreno: %f\n",fuente[12].feb21);
+        printf("cogenerac: %f\n",fuente[13].feb21);
+        printf("norenov: %f\n",fuente[14].feb21);
+        printf("residrenov: %f\n",fuente[15].feb21);
+        printf("genertotal: %f\n",fuente[16].feb21);
+        printf("\n");
+
+    }
+    if(strcmp(meses,calendario.marzo) == 0)
+    {
+        printf("(datos en GWh)\n");
+        printf("%c %d: \n",meses,ano);
+        printf("hidraulica: %f\n",fuente[0].mar21);
+        printf("turbbombeo: %f\n",fuente[1].mar21);
+        printf("nuclear: %f\n",fuente[2].mar21);
+        printf("carbon: %f\n",fuente[3].mar21);
+        printf("motdiesel: %f\n",fuente[4].mar21);
+        printf("turbinagas: %f\n",fuente[5].mar21);
+        printf("turbvapor: %f\n",fuente[6].mar21);
+        printf("ccombinado: %f\n",fuente[7].mar21);
+        printf("hidroeolica: %f\n",fuente[8].mar21);
+        printf("eolica: %f\n",fuente[9].mar21);
+        printf("solarfoto: %f\n",fuente[10].mar21);
+        printf("solarterm: %f\n",fuente[11].mar21);
+        printf("otrasreno: %f\n",fuente[12].mar21);
+        printf("cogenerac: %f\n",fuente[13].mar21);
+        printf("norenov: %f\n",fuente[14].mar21);
+        printf("residrenov: %f\n",fuente[15].mar21);
+        printf("genertotal: %f\n",fuente[16].mar21);
+        printf("\n");
+
+    }
+    if(strcmp(meses,calendario.abril) == 0)
+    {
+        printf("(datos en GWh)\n");
+        printf("%c %d: \n",meses,ano);
+        printf("hidraulica: %f\n",fuente[0].abr21);
+        printf("turbbombeo: %f\n",fuente[1].abr21);
+        printf("nuclear: %f\n",fuente[2].abr21);
+        printf("carbon: %f\n",fuente[3].abr21);
+        printf("motdiesel: %f\n",fuente[4].abr21);
+        printf("turbinagas: %f\n",fuente[5].abr21);
+        printf("turbvapor: %f\n",fuente[6].abr21);
+        printf("ccombinado: %f\n",fuente[7].abr21);
+        printf("hidroeolica: %f\n",fuente[8].abr21);
+        printf("eolica: %f\n",fuente[9].abr21);
+        printf("solarfoto: %f\n",fuente[10].abr21);
+        printf("solarterm: %f\n",fuente[11].abr21);
+        printf("otrasreno: %f\n",fuente[12].abr21);
+        printf("cogenerac: %f\n",fuente[13].abr21);
+        printf("norenov: %f\n",fuente[14].abr21);
+        printf("residrenov: %f\n",fuente[15].abr21);
+        printf("genertotal: %f\n",fuente[16].abr21);
+        printf("\n");
+
+    }
+    if(strcmp(meses,calendario.mayo) == 0)
+    {
+        printf("(datos en GWh)\n");
+        printf("%c %d: \n",meses,ano);
+        printf("hidraulica: %f\n",fuente[0].may21);
+        printf("turbbombeo: %f\n",fuente[1].may21);
+        printf("nuclear: %f\n",fuente[2].may21);
+        printf("carbon: %f\n",fuente[3].may21);
+        printf("motdiesel: %f\n",fuente[4].may21);
+        printf("turbinagas: %f\n",fuente[5].may21);
+        printf("turbvapor: %f\n",fuente[6].may21);
+        printf("ccombinado: %f\n",fuente[7].may21);
+        printf("hidroeolica: %f\n",fuente[8].may21);
+        printf("eolica: %f\n",fuente[9].may21);
+        printf("solarfoto: %f\n",fuente[10].may21);
+        printf("solarterm: %f\n",fuente[11].may21);
+        printf("otrasreno: %f\n",fuente[12].may21);
+        printf("cogenerac: %f\n",fuente[13].may21);
+        printf("norenov: %f\n",fuente[14].may21);
+        printf("residrenov: %f\n",fuente[15].may21);
+        printf("genertotal: %f\n",fuente[16].may21);
+        printf("\n");
+    }
+    if(strcmp(meses,calendario.junio) == 0)
+    {
+        printf("(datos en GWh)\n");
+        printf("%c %d: \n",meses,ano);
+        printf("hidraulica: %f\n",fuente[0].jun21);
+        printf("turbbombeo: %f\n",fuente[1].jun21);
+        printf("nuclear: %f\n",fuente[2].jun21);
+        printf("carbon: %f\n",fuente[3].jun21);
+        printf("motdiesel: %f\n",fuente[4].jun21);
+        printf("turbinagas: %f\n",fuente[5].jun21);
+        printf("turbvapor: %f\n",fuente[6].jun21);
+        printf("ccombinado: %f\n",fuente[7].jun21);
+        printf("hidroeolica: %f\n",fuente[8].jun21);
+        printf("eolica: %f\n",fuente[9].jun21);
+        printf("solarfoto: %f\n",fuente[10].jun21);
+        printf("solarterm: %f\n",fuente[11].jun21);
+        printf("otrasreno: %f\n",fuente[12].jun21);
+        printf("cogenerac: %f\n",fuente[13].jun21);
+        printf("norenov: %f\n",fuente[14].jun21);
+        printf("residrenov: %f\n",fuente[15].jun21);
+        printf("genertotal: %f\n",fuente[16].jun21);
+        printf("\n");
+    }
+    if(strcmp(meses,calendario.julio) == 0)
+    {
+        printf("(datos en GWh)\n");
+        printf("%c %d: \n",meses,ano);
+        printf("hidraulica: %f\n",fuente[0].jul21);
+        printf("turbbombeo: %f\n",fuente[1].jul21);
+        printf("nuclear: %f\n",fuente[2].jul21);
+        printf("carbon: %f\n",fuente[3].jul21);
+        printf("motdiesel: %f\n",fuente[4].jul21);
+        printf("turbinagas: %f\n",fuente[5].jul21);
+        printf("turbvapor: %f\n",fuente[6].jul21);
+        printf("ccombinado: %f\n",fuente[7].jul21);
+        printf("hidroeolica: %f\n",fuente[8].jul21);
+        printf("eolica: %f\n",fuente[9].jul21);
+        printf("solarfoto: %f\n",fuente[10].jul21);
+        printf("solarterm: %f\n",fuente[11].jul21);
+        printf("otrasreno: %f\n",fuente[12].jul21);
+        printf("cogenerac: %f\n",fuente[13].jul21);
+        printf("norenov: %f\n",fuente[14].jul21);
+        printf("residrenov: %f\n",fuente[15].jul21);
+        printf("genertotal: %f\n",fuente[16].jul21);
+        printf("\n");
+    }
+    if(strcmp(meses,calendario.agosto) == 0)
+    {
+        printf("(datos en GWh)\n");
+        printf("%c %d: \n",meses,ano);
+        printf("hidraulica: %f\n",fuente[0].ago21);
+        printf("turbbombeo: %f\n",fuente[1].ago21);
+        printf("nuclear: %f\n",fuente[2].ago21);
+        printf("carbon: %f\n",fuente[3].ago21);
+        printf("motdiesel: %f\n",fuente[4].ago21);
+        printf("turbinagas: %f\n",fuente[5].ago21);
+        printf("turbvapor: %f\n",fuente[6].ago21);
+        printf("ccombinado: %f\n",fuente[7].ago21);
+        printf("hidroeolica: %f\n",fuente[8].ago21);
+        printf("eolica: %f\n",fuente[9].ago21);
+        printf("solarfoto: %f\n",fuente[10].ago21);
+        printf("solarterm: %f\n",fuente[11].ago21);
+        printf("otrasreno: %f\n",fuente[12].ago21);
+        printf("cogenerac: %f\n",fuente[13].ago21);
+        printf("norenov: %f\n",fuente[14].ago21);
+        printf("residrenov: %f\n",fuente[15].ago21);
+        printf("genertotal: %f\n",fuente[16].ago21);
+        printf("\n");
+    }
+    if(strcmp(meses,calendario.septiembre) == 0)
+    {
+        printf("(datos en GWh)\n");
+        printf("%c %d: \n",meses,ano);
+        printf("hidraulica: %f\n",fuente[0].sep21);
+        printf("turbbombeo: %f\n",fuente[1].sep21);
+        printf("nuclear: %f\n",fuente[2].sep21);
+        printf("carbon: %f\n",fuente[3].sep21);
+        printf("motdiesel: %f\n",fuente[4].sep21);
+        printf("turbinagas: %f\n",fuente[5].sep21);
+        printf("turbvapor: %f\n",fuente[6].sep21);
+        printf("ccombinado: %f\n",fuente[7].sep21);
+        printf("hidroeolica: %f\n",fuente[8].sep21);
+        printf("eolica: %f\n",fuente[9].sep21);
+        printf("solarfoto: %f\n",fuente[10].sep21);
+        printf("solarterm: %f\n",fuente[11].sep21);
+        printf("otrasreno: %f\n",fuente[12].sep21);
+        printf("cogenerac: %f\n",fuente[13].sep21);
+        printf("norenov: %f\n",fuente[14].sep21);
+        printf("residrenov: %f\n",fuente[15].sep21);
+        printf("genertotal: %f\n",fuente[16].sep21);
+        printf("\n");
+    }
+    if(strcmp(meses,calendario.octubre) == 0)
+    {
+        printf("(datos en GWh)\n");
+        printf("%c %d: \n",meses,ano);
+        printf("hidraulica: %f\n",fuente[0].oct21);
+        printf("turbbombeo: %f\n",fuente[1].oct21);
+        printf("nuclear: %f\n",fuente[2].oct21);
+        printf("carbon: %f\n",fuente[3].oct21);
+        printf("motdiesel: %f\n",fuente[4].oct21);
+        printf("turbinagas: %f\n",fuente[5].oct21);
+        printf("turbvapor: %f\n",fuente[6].oct21);
+        printf("ccombinado: %f\n",fuente[7].oct21);
+        printf("hidroeolica: %f\n",fuente[8].oct21);
+        printf("eolica: %f\n",fuente[9].oct21);
+        printf("solarfoto: %f\n",fuente[10].oct21);
+        printf("solarterm: %f\n",fuente[11].oct21);
+        printf("otrasreno: %f\n",fuente[12].oct21);
+        printf("cogenerac: %f\n",fuente[13].oct21);
+        printf("norenov: %f\n",fuente[14].oct21);
+        printf("residrenov: %f\n",fuente[15].oct21);
+        printf("genertotal: %f\n",fuente[16].oct21);
+        printf("\n");
+    }
+    if(strcmp(meses,calendario.noviembre) == 0)
+    {
+        printf("(datos en GWh)\n");
+        printf("%c %d: \n",meses,ano);
+        printf("hidraulica: %f\n",fuente[0].nov21);
+        printf("turbbombeo: %f\n",fuente[1].nov21);
+        printf("nuclear: %f\n",fuente[2].nov21);
+        printf("carbon: %f\n",fuente[3].nov21);
+        printf("motdiesel: %f\n",fuente[4].nov21);
+        printf("turbinagas: %f\n",fuente[5].nov21);
+        printf("turbvapor: %f\n",fuente[6].nov21);
+        printf("ccombinado: %f\n",fuente[7].nov21);
+        printf("hidroeolica: %f\n",fuente[8].nov21);
+        printf("eolica: %f\n",fuente[9].nov21);
+        printf("solarfoto: %f\n",fuente[10].nov21);
+        printf("solarterm: %f\n",fuente[11].nov21);
+        printf("otrasreno: %f\n",fuente[12].nov21);
+        printf("cogenerac: %f\n",fuente[13].nov21);
+        printf("norenov: %f\n",fuente[14].nov21);
+        printf("residrenov: %f\n",fuente[15].nov21);
+        printf("genertotal: %f\n",fuente[16].nov21);
+        printf("\n");
+    }
+    if(strcmp(meses,calendario.diciembre) == 0)
+    {
+        printf("(datos en GWh)\n");
+        printf("%c %d: \n",meses,ano);
+        printf("hidraulica: %f\n",fuente[0].dic21);
+        printf("turbbombeo: %f\n",fuente[1].dic21);
+        printf("nuclear: %f\n",fuente[2].dic21);
+        printf("carbon: %f\n",fuente[3].dic21);
+        printf("motdiesel: %f\n",fuente[4].dic21);
+        printf("turbinagas: %f\n",fuente[5].dic21);
+        printf("turbvapor: %f\n",fuente[6].dic21);
+        printf("ccombinado: %f\n",fuente[7].dic21);
+        printf("hidroeolica: %f\n",fuente[8].dic21);
+        printf("eolica: %f\n",fuente[9].dic21);
+        printf("solarfoto: %f\n",fuente[10].dic21);
+        printf("solarterm: %f\n",fuente[11].dic21);
+        printf("otrasreno: %f\n",fuente[12].dic21);
+        printf("cogenerac: %f\n",fuente[13].dic21);
+        printf("norenov: %f\n",fuente[14].dic21);
+        printf("residrenov: %f\n",fuente[15].dic21);
+        printf("genertotal: %f\n",fuente[16].dic21);
+        printf("\n");
+    }
+    if(strcmp(meses,calendario.enero) == 0 && (ano ==2022 || ano == 22))
+    {
+        printf("(datos en GWh)\n");
+        printf("%c %d: \n",meses,ano);
+        printf("hidraulica: %f\n",fuente[0].ene22);
+        printf("turbbombeo: %f\n",fuente[1].ene22);
+        printf("nuclear: %f\n",fuente[2].ene22);
+        printf("carbon: %f\n",fuente[3].ene22);
+        printf("motdiesel: %f\n",fuente[4].ene22);
+        printf("turbinagas: %f\n",fuente[5].ene22);
+        printf("turbvapor: %f\n",fuente[6].ene22);
+        printf("ccombinado: %f\n",fuente[7].ene22);
+        printf("hidroeolica: %f\n",fuente[8].ene22);
+        printf("eolica: %f\n",fuente[9].ene22);
+        printf("solarfoto: %f\n",fuente[10].ene22);
+        printf("solarterm: %f\n",fuente[11].ene22);
+        printf("otrasreno: %f\n",fuente[12].ene22);
+        printf("cogenerac: %f\n",fuente[13].ene22);
+        printf("norenov: %f\n",fuente[14].ene22);
+        printf("residrenov: %f\n",fuente[15].ene22);
+        printf("genertotal: %f\n",fuente[16].ene22);
+        printf("\n");
+
+    }
+    if(strcmp(meses,calendario.febrero) == 0 && (ano ==2022 || ano == 22))
+    {
+        printf("(datos en GWh)\n");
+        printf("%c %d: \n",meses,ano);
+        printf("hidraulica: %f\n",fuente[0].feb22);
+        printf("turbbombeo: %f\n",fuente[1].feb22);
+        printf("nuclear: %f\n",fuente[2].feb22);
+        printf("carbon: %f\n",fuente[3].feb22);
+        printf("motdiesel: %f\n",fuente[4].feb22);
+        printf("turbinagas: %f\n",fuente[5].feb22);
+        printf("turbvapor: %f\n",fuente[6].feb22);
+        printf("ccombinado: %f\n",fuente[7].feb22);
+        printf("hidroeolica: %f\n",fuente[8].feb22);
+        printf("eolica: %f\n",fuente[9].feb22);
+        printf("solarfoto: %f\n",fuente[10].feb22);
+        printf("solarterm: %f\n",fuente[11].feb22);
+        printf("otrasreno: %f\n",fuente[12].feb22);
+        printf("cogenerac: %f\n",fuente[13].feb22);
+        printf("norenov: %f\n",fuente[14].feb22);
+        printf("residrenov: %f\n",fuente[15].feb22);
+        printf("genertotal: %f\n",fuente[16].feb22);
+        printf("\n");
+
+    }
+    if(strcmp(meses,calendario.marzo) == 0 && (ano ==2022 || ano == 22))
+    {
+        printf("(datos en GWh)\n");
+        printf("%c %d: \n",meses,ano);
+        printf("hidraulica: %f\n",fuente[0].mar22);
+        printf("turbbombeo: %f\n",fuente[1].mar22);
+        printf("nuclear: %f\n",fuente[2].mar22);
+        printf("carbon: %f\n",fuente[3].mar22);
+        printf("motdiesel: %f\n",fuente[4].mar22);
+        printf("turbinagas: %f\n",fuente[5].mar22);
+        printf("turbvapor: %f\n",fuente[6].mar22);
+        printf("ccombinado: %f\n",fuente[7].mar22);
+        printf("hidroeolica: %f\n",fuente[8].mar22);
+        printf("eolica: %f\n",fuente[9].mar22);
+        printf("solarfoto: %f\n",fuente[10].mar22);
+        printf("solarterm: %f\n",fuente[11].mar22);
+        printf("otrasreno: %f\n",fuente[12].mar22);
+        printf("cogenerac: %f\n",fuente[13].mar22);
+        printf("norenov: %f\n",fuente[14].mar22);
+        printf("residrenov: %f\n",fuente[15].mar22);
+        printf("genertotal: %f\n",fuente[16].mar22);
+        printf("\n");
+
+    }
+    if(strcmp(meses,calendario.abril) == 0 && (ano ==2022 || ano == 22))
+    {
+        printf("(datos en GWh)\n");
+        printf("%c %d: \n",meses,ano);
+        printf("hidraulica: %f\n",fuente[0].abr22);
+        printf("turbbombeo: %f\n",fuente[1].abr22);
+        printf("nuclear: %f\n",fuente[2].abr22);
+        printf("carbon: %f\n",fuente[3].abr22);
+        printf("motdiesel: %f\n",fuente[4].abr22);
+        printf("turbinagas: %f\n",fuente[5].abr22);
+        printf("turbvapor: %f\n",fuente[6].abr22);
+        printf("ccombinado: %f\n",fuente[7].abr22);
+        printf("hidroeolica: %f\n",fuente[8].abr22);
+        printf("eolica: %f\n",fuente[9].abr22);
+        printf("solarfoto: %f\n",fuente[10].abr22);
+        printf("solarterm: %f\n",fuente[11].abr22);
+        printf("otrasreno: %f\n",fuente[12].abr22);
+        printf("cogenerac: %f\n",fuente[13].abr22);
+        printf("norenov: %f\n",fuente[14].abr22);
+        printf("residrenov: %f\n",fuente[15].abr22);
+        printf("genertotal: %f\n",fuente[16].abr22);
+        printf("\n");
+    }
+    if(strcmp(meses,calendario.mayo) == 0 && (ano ==2022 || ano == 22))
+    {
+        printf("(datos en GWh)\n");
+        printf("%c %d: \n",meses,ano);
+        printf("hidraulica: %f\n",fuente[0].may22);
+        printf("turbbombeo: %f\n",fuente[1].may22);
+        printf("nuclear: %f\n",fuente[2].may22);
+        printf("carbon: %f\n",fuente[3].may22);
+        printf("motdiesel: %f\n",fuente[4].may22);
+        printf("turbinagas: %f\n",fuente[5].may22);
+        printf("turbvapor: %f\n",fuente[6].may22);
+        printf("ccombinado: %f\n",fuente[7].may22);
+        printf("hidroeolica: %f\n",fuente[8].may22);
+        printf("eolica: %f\n",fuente[9].may22);
+        printf("solarfoto: %f\n",fuente[10].may22);
+        printf("solarterm: %f\n",fuente[11].may22);
+        printf("otrasreno: %f\n",fuente[12].may22);
+        printf("cogenerac: %f\n",fuente[13].may22);
+        printf("norenov: %f\n",fuente[14].may22);
+        printf("residrenov: %f\n",fuente[15].may22);
+        printf("genertotal: %f\n",fuente[16].may22);
+        printf("\n");
+    }
+    if(strcmp(meses,calendario.junio) == 0 && (ano ==2022 || ano == 22))
+    {
+        printf("(datos en GWh)\n");
+        printf("%c %d: \n",meses,ano);
+        printf("hidraulica: %f\n",fuente[0].jun22);
+        printf("turbbombeo: %f\n",fuente[1].jun22);
+        printf("nuclear: %f\n",fuente[2].jun22);
+        printf("carbon: %f\n",fuente[3].jun22);
+        printf("motdiesel: %f\n",fuente[4].jun22);
+        printf("turbinagas: %f\n",fuente[5].jun22);
+        printf("turbvapor: %f\n",fuente[6].jun22);
+        printf("ccombinado: %f\n",fuente[7].jun22);
+        printf("hidroeolica: %f\n",fuente[8].jun22);
+        printf("eolica: %f\n",fuente[9].jun22);
+        printf("solarfoto: %f\n",fuente[10].jun22);
+        printf("solarterm: %f\n",fuente[11].jun22);
+        printf("otrasreno: %f\n",fuente[12].jun22);
+        printf("cogenerac: %f\n",fuente[13].jun22);
+        printf("norenov: %f\n",fuente[14].jun22);
+        printf("residrenov: %f\n",fuente[15].jun22);
+        printf("genertotal: %f\n",fuente[16].jun22);
+        printf("\n");
+    }
+    if(strcmp(meses,calendario.julio) == 0 && (ano ==2022 || ano == 22))
+    {
+        printf("(datos en GWh)\n");
+        printf("%c %d: \n",meses,ano);
+        printf("hidraulica: %f\n",fuente[0].jul22);
+        printf("turbbombeo: %f\n",fuente[1].jul22);
+        printf("nuclear: %f\n",fuente[2].jul22);
+        printf("carbon: %f\n",fuente[3].jul22);
+        printf("motdiesel: %f\n",fuente[4].jul22);
+        printf("turbinagas: %f\n",fuente[5].jul22);
+        printf("turbvapor: %f\n",fuente[6].jul22);
+        printf("ccombinado: %f\n",fuente[7].jul22);
+        printf("hidroeolica: %f\n",fuente[8].jul22);
+        printf("eolica: %f\n",fuente[9].jul22);
+        printf("solarfoto: %f\n",fuente[10].jul22);
+        printf("solarterm: %f\n",fuente[11].jul22);
+        printf("otrasreno: %f\n",fuente[12].jul22);
+        printf("cogenerac: %f\n",fuente[13].jul22);
+        printf("norenov: %f\n",fuente[14].jul22);
+        printf("residrenov: %f\n",fuente[15].jul22);
+        printf("genertotal: %f\n",fuente[16].jul22);
+        printf("\n");
+    }
+    if(strcmp(meses,calendario.agosto) == 0 && (ano ==2022 || ano == 22))
+    {
+        printf("(datos en GWh)\n");
+        printf("%c %d: \n",meses,ano);
+        printf("hidraulica: %f\n",fuente[0].ago22);
+        printf("turbbombeo: %f\n",fuente[1].ago22);
+        printf("nuclear: %f\n",fuente[2].ago22);
+        printf("carbon: %f\n",fuente[3].ago22);
+        printf("motdiesel: %f\n",fuente[4].ago22);
+        printf("turbinagas: %f\n",fuente[5].ago22);
+        printf("turbvapor: %f\n",fuente[6].ago22);
+        printf("ccombinado: %f\n",fuente[7].ago22);
+        printf("hidroeolica: %f\n",fuente[8].ago22);
+        printf("eolica: %f\n",fuente[9].ago22);
+        printf("solarfoto: %f\n",fuente[10].ago22);
+        printf("solarterm: %f\n",fuente[11].ago22);
+        printf("otrasreno: %f\n",fuente[12].ago22);
+        printf("cogenerac: %f\n",fuente[13].ago22);
+        printf("norenov: %f\n",fuente[14].ago22);
+        printf("residrenov: %f\n",fuente[15].ago22);
+        printf("genertotal: %f\n",fuente[16].ago22);
+        printf("\n");
+    }
+    if(strcmp(meses,calendario.septiembre) == 0 && (ano ==2022 || ano == 22))
+    {
+        printf("(datos en GWh)\n");
+        printf("%c %d: \n",meses,ano);
+        printf("hidraulica: %f\n",fuente[0].sep22);
+        printf("turbbombeo: %f\n",fuente[1].sep22);
+        printf("nuclear: %f\n",fuente[2].sep22);
+        printf("carbon: %f\n",fuente[3].sep22);
+        printf("motdiesel: %f\n",fuente[4].sep22);
+        printf("turbinagas: %f\n",fuente[5].sep22);
+        printf("turbvapor: %f\n",fuente[6].sep22);
+        printf("ccombinado: %f\n",fuente[7].sep22);
+        printf("hidroeolica: %f\n",fuente[8].sep22);
+        printf("eolica: %f\n",fuente[9].sep22);
+        printf("solarfoto: %f\n",fuente[10].sep22);
+        printf("solarterm: %f\n",fuente[11].sep22);
+        printf("otrasreno: %f\n",fuente[12].sep22);
+        printf("cogenerac: %f\n",fuente[13].sep22);
+        printf("norenov: %f\n",fuente[14].sep22);
+        printf("residrenov: %f\n",fuente[15].sep22);
+        printf("genertotal: %f\n",fuente[16].sep22);
+        printf("\n");
+    }
+    if(strcmp(meses,calendario.octubre) == 0 && (ano ==2022 || ano == 22))
+    {
+        printf("(datos en GWh)\n");
+        printf("%c %d: \n",meses,ano);
+        printf("hidraulica: %f\n",fuente[0].oct22);
+        printf("turbbombeo: %f\n",fuente[1].oct22);
+        printf("nuclear: %f\n",fuente[2].oct22);
+        printf("carbon: %f\n",fuente[3].oct22);
+        printf("motdiesel: %f\n",fuente[4].oct22);
+        printf("turbinagas: %f\n",fuente[5].oct22);
+        printf("turbvapor: %f\n",fuente[6].oct22);
+        printf("ccombinado: %f\n",fuente[7].oct22);
+        printf("hidroeolica: %f\n",fuente[8].oct22);
+        printf("eolica: %f\n",fuente[9].oct22);
+        printf("solarfoto: %f\n",fuente[10].oct22);
+        printf("solarterm: %f\n",fuente[11].oct22);
+        printf("otrasreno: %f\n",fuente[12].oct22);
+        printf("cogenerac: %f\n",fuente[13].oct22);
+        printf("norenov: %f\n",fuente[14].oct22);
+        printf("residrenov: %f\n",fuente[15].oct22);
+        printf("genertotal: %f\n",fuente[16].oct22);
+        printf("\n");
+    }
+    if(strcmp(meses,calendario.noviembre) == 0 && (ano ==2022 || ano == 22))
+    {
+        printf("(datos en GWh)\n");
+        printf("%c %d: \n",meses,ano);
+        printf("hidraulica: %f\n",fuente[0].nov22);
+        printf("turbbombeo: %f\n",fuente[1].nov22);
+        printf("nuclear: %f\n",fuente[2].nov22);
+        printf("carbon: %f\n",fuente[3].nov22);
+        printf("motdiesel: %f\n",fuente[4].nov22);
+        printf("turbinagas: %f\n",fuente[5].nov22);
+        printf("turbvapor: %f\n",fuente[6].nov22);
+        printf("ccombinado: %f\n",fuente[7].nov22);
+        printf("hidroeolica: %f\n",fuente[8].nov22);
+        printf("eolica: %f\n",fuente[9].nov22);
+        printf("solarfoto: %f\n",fuente[10].nov22);
+        printf("solarterm: %f\n",fuente[11].nov22);
+        printf("otrasreno: %f\n",fuente[12].nov22);
+        printf("cogenerac: %f\n",fuente[13].nov22);
+        printf("norenov: %f\n",fuente[14].nov22);
+        printf("residrenov: %f\n",fuente[15].nov22);
+        printf("genertotal: %f\n",fuente[16].nov22);
+        printf("\n");
+    }
+    if(strcmp(meses,calendario.diciembre) == 0 && (ano ==2022 || ano == 22))
+    {
+        printf("(datos en GWh)\n");
+        printf("%c %d: \n",meses,ano);
+        printf("hidraulica: %f\n",fuente[0].dic22);
+        printf("turbbombeo: %f\n",fuente[1].dic22);
+        printf("nuclear: %f\n",fuente[2].dic22);
+        printf("carbon: %f\n",fuente[3].dic22);
+        printf("motdiesel: %f\n",fuente[4].dic22);
+        printf("turbinagas: %f\n",fuente[5].dic22);
+        printf("turbvapor: %f\n",fuente[6].dic22);
+        printf("ccombinado: %f\n",fuente[7].dic22);
+        printf("hidroeolica: %f\n",fuente[8].dic22);
+        printf("eolica: %f\n",fuente[9].dic22);
+        printf("solarfoto: %f\n",fuente[10].dic22);
+        printf("solarterm: %f\n",fuente[11].dic22);
+        printf("otrasreno: %f\n",fuente[12].dic22);
+        printf("cogenerac: %f\n",fuente[13].dic22);
+        printf("norenov: %f\n",fuente[14].dic22);
+        printf("residrenov: %f\n",fuente[15].dic22);
+        printf("genertotal: %f\n",fuente[16].dic22);
+        printf("\n");
+    }
+
+
 }
-
-//funcion de grafica
-void grafica(mes fecha[],int inicio,int fin)
-{
-    //Funcion para generar graficos de barras
-    int i,j,k,condicion=0;
-    char decision[15];
-    float variable[10];
-    float todos[17];
-    for(i=0; i<17; i++)
-    {
-        todos[i]=0;
-    }
-    //Primero tienes que elegir que generaciones quieres comparar
-    //luego automaticamente escoje una escala de tal manera que
-    //siempre tenga el mismo tamano la grafica pero distinta escala
-    printf("--GW/h de cada tipo de generacion(apareceran en el orden de abajo)(si son varios meses los datos son de la suma de estos)(escribir'todos')\n"
-           "--GW/h total generados a nivel nacional (escribir'total')\n"
-           "--GW/h de algunos tipos de generacion concretos (escribir tipo que deseas comparar:)\n"
-           "1 hidraulica\n"
-           "2 turbbombeo\n"
-           "3 nuclear\n"
-           "4 carbon\n"
-           "5 fuelgas\n"
-           "6 motdiesel\n"
-           "7 turbinagas\n"
-           "8 turbvapor\n"
-           "9 ccombinado\n"
-           "10 hidroeolica\n"
-           "11 eolica\n"
-           "12 solarfoto\n"
-           "13 solarterm\n"
-           "14 otrasreno\n"
-           "15 cogenerac\n"
-           "16 norenov\n"
-           "17 residrenov\n\n");
-    scanf("%15[^\n]",decision);
-    guardian_2(decision,5);
-    limpia_consola();
-    for(i=0,j=inicio-1; i<=fin-inicio; i++,j++)
-    {
-        k=0;
-        if(strcmp(decision,"todos")==0)
-        {
-            condicion=1;
-        }
-        if(strcmp(decision,"hidraulica")==0||condicion==1)
-        {
-            variable[i]=fecha[j].hidraulica;
-            todos[k]=todos[k]+fecha[j].hidraulica;
-            k++;
-        }
-        if(strcmp(decision,"turbbombeo")==0||condicion==1)
-        {
-            variable[i]=fecha[j].turbbombeo;
-            todos[k]=todos[k]+fecha[j].turbbombeo;
-            k++;
-        }
-        if(strcmp(decision,"nuclear")==0||condicion==1)
-        {
-            variable[i]=fecha[j].nuclear;
-            todos[k]=todos[k]+fecha[j].nuclear;
-            k++;
-        }
-        if(strcmp(decision,"carbon")==0||condicion==1)
-        {
-            variable[i]=fecha[j].carbon;
-            todos[k]=todos[k]+fecha[j].carbon;
-            k++;
-        }
-        if(strcmp(decision,"fuelgas")==0||condicion==1)
-        {
-            variable[i]=fecha[j].fuelgas;
-            todos[k]=todos[k]+fecha[j].fuelgas;
-            k++;
-        }
-        if(strcmp(decision,"motdiesel")==0||condicion==1)
-        {
-            variable[i]=fecha[j].motdiesel;
-            todos[k]=todos[k]+fecha[j].motdiesel;
-            k++;
-        }
-        if(strcmp(decision,"turbinagas")==0||condicion==1)
-        {
-            variable[i]=fecha[j].turbinagas;
-            todos[k]=todos[k]+fecha[j].turbinagas;
-            k++;
-        }
-        if(strcmp(decision,"turbvapor")==0||condicion==1)
-        {
-            variable[i]=fecha[j].turbvapor;
-            todos[k]=todos[k]+fecha[j].turbvapor;
-            k++;
-        }
-        if(strcmp(decision,"ccombinado")==0||condicion==1)
-        {
-            variable[i]=fecha[j].ccombinado;
-            todos[k]=todos[k]+fecha[j].ccombinado;
-            k++;
-        }
-        if(strcmp(decision,"hidroeolica")==0||condicion==1)
-        {
-            variable[i]=fecha[j].hidroeolica;
-            todos[k]=todos[k]+fecha[j].hidroeolica;
-            k++;
-        }
-        if(strcmp(decision,"eolica")==0||condicion==1)
-        {
-            variable[i]=fecha[j].eolica;
-            todos[k]=todos[k]+fecha[j].eolica;
-            k++;
-        }
-        if(strcmp(decision,"solarfoto")==0||condicion==1)
-        {
-            variable[i]=fecha[j].solarfoto;
-            todos[k]=todos[k]+fecha[j].solarfoto;
-            k++;
-        }
-        if(strcmp(decision,"solarterm")==0||condicion==1)
-        {
-            variable[i]=fecha[j].solarterm;
-            todos[k]=todos[k]+fecha[j].solarterm;
-            k++;
-        }
-        if(strcmp(decision,"otrasreno")==0||condicion==1)
-        {
-            variable[i]=fecha[j].otrasreno;
-            todos[k]=todos[k]+fecha[j].otrasreno;
-            k++;
-        }
-        if(strcmp(decision,"cogenerac")==0||condicion==1)
-        {
-            variable[i]=fecha[j].cogenerac;
-            todos[k]=todos[k]+fecha[j].cogenerac;
-            k++;
-        }
-        if(strcmp(decision,"norenov")==0||condicion==1)
-        {
-            variable[i]=fecha[j].norenov;
-            todos[k]=todos[k]+fecha[j].norenov;
-            k++;
-        }
-        if(strcmp(decision,"residrenov")==0||condicion==1)
-        {
-            variable[i]=fecha[j].residrenov;
-            todos[k]=todos[k]+fecha[j].residrenov;
-            k++;
-        }
-        if(strcmp(decision,"total")==0)
-        {
-            variable[i]=fecha[j].genertotal;
-        }
-    }
-    if(strcmp(decision,"todos")==0)
-    {
-        tabla(todos,17);
-    }
-    else //tipo de generacion o  generacion total mensual
-    {
-        tabla(variable,10);
-    }
-
-}
-
-void tabla(float datos[],int tamano)
+void grafica(float datos[],int tamano)
 {
     char matriz[45][180];
     char unidades[]="GW/h";
@@ -449,41 +775,7 @@ void datos_a_vector(mes month, float *p)
     *(p+16) = month.residrenov;
 }
 
-float maximo(float vect[], int tamano, int *posicion)
-{
-    float max = vect[0];
-    int i;
-    *posicion = 0;
 
-    for (i = 0; i < tamano; i++)
-    {
-        if (vect[i] > max)
-        {
-            max = vect[i];
-            *posicion = i;
-        }
-    }
-
-    return max;
-}
-
-float minimo(float vect[], int tamano, int *posicion)
-{
-    float min = vect[0];
-    int i;
-    *posicion = 0;
-
-    for (i = 0; i < tamano; i++)
-    {
-        if (vect[i] < min)
-        {
-            min = vect[i];
-            *posicion = i;
-        }
-    }
-
-    return min;
-}
 
 //Dada una lista de palabras en un string y un entero, saca una sola palabra de esa lista,
 // que ocupa la posición marcada por el entero.
@@ -907,148 +1199,6 @@ void registrarnew(int dimension)
     crearfichero(nuevainfo,dimension);
 }
 
-//funcion que calcula el valor maximo de una fuente de energia para todos los meses dados
-float maximo2(int fila)
-{
-    int n=0,i;
-    char aux='\0';
-    char energia[20];
-    float val[10],max;
-    FILE *pf1;
-    pf1 = fopen("generacion.txt", "r");
-    if (pf1 == NULL)
-    {
-        printf("Error al abrir el fichero generacion.txt.\n");
-        return -1;
-    }
-    else
-    {
-        while(fscanf(pf1, "%c",&aux)!=EOF)
-        {
-            //primero hay que descartar las primeras lineas que no nos aportan los datos que buscamos
-            if(aux == '\n')
-            {
-                n++;
-
-                //la funcion empieza a guardar los datos en el vector val[] cuando se alcanza la fila que corresponde a la fuente de energia que queremos estudiar
-
-                if (n==fila)
-                {
-                    fscanf(pf1,"%99[^ ] %f %f %f %f %f %f %f %f %f %f",energia,&val[0],&val[1],&val[2],&val[3],&val[4],&val[5],&val[6],&val[7],&val[8],&val[9]);
-                    max=val[0];
-                    for(i=1; i<10; i++)
-                    {
-                        if(max<val[i])
-                        {
-                            max=val[i];
-                        }
-                    }
-
-                }
-            }
-        }
-
-        fclose(pf1);
-    }
-
-    return max;
-}
-
-//funcion que calcula el valor minimo de una fuente de energia para todos los meses dados
-
-float minimo2(int fila)
-{
-    int n=0,i;
-    char aux='\0';
-    char energia[20];
-    float val[10],min;
-    FILE *pf2;
-    pf2 = fopen("generacion.txt", "r");
-    if (pf2 == NULL)
-    {
-        printf("Error al abrir el fichero generacion.txt.\n");
-        return -1;
-    }
-    else
-    {
-        while(fscanf(pf2, "%c",&aux)!=EOF)
-        {
-            //primero hay que descartar las primeras lineas que no nos aportan los datos que buscamos
-            if(aux == '\n')
-            {
-                n++;
-
-                //la funcion empieza a guardar los datos en el vector val[] cuando se alcanza la fila que corresponde a la fuente de energia que queremos estudiar
-
-                if (n==fila)
-                {
-                    fscanf(pf2,"%99[^ ] %f %f %f %f %f %f %f %f %f %f",energia,&val[0],&val[1],&val[2],&val[3],&val[4],&val[5],&val[6],&val[7],&val[8],&val[9]);
-                    min=val[0];
-                    for(i=1; i<10; i++)
-                    {
-
-                        if(min>val[i])
-                        {
-                            min=val[i];
-                        }
-                    }
-
-                }
-            }
-        }
-
-        fclose(pf2);
-    }
-
-    return min;
-}
-
-float mediaglo2(int fila)
-{
-    int n=0,i;
-    char aux='\0';
-    char energia[20];
-    float val[10],med=0.0;
-    FILE *pf3;
-    pf3 = fopen("generacion.txt", "r");
-    if (pf3 == NULL)
-    {
-        printf("Error al abrir el fichero generacion.txt.\n");
-        return -1;
-    }
-    else
-    {
-        while(fscanf(pf3, "%c",&aux)!=EOF)
-        {
-            //primero hay que descartar las primeras lineas que no nos aportan los datos que buscamos
-            if(aux == '\n')
-            {
-                n++;
-
-                //la funcion empieza a guardar los datos en el vector val[] cuando se alcanza la fila que corresponde a la fuente de energia que queremos estudiar
-
-                if (n==fila)
-                {
-                    fscanf(pf3,"%99[^ ] %f %f %f %f %f %f %f %f %f %f",energia,&val[0],&val[1],&val[2],&val[3],&val[4],&val[5],&val[6],&val[7],&val[8],&val[9]);
-
-                    for(i=0; i<10; i++)
-                    {
-                        med=med+val[i];
-
-                    }
-                    med=med/10;
-
-                }
-            }
-        }
-
-        fclose(pf3);
-    }
-
-    return med;
-}
-
-
 //funcion para crear un nuevo fichero con los nuevos datos
 void crearfichero(mes intro[],int dimension)
 {
@@ -1060,4 +1210,141 @@ void crearfichero(mes intro[],int dimension)
         fprintf(salida,"%d/%d  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f  %f\n",intro[i].date.month,intro[i].date.year,intro[i].hidraulica,intro[i].turbbombeo,intro[i].nuclear,intro[i].carbon,intro[i].fuelgas,intro[i].motdiesel,intro[i].turbinagas,intro[i].turbvapor,intro[i].ccombinado,intro[i].hidroeolica,intro[i].eolica,intro[i].solarfoto,intro[i].solarterm,intro[i].otrasreno,intro[i].cogenerac,intro[i].norenov,intro[i].residrenov,intro[i].genertotal);
     }
 }
+// Imprime por pantalla los valores de la energia seleccionados para los dos años, al igual que el valor máximo, mínimo y medio
+void imprime_energia(int x,energia fuente)
+{
+    limpia_consola();
 
+
+    float val[24]= {fuente[x-1].ene21,fuente[x-1].feb21,fuente[x-1].mar21,fuente[x-1].abr21,fuente[x-1].may21,fuente[x-1].jun21,fuente[x-1].jul21,fuente[x-1].ago21,fuente[x-1].sep21,fuente[x-1].oct21,fuente[x-1].nov21,fuente[x-1].dic21,fuente[x-1].ene22,fuente[x-1].feb22,fuente[x-1].mar22,fuente[x-1].abr22,fuente[x-1].may22,fuente[x-1].jun22,fuente[x-1].jul22,fuente[x-1].ago22,fuente[x-1].sep22,fuente[x-1].oct22,fuente[x-1].nov22,fuente[x-1].dic22};
+
+    if(x==1)
+    {
+        printf("Hidraulica: ");
+    }
+    if(x==2)
+    {
+        printf("Turbbombeo: ");
+    }
+    if(x==3)
+    {
+        printf("Nuclear: ");
+    }
+    if(x==4)
+    {
+        printf("Carbon: ");
+    }
+    if(x==5)
+    {
+        printf("Motdiesel: ");
+    }
+    if(x==6)
+    {
+        printf("Turbinagas:");
+    }
+    if(x==7)
+    {
+        printf("Turbvapor: ");
+    }
+    if(x==8)
+    {
+        printf("Ccombinado: ");
+    }
+    if(x==9)
+    {
+        printf("Hidroeolica:");
+    }
+    if(x==10)
+    {
+        printf("Eolica: ");
+    }
+    if(x==11)
+    {
+        printf("Solarfoto: ");
+    }
+    if(x==12)
+    {
+        printf("Solarterm: ");
+    }
+    if(x==13)
+    {
+        printf("Otrasreno: ");
+    }
+    if(x==14)
+    {
+        printf("Cogenerac: ");
+    }
+    if(x==15)
+    {
+        printf("Norenov: ");
+    }
+    if(x==16)
+    {
+        printf("Residrenov: ");
+    }
+
+    printf("%f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f\n\n",fuente[x-1].ene21,fuente[x-1].feb21,fuente[x-1].mar21,fuente[x-1].abr21,fuente[x-1].may21,fuente[x-1].jun21,fuente[x-1].jul21,fuente[x-1].ago21,fuente[x-1].sep21,fuente[x-1].oct21,fuente[x-1].nov21,fuente[x-1].dic21,fuente[x-1].ene22,fuente[x-1].feb22,fuente[x-1].mar22,fuente[x-1].abr22,fuente[x-1].may22,fuente[x-1].jun22,fuente[x-1].jul22,fuente[x-1].ago22,fuente[x-1].sep22,fuente[x-1].oct22,fuente[x-1].nov22,fuente[x-1].dic22);
+
+    printf("El valor maximo son %f\n",maximo2(val));
+    printf("El valor minimo son %f\n",minimo2(val));
+    printf("El valor medio son %f\n\n",mediaglo2(val));
+
+
+}
+
+//funcion que calcula el valor maximo de una fuente de energia para todos los meses dados
+float maximo2(float fila[])
+{
+    int i;
+    float max;
+
+    max=fila[0];
+    for(i=1; i<24; i++)
+    {
+        if(max<fila[i])
+        {
+            max=fila[i];
+        }
+    }
+
+
+    return max;
+}
+
+//funcion que calcula el valor minimo de una fuente de energia para todos los meses dados
+
+float minimo2(float fila[])
+{
+    int i;
+    float min;
+
+    min=fila[0];
+    for(i=1; i<24; i++)
+    {
+
+        if(min>fila[i])
+        {
+            min=fila[i];
+        }
+    }
+
+    return min;
+}
+
+float mediaglo2(float fila[])
+{
+    int i;
+    float med;
+
+    for(i=0; i<24; i++)
+    {
+        med=med+fila[i];
+
+    }
+    med=med/24;
+
+
+
+
+    return med;
+}

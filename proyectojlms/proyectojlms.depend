@@ -50,18 +50,19 @@
 	"lib.h"
 	"estructuras.h"
 
-1685397410 source:c:\users\pista\documents\github\github2\tw_e10x_2022_2023-proyecto-jlms\proyectojlms\lib.c
+1688500633 source:c:\users\pista\documents\github\github2\tw_e10x_2022_2023-proyecto-jlms\proyectojlms\lib.c
 	"lib.h"
 	"estructuras.h"
+	<stdlib.h>
 
-1685395333 c:\users\pista\documents\github\github2\tw_e10x_2022_2023-proyecto-jlms\proyectojlms\lib.h
+1688500734 c:\users\pista\documents\github\github2\tw_e10x_2022_2023-proyecto-jlms\proyectojlms\lib.h
 	<stdio.h>
 	<string.h>
 	"estructuras.h"
 
-1685386467 c:\users\pista\documents\github\github2\tw_e10x_2022_2023-proyecto-jlms\proyectojlms\estructuras.h
+1688500646 c:\users\pista\documents\github\github2\tw_e10x_2022_2023-proyecto-jlms\proyectojlms\estructuras.h
 
-1685397412 source:c:\users\pista\documents\github\github2\tw_e10x_2022_2023-proyecto-jlms\proyectojlms\main.c
+1688500633 source:c:\users\pista\documents\github\github2\tw_e10x_2022_2023-proyecto-jlms\proyectojlms\main.c
 	<stdio.h>
 	<string.h>
 	"lib.h"
