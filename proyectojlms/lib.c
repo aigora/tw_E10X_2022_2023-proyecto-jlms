@@ -12,13 +12,12 @@ void limpia_consola(void)
 void elige_un_mes(char meses[],int ano,energia fuente)
 {
     year calendario = {"enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"};//variable auxiliar para detectar los meses
-    int posicion;
 
 
     if(strcmp(meses,calendario.enero) == 0)//cuando se detecta un mes
     {
         printf("(datos en GWh)\n");
-        printf("%c %d: \n",meses,ano);
+        printf("%s %d: \n",meses,ano);
         printf("hidraulica: %f\n",fuente[0].ene21);
         printf("turbbombeo: %f\n",fuente[1].ene21);
         printf("nuclear: %f\n",fuente[2].ene21);
@@ -41,7 +40,7 @@ void elige_un_mes(char meses[],int ano,energia fuente)
     if(strcmp(meses,calendario.febrero) == 0)
     {
         printf("(datos en GWh)\n");
-        printf("%c %d: \n",meses,ano);
+        printf("%s %d: \n",meses,ano);
         printf("hidraulica: %f\n",fuente[0].feb21);
         printf("turbbombeo: %f\n",fuente[1].feb21);
         printf("nuclear: %f\n",fuente[2].feb21);
@@ -65,7 +64,7 @@ void elige_un_mes(char meses[],int ano,energia fuente)
     if(strcmp(meses,calendario.marzo) == 0)
     {
         printf("(datos en GWh)\n");
-        printf("%c %d: \n",meses,ano);
+        printf("%s %d: \n",meses,ano);
         printf("hidraulica: %f\n",fuente[0].mar21);
         printf("turbbombeo: %f\n",fuente[1].mar21);
         printf("nuclear: %f\n",fuente[2].mar21);
@@ -89,7 +88,7 @@ void elige_un_mes(char meses[],int ano,energia fuente)
     if(strcmp(meses,calendario.abril) == 0)
     {
         printf("(datos en GWh)\n");
-        printf("%c %d: \n",meses,ano);
+        printf("%s %d: \n",meses,ano);
         printf("hidraulica: %f\n",fuente[0].abr21);
         printf("turbbombeo: %f\n",fuente[1].abr21);
         printf("nuclear: %f\n",fuente[2].abr21);
@@ -113,7 +112,7 @@ void elige_un_mes(char meses[],int ano,energia fuente)
     if(strcmp(meses,calendario.mayo) == 0)
     {
         printf("(datos en GWh)\n");
-        printf("%c %d: \n",meses,ano);
+        printf("%s %d: \n",meses,ano);
         printf("hidraulica: %f\n",fuente[0].may21);
         printf("turbbombeo: %f\n",fuente[1].may21);
         printf("nuclear: %f\n",fuente[2].may21);
@@ -136,7 +135,7 @@ void elige_un_mes(char meses[],int ano,energia fuente)
     if(strcmp(meses,calendario.junio) == 0)
     {
         printf("(datos en GWh)\n");
-        printf("%c %d: \n",meses,ano);
+        printf("%s %d: \n",meses,ano);
         printf("hidraulica: %f\n",fuente[0].jun21);
         printf("turbbombeo: %f\n",fuente[1].jun21);
         printf("nuclear: %f\n",fuente[2].jun21);
@@ -159,7 +158,7 @@ void elige_un_mes(char meses[],int ano,energia fuente)
     if(strcmp(meses,calendario.julio) == 0)
     {
         printf("(datos en GWh)\n");
-        printf("%c %d: \n",meses,ano);
+        printf("%s %d: \n",meses,ano);
         printf("hidraulica: %f\n",fuente[0].jul21);
         printf("turbbombeo: %f\n",fuente[1].jul21);
         printf("nuclear: %f\n",fuente[2].jul21);
@@ -182,7 +181,7 @@ void elige_un_mes(char meses[],int ano,energia fuente)
     if(strcmp(meses,calendario.agosto) == 0)
     {
         printf("(datos en GWh)\n");
-        printf("%c %d: \n",meses,ano);
+        printf("%s %d: \n",meses,ano);
         printf("hidraulica: %f\n",fuente[0].ago21);
         printf("turbbombeo: %f\n",fuente[1].ago21);
         printf("nuclear: %f\n",fuente[2].ago21);
@@ -205,7 +204,7 @@ void elige_un_mes(char meses[],int ano,energia fuente)
     if(strcmp(meses,calendario.septiembre) == 0)
     {
         printf("(datos en GWh)\n");
-        printf("%c %d: \n",meses,ano);
+        printf("%s %d: \n",meses,ano);
         printf("hidraulica: %f\n",fuente[0].sep21);
         printf("turbbombeo: %f\n",fuente[1].sep21);
         printf("nuclear: %f\n",fuente[2].sep21);
@@ -228,7 +227,7 @@ void elige_un_mes(char meses[],int ano,energia fuente)
     if(strcmp(meses,calendario.octubre) == 0)
     {
         printf("(datos en GWh)\n");
-        printf("%c %d: \n",meses,ano);
+        printf("%s %d: \n",meses,ano);
         printf("hidraulica: %f\n",fuente[0].oct21);
         printf("turbbombeo: %f\n",fuente[1].oct21);
         printf("nuclear: %f\n",fuente[2].oct21);
@@ -251,7 +250,7 @@ void elige_un_mes(char meses[],int ano,energia fuente)
     if(strcmp(meses,calendario.noviembre) == 0)
     {
         printf("(datos en GWh)\n");
-        printf("%c %d: \n",meses,ano);
+        printf("%s %d: \n",meses,ano);
         printf("hidraulica: %f\n",fuente[0].nov21);
         printf("turbbombeo: %f\n",fuente[1].nov21);
         printf("nuclear: %f\n",fuente[2].nov21);
@@ -274,7 +273,7 @@ void elige_un_mes(char meses[],int ano,energia fuente)
     if(strcmp(meses,calendario.diciembre) == 0)
     {
         printf("(datos en GWh)\n");
-        printf("%c %d: \n",meses,ano);
+        printf("%s %d: \n",meses,ano);
         printf("hidraulica: %f\n",fuente[0].dic21);
         printf("turbbombeo: %f\n",fuente[1].dic21);
         printf("nuclear: %f\n",fuente[2].dic21);
@@ -297,7 +296,7 @@ void elige_un_mes(char meses[],int ano,energia fuente)
     if(strcmp(meses,calendario.enero) == 0 && (ano ==2022 || ano == 22))
     {
         printf("(datos en GWh)\n");
-        printf("%c %d: \n",meses,ano);
+        printf("%s %d: \n",meses,ano);
         printf("hidraulica: %f\n",fuente[0].ene22);
         printf("turbbombeo: %f\n",fuente[1].ene22);
         printf("nuclear: %f\n",fuente[2].ene22);
@@ -321,7 +320,7 @@ void elige_un_mes(char meses[],int ano,energia fuente)
     if(strcmp(meses,calendario.febrero) == 0 && (ano ==2022 || ano == 22))
     {
         printf("(datos en GWh)\n");
-        printf("%c %d: \n",meses,ano);
+        printf("%s %d: \n",meses,ano);
         printf("hidraulica: %f\n",fuente[0].feb22);
         printf("turbbombeo: %f\n",fuente[1].feb22);
         printf("nuclear: %f\n",fuente[2].feb22);
@@ -345,7 +344,7 @@ void elige_un_mes(char meses[],int ano,energia fuente)
     if(strcmp(meses,calendario.marzo) == 0 && (ano ==2022 || ano == 22))
     {
         printf("(datos en GWh)\n");
-        printf("%c %d: \n",meses,ano);
+        printf("%s %d: \n",meses,ano);
         printf("hidraulica: %f\n",fuente[0].mar22);
         printf("turbbombeo: %f\n",fuente[1].mar22);
         printf("nuclear: %f\n",fuente[2].mar22);
@@ -369,7 +368,7 @@ void elige_un_mes(char meses[],int ano,energia fuente)
     if(strcmp(meses,calendario.abril) == 0 && (ano ==2022 || ano == 22))
     {
         printf("(datos en GWh)\n");
-        printf("%c %d: \n",meses,ano);
+        printf("%s %d: \n",meses,ano);
         printf("hidraulica: %f\n",fuente[0].abr22);
         printf("turbbombeo: %f\n",fuente[1].abr22);
         printf("nuclear: %f\n",fuente[2].abr22);
@@ -392,7 +391,7 @@ void elige_un_mes(char meses[],int ano,energia fuente)
     if(strcmp(meses,calendario.mayo) == 0 && (ano ==2022 || ano == 22))
     {
         printf("(datos en GWh)\n");
-        printf("%c %d: \n",meses,ano);
+        printf("%s %d: \n",meses,ano);
         printf("hidraulica: %f\n",fuente[0].may22);
         printf("turbbombeo: %f\n",fuente[1].may22);
         printf("nuclear: %f\n",fuente[2].may22);
@@ -415,7 +414,7 @@ void elige_un_mes(char meses[],int ano,energia fuente)
     if(strcmp(meses,calendario.junio) == 0 && (ano ==2022 || ano == 22))
     {
         printf("(datos en GWh)\n");
-        printf("%c %d: \n",meses,ano);
+        printf("%s %d: \n",meses,ano);
         printf("hidraulica: %f\n",fuente[0].jun22);
         printf("turbbombeo: %f\n",fuente[1].jun22);
         printf("nuclear: %f\n",fuente[2].jun22);
@@ -438,7 +437,7 @@ void elige_un_mes(char meses[],int ano,energia fuente)
     if(strcmp(meses,calendario.julio) == 0 && (ano ==2022 || ano == 22))
     {
         printf("(datos en GWh)\n");
-        printf("%c %d: \n",meses,ano);
+        printf("%s %d: \n",meses,ano);
         printf("hidraulica: %f\n",fuente[0].jul22);
         printf("turbbombeo: %f\n",fuente[1].jul22);
         printf("nuclear: %f\n",fuente[2].jul22);
@@ -461,7 +460,7 @@ void elige_un_mes(char meses[],int ano,energia fuente)
     if(strcmp(meses,calendario.agosto) == 0 && (ano ==2022 || ano == 22))
     {
         printf("(datos en GWh)\n");
-        printf("%c %d: \n",meses,ano);
+        printf("%s %d: \n",meses,ano);
         printf("hidraulica: %f\n",fuente[0].ago22);
         printf("turbbombeo: %f\n",fuente[1].ago22);
         printf("nuclear: %f\n",fuente[2].ago22);
@@ -484,7 +483,7 @@ void elige_un_mes(char meses[],int ano,energia fuente)
     if(strcmp(meses,calendario.septiembre) == 0 && (ano ==2022 || ano == 22))
     {
         printf("(datos en GWh)\n");
-        printf("%c %d: \n",meses,ano);
+        printf("%s %d: \n",meses,ano);
         printf("hidraulica: %f\n",fuente[0].sep22);
         printf("turbbombeo: %f\n",fuente[1].sep22);
         printf("nuclear: %f\n",fuente[2].sep22);
@@ -507,7 +506,7 @@ void elige_un_mes(char meses[],int ano,energia fuente)
     if(strcmp(meses,calendario.octubre) == 0 && (ano ==2022 || ano == 22))
     {
         printf("(datos en GWh)\n");
-        printf("%c %d: \n",meses,ano);
+        printf("%s %d: \n",meses,ano);
         printf("hidraulica: %f\n",fuente[0].oct22);
         printf("turbbombeo: %f\n",fuente[1].oct22);
         printf("nuclear: %f\n",fuente[2].oct22);
@@ -530,7 +529,7 @@ void elige_un_mes(char meses[],int ano,energia fuente)
     if(strcmp(meses,calendario.noviembre) == 0 && (ano ==2022 || ano == 22))
     {
         printf("(datos en GWh)\n");
-        printf("%c %d: \n",meses,ano);
+        printf("%s %d: \n",meses,ano);
         printf("hidraulica: %f\n",fuente[0].nov22);
         printf("turbbombeo: %f\n",fuente[1].nov22);
         printf("nuclear: %f\n",fuente[2].nov22);
@@ -553,7 +552,7 @@ void elige_un_mes(char meses[],int ano,energia fuente)
     if(strcmp(meses,calendario.diciembre) == 0 && (ano ==2022 || ano == 22))
     {
         printf("(datos en GWh)\n");
-        printf("%c %d: \n",meses,ano);
+        printf("%s %d: \n",meses,ano);
         printf("hidraulica: %f\n",fuente[0].dic22);
         printf("turbbombeo: %f\n",fuente[1].dic22);
         printf("nuclear: %f\n",fuente[2].dic22);
@@ -1214,6 +1213,7 @@ void crearfichero(mes intro[],int dimension)
 void imprime_energia(int x,energia fuente)
 {
     limpia_consola();
+    int i;
 
 
     float val[24]= {fuente[x-1].ene21,fuente[x-1].feb21,fuente[x-1].mar21,fuente[x-1].abr21,fuente[x-1].may21,fuente[x-1].jun21,fuente[x-1].jul21,fuente[x-1].ago21,fuente[x-1].sep21,fuente[x-1].oct21,fuente[x-1].nov21,fuente[x-1].dic21,fuente[x-1].ene22,fuente[x-1].feb22,fuente[x-1].mar22,fuente[x-1].abr22,fuente[x-1].may22,fuente[x-1].jun22,fuente[x-1].jul22,fuente[x-1].ago22,fuente[x-1].sep22,fuente[x-1].oct22,fuente[x-1].nov22,fuente[x-1].dic22};
@@ -1283,7 +1283,12 @@ void imprime_energia(int x,energia fuente)
         printf("Residrenov: ");
     }
 
-    printf("%f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f\n\n",fuente[x-1].ene21,fuente[x-1].feb21,fuente[x-1].mar21,fuente[x-1].abr21,fuente[x-1].may21,fuente[x-1].jun21,fuente[x-1].jul21,fuente[x-1].ago21,fuente[x-1].sep21,fuente[x-1].oct21,fuente[x-1].nov21,fuente[x-1].dic21,fuente[x-1].ene22,fuente[x-1].feb22,fuente[x-1].mar22,fuente[x-1].abr22,fuente[x-1].may22,fuente[x-1].jun22,fuente[x-1].jul22,fuente[x-1].ago22,fuente[x-1].sep22,fuente[x-1].oct22,fuente[x-1].nov22,fuente[x-1].dic22);
+   // printf("%lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf\n\n",fuente[x-1].ene21,fuente[x-1].feb21,fuente[x-1].mar21,fuente[x-1].abr21,fuente[x-1].may21,fuente[x-1].jun21,fuente[x-1].jul21,fuente[x-1].ago21,fuente[x-1].sep21,fuente[x-1].oct21,fuente[x-1].nov21,fuente[x-1].dic21,fuente[x-1].ene22,fuente[x-1].feb22,fuente[x-1].mar22,fuente[x-1].abr22,fuente[x-1].may22,fuente[x-1].jun22,fuente[x-1].jul22,fuente[x-1].ago22,fuente[x-1].sep22,fuente[x-1].oct22,fuente[x-1].nov22,fuente[x-1].dic22);
+
+      for(i=0;i<24;i++)
+   {
+       printf("%f\t",val[i]);
+   }
 
     printf("El valor maximo son %f\n",maximo2(val));
     printf("El valor minimo son %f\n",minimo2(val));
